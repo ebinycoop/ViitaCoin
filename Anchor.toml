@@ -1,0 +1,29 @@
+[toolchain]
+
+[features]
+seeds = true
+skip-lint = false
+
+[programs.localnet]
+vitacoin = "Vita111111111111111111111111111111111111111"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "~/.config/solana/id.json"
+
+[history]
+vitacoin = "programs/vitacoin"
+
+[[test.validator.clone]]
+pubkey = "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+
+[test.validator]
+url = "https://api.mainnet-beta.solana.com"
+
+# Section 5 Whitepaper Smart Token Configuration Definition
+[constants]
+TOTAL_MAX_SUPPLY = 10000000000
+ECOSYSTEM_REWARDS_ALLOCATION = 5500000000
