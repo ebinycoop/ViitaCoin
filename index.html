@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitaCoin — Everyday Living to YHWH's Glory</title>
-    <!-- Tailwind for Sleek Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Solana Web3 Official CDN Browser Bundle -->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <style>
         body {
@@ -23,43 +21,41 @@
 </head>
 <body class="text-slate-200 min-h-screen flex flex-col">
 
-    <!-- Navigation -->
-    <header class="w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
         <div class="flex items-center gap-3">
-            <!-- App Icon Header Space (Points directly to your root logo file) -->
-            <img src="vitacoin-logo.png" alt="V" class="w-10 h-10 object-contain rounded-xl shadow-md">
+            <img src="vitacoin-logo.png" alt="VitaCoin Logo" class="w-11 h-11 object-contain rounded-xl shadow-md">
             <span class="text-2xl font-black tracking-tight text-white">Vita<span class="text-amber-400">Coin</span></span>
         </div>
+        
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
             <a href="#vision" class="hover:text-amber-400 transition-colors">Vision</a>
             <a href="#vaults" class="hover:text-amber-400 transition-colors">Vaults</a>
-            <a href="#calculator" class="hover:text-amber-400 transition-colors">Calculator</a>
+            <a href="#terminal" class="hover:text-amber-400 transition-colors">Verification Terminal</a>
         </nav>
-        <!-- Option 1: Live Connected Solana Wallet Button -->
-        <button id="walletBtn" onclick="toggleWallet()" 
-                class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all shadow-md shadow-amber-400/10 active:scale-95">
-            Connect Wallet
-        </button>
+        
+        <div class="flex items-center gap-4">
+            <button id="walletBtn" onclick="toggleWallet()" 
+                    class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all shadow-md shadow-amber-400/10 active:scale-95">
+                Connect Wallet
+            </button>
+        </div>
     </header>
 
-    <!-- Hero -->
-    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center">
-        <!-- Main Logo Integration (Points directly to your root logo file) -->
+    <main class="w-full max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center">
         <div class="relative mb-8 group">
             <div class="absolute inset-0 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500"></div>
-            <img src="vitacoin-logo.png" alt="VitaCoin Logo" class="w-56 h-56 md:w-64 md:h-64 object-contain relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.65)] transform group-hover:scale-105 transition-all duration-300">
+            <img src="vitacoin-logo.png" alt="VitaCoin Core Emblem" class="w-48 h-48 md:w-56 md:h-56 object-contain relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.65)] transform group-hover:scale-105 transition-all duration-300">
         </div>
 
         <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6 leading-none">
             Build Your Future.<br>
             <span class="gold-text-gradient">Every Single Day.</span>
         </h1>
-        <p class="text-xl text-slate-400 max-w-xl mx-auto mb-10">
-            Turn rent, groceries, utilities, and daily bills into real wealth, homeownership, and freedom on Solana.
+        <p class="text-xl text-slate-400 max-w-xl mx-auto mb-8">
+            Turn your everyday expenditures into real wealth, homeownership, and structural freedom anchored on Solana.
         </p>
 
-        <!-- Dynamic Solana Wallet Profile Status Display -->
-        <div id="walletStatusCard" class="hidden w-full max-w-md bg-slate-900/90 border border-amber-500/40 rounded-2xl p-5 mb-12 text-left gold-glow">
+        <div id="walletStatusCard" class="hidden w-full max-w-md bg-slate-900/90 border border-amber-500/40 rounded-2xl p-5 mb-6 text-left gold-glow">
             <div class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-1">Connected Vault Account</div>
             <div id="walletAddressDisplay" class="text-sm font-mono text-slate-300 truncate mb-3">0x...</div>
             <div class="flex justify-between items-center border-t border-slate-800/80 pt-3">
@@ -69,73 +65,114 @@
         </div>
     </main>
 
-    <!-- Vision -->
-    <section id="vision" class="w-full max-w-4xl mx-auto px-6 py-16 border-t border-slate-800">
-        <h2 class="text-3xl font-bold text-center mb-8">From Survival to Ownership</h2>
+    <section id="vision" class="w-full max-w-4xl mx-auto px-6 py-12 border-t border-slate-800">
+        <h2 class="text-3xl font-bold text-center mb-6">From Survival to Ownership</h2>
         <p class="text-slate-400 text-center max-w-2xl mx-auto text-lg leading-relaxed">
-            VitaCoin rewards the work you already do. Every receipt, every bill paid becomes a step toward real financial independence.
+            VitaCoin rewards the work you already do. Every receipt logged and bill validated becomes an automated building block toward true generational inheritance.
         </p>
     </section>
 
-    <!-- Vaults & Calculator -->
-    <section id="vaults" class="w-full max-w-4xl mx-auto px-6 py-16 bg-slate-950/50 border-t border-b border-slate-800">
-        <h2 class="text-3xl font-bold text-center mb-12">Dual Vault System</h2>
+    <section id="vaults" class="w-full max-w-6xl mx-auto px-6 py-12 bg-slate-950/40 border-t border-b border-slate-800/80 rounded-3xl">
+        <h2 class="text-3xl font-bold text-center mb-12">System Vault Balances</h2>
+        
         <div class="grid md:grid-cols-2 gap-8 mb-16">
-            <div class="bg-slate-900/80 border border-amber-500/30 rounded-3xl p-8 gold-glow">
-                <h3 class="text-2xl font-bold text-amber-400 mb-3">🏠 HomeBuilder Vault</h3>
-                <p class="text-slate-400 mb-6">50% of verified rent or mortgage returned as VitaCoin — locked toward downpayment or home improvements.</p>
-                <div class="text-sm text-amber-400 font-medium">Turn rent into ownership • 12–24 months</div>
+            <div class="bg-slate-900/80 border border-amber-500/30 rounded-3xl p-8 gold-glow flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold text-amber-400">🏠 HomeBuilder Vault</h3>
+                        <span class="bg-amber-400/10 text-amber-400 text-[10px] font-bold uppercase px-2.5 py-1 rounded-md tracking-wider">Locked Asset</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">Receives 50% matching allocations derived from housing, rent, or mortgage transactions. Designated strictly toward land, downpayments, or home upgrades.</p>
+                </div>
+                <div class="border-t border-slate-800 pt-4 mt-4">
+                    <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Total Vault Balance</div>
+                    <div id="homeVaultAccumulation" class="text-3xl font-black text-white">0.00 VITA</div>
+                </div>
             </div>
-            <div class="bg-slate-900/80 border border-emerald-500/30 rounded-3xl p-8">
-                <h3 class="text-2xl font-bold text-emerald-400 mb-3">🌱 Life Vault</h3>
-                <p class="text-slate-400 mb-6">Rewards from daily expenses. Minimum 3-month lock. Longer = higher earnings. Unlock anytime and spend freely.</p>
-                <div class="text-sm text-emerald-400 font-medium">Flexible • Emergency ready • Grow with time</div>
+
+            <div class="bg-slate-900/80 border border-emerald-500/30 rounded-3xl p-8 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold text-emerald-400">🌱 Life Vault</h3>
+                        <span class="bg-emerald-400/10 text-emerald-400 text-[10px] font-bold uppercase px-2.5 py-1 rounded-md tracking-wider">Flexible Account</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">Accumulates dynamic reward streams across all variable daily living categories. Minimum 3-month yield locks, accessible for flexible withdrawal setups.</p>
+                </div>
+                <div class="border-t border-slate-800 pt-4 mt-4">
+                    <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Total Vault Balance</div>
+                    <div id="lifeVaultAccumulation" class="text-3xl font-black text-emerald-400">0.00 VITA</div>
+                </div>
             </div>
         </div>
 
-        <!-- Option 2: Live Calculator Interface Integration -->
-        <div id="calculator" class="w-full max-w-xl mx-auto bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 md:p-8 backdrop-blur-sm">
-            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <span class="text-amber-400">✦</span> Interactive Rewards Calculator
-            </h3>
+        <div id="terminal" class="grid lg:grid-cols-5 gap-8 border-t border-slate-800/60 pt-12">
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Monthly Rent / Mortgage ($)</label>
-                    <input type="number" id="rentInput" value="1500" oninput="runCalculations()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/50 rounded-xl px-4 py-3 text-white font-medium outline-none transition-all">
+            <div class="lg:col-span-2 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 h-fit">
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <span class="text-amber-400">✦</span> Log Daily Transaction
+                </h3>
+                
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Transaction Memo Note</label>
+                    <input type="text" id="memoInput" placeholder="e.g., Weekly Groceries, Electric Bill" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/40 rounded-xl px-4 py-3 text-white font-medium outline-none text-sm transition-all">
                 </div>
+
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Expense Category Matrix</label>
+                    <select id="matrixCategorySelect" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/40 rounded-xl px-4 py-3 text-white font-medium outline-none text-sm transition-all">
+                        <option value="0.50|home">Housing / Rent / Mortgage (50%)</option>
+                        <option value="0.10|life">Medical Bills (10%)</option>
+                        <option value="0.10|life">Utilities: Electric, Water, etc. (10%)</option>
+                        <option value="0.05|life">Groceries: Qualifying Bills (5%)</option>
+                        <option value="0.05|life">Gas (5%)</option>
+                        <option value="0.03|life">Credit Card Bills (3%)</option>
+                        <option value="0.03|life">Car Insurance (3%)</option>
+                        <option value="0.01|life">Cash Withdrawals (1%)</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Total Bill Amount ($ USD)</label>
+                    <input type="number" id="billValueInput" placeholder="0.00" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/40 rounded-xl px-4 py-3 text-white font-bold outline-none text-sm transition-all">
+                </div>
+
+                <button onclick="executeLedgerCommit()" class="w-full bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold py-3.5 px-6 rounded-xl text-sm transition-all active:scale-[0.98] shadow-lg shadow-amber-500/5">
+                    Submit Verification Receipt
+                </button>
+            </div>
+
+            <div class="lg:col-span-3 bg-slate-900/30 border border-slate-800/60 rounded-3xl p-6 flex flex-col justify-between min-h-[400px]">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Other Daily Expenses ($)</label>
-                    <input type="number" id="expenseInput" value="800" oninput="runCalculations()" class="w-full bg-slate-950 border border-slate-800 focus:border-emerald-400/50 rounded-xl px-4 py-3 text-white font-medium outline-none transition-all">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center justify-between">
+                        <span>📋 Real-Time Verification Statement</span>
+                        <span id="ledgerCounter" class="text-xs font-mono font-normal bg-slate-950 text-slate-500 px-2 py-1 rounded-md border border-slate-800">0 entries</span>
+                    </h3>
+                    
+                    <div id="ledgerStreamBox" class="space-y-3 max-h-[320px] overflow-y-auto pr-2 text-center text-sm text-slate-500 py-12 border border-dashed border-slate-800 rounded-2xl bg-slate-950/20">
+                        No transactions logged on current session. Enter transaction details to initialize statement history ledger entries.
+                    </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-slate-800/80 pt-6">
-                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/40">
-                    <div class="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1">HomeBuilder Allocation (Monthly)</div>
-                    <div id="homeRewardDisplay" class="text-2xl font-black text-white">750.00 VITA</div>
-                </div>
-                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/40">
-                    <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-1">Life Vault Rewards (Monthly)</div>
-                    <div id="lifeRewardDisplay" class="text-2xl font-black text-white">80.00 VITA</div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="mt-auto w-full max-w-6xl mx-auto px-6 py-12 border-t border-slate-900 text-center text-xs text-slate-500">
-        <div>© 2026 VitaCoin • Open Source on GitHub</div>
+    <footer class="mt-auto w-full max-w-7xl mx-auto px-6 py-12 border-t border-slate-900 text-center text-xs text-slate-500">
+        <div>© 2026 VitaCoin • Open Source on GitHub Architecture Suite</div>
         <div class="mt-2 font-medium text-slate-400">Everyday Living to YHWH's Glory</div>
-        <div class="mt-6 text-[10px] text-slate-600">Conceptual project — Not financial advice. Requires audits before launch.</div>
+        <div class="mt-6 text-[10px] text-slate-600 tracking-wide">Conceptual program structure validation module — Not financial investment advice. Complete system audit sweeps mandatory prior to mainnet distribution.</div>
     </footer>
 
-    <!-- FUNCTIONAL WEB3 & APPLICATION CALCULATIONS -->
     <script>
         let walletConnected = false;
         let userPublicKey = null;
+        
+        // Vault Internal Memory States
+        let totalHomeTokens = 0.00;
+        let totalLifeTokens = 0.00;
+        let ledgerCount = 0;
 
-        // --- SOLANA CONNECTION LOGIC ---
+        // --- SOLANA WALLET MANAGEMENT ---
         async function toggleWallet() {
             const btn = document.getElementById('walletBtn');
             const statusCard = document.getElementById('walletStatusCard');
@@ -163,10 +200,11 @@
                         balanceDisplay.innerText = (balance / solanaWeb3.LAMPORTS_PER_SOL).toFixed(3) + " SOL";
 
                     } catch (err) {
-                        console.error("Connection aborted:", err);
+                        console.error("Connection handshake denied:", err);
                     }
                 } else {
-                    alert("Solana Wallet client environment not detected. Launching secure local preview instance!");
+                    // Failover Demo Environment Generation Matrix
+                    alert("Solana Web3 Provider context not injected into frame. Initializing isolated local mock environment!");
                     userPublicKey = "DemoVitaVault7777777777777777777777777777";
                     walletConnected = true;
                     btn.innerText = "Disconnect";
@@ -185,21 +223,51 @@
             }
         }
 
-        // --- COIN VAULT CALCULATIONS ---
-        function runCalculations() {
-            const rentVal = parseFloat(document.getElementById('rentInput').value) || 0;
-            const expenseVal = parseFloat(document.getElementById('expenseInput').value) || 0;
+        // --- OPTION 2: EXTENDED TRANSACTION LEDGER ENGINE ---
+        function executeLedgerCommit() {
+            const memoField = document.getElementById('memoInput');
+            const selectField = document.getElementById('matrixCategorySelect');
+            const inputField = document.getElementById('billValueInput');
+            const streamBox = document.getElementById('ledgerStreamBox');
 
-            const homeScore = rentVal * 0.50;
-            const lifeScore = expenseVal * 0.10;
+            const memoText = memoField.value.trim() || "Unspecified Expenditure Item";
+            const billValue = parseFloat(inputField.value) || 0;
 
-            document.getElementById('homeRewardDisplay').innerText = homeScore.toFixed(2) + " VITA";
-            document.getElementById('lifeRewardDisplay').innerText = lifeScore.toFixed(2) + " VITA";
-        }
+            if (billValue <= 0) {
+                alert("Please declare a numeric transaction dollar amount above zero to issue ledger rewards.");
+                return;
+            }
 
-        window.onload = function() {
-            runCalculations();
-        };
-    </script>
-</body>
-</html>
+            // Unpack compound selector string properties matrix (rate|target)
+            const splitConfig = selectField.value.split('|');
+            const dynamicRate = parseFloat(splitConfig[0]);
+            const targetVault = splitConfig[1];
+            const chosenCategoryText = selectField.options[selectField.selectedIndex].text.split(' (')[0];
+
+            // Math execution
+            const rewardsCalculated = billValue * dynamicRate;
+
+            // Clear placeholder text layout configuration upon first real record submission
+            if(ledgerCount === 0) {
+                streamBox.innerHTML = "";
+                streamBox.className = "space-y-3 max-h-[320px] overflow-y-auto pr-2 text-left";
+            }
+
+            // Accumulate internal memory limits
+            if (targetVault === 'home') {
+                totalHomeTokens += rewardsCalculated;
+                document.getElementById('homeVaultAccumulation').innerText = totalHomeTokens.toFixed(2) + " VITA";
+            } else {
+                totalLifeTokens += rewardsCalculated;
+                document.getElementById('lifeVaultAccumulation').innerText = totalLifeTokens.toFixed(2) + " VITA";
+            }
+
+            // Build dynamic UI row block element architecture
+            ledgerCount++;
+            document.getElementById('ledgerCounter').innerText = ledgerCount + (ledgerCount === 1 ? " entry" : " entries");
+
+            const badgeColor = targetVault === 'home' ? 'text-amber-400 bg-amber-400/5 border-amber-500/20' : 'text-emerald-400 bg-emerald-400/5 border-emerald-500/20';
+            const badgeIcon = targetVault === 'home' ? '🏠' : '🌱';
+
+            const newRecordRow = document.createElement('div');
+            newRecordRow.className = "bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between transition-all animate-fade-
