@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitaCoin — Everyday Living to YHWH's Glory</title>
+    <!-- Tailwind for Sleek Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Solana Web3 Official CDN Browser Bundle -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <style>
         body {
             background: linear-gradient(135deg, #06191d 0%, #020b0d 100%);
@@ -23,45 +26,28 @@
     <!-- Navigation -->
     <header class="w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
         <div class="flex items-center gap-3">
-            <!-- Small Header SVG Logo -->
-            <svg width="48" height="48" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="140" cy="140" r="118" fill="#1E2937" stroke="#F4C95D" stroke-width="22"/>
-                <g transform="translate(140 140) scale(0.95)">
-                    <path d="M-65 -45 L-8 65 L8 65 L65 -45" fill="none" stroke="#10B981" stroke-width="28" stroke-linejoin="round"/>
-                    <path d="M-65 -45 L-8 65 L8 65 L65 -45" fill="none" stroke="#F4C95D" stroke-width="18" stroke-linejoin="round"/>
-                    <path d="M-48 -68 Q-25 -88 0 -68 Q25 -88 48 -68" fill="none" stroke="#F4C95D" stroke-width="20" stroke-linejoin="round"/>
-                    <text x="0" y="12" text-anchor="middle" fill="#F4C95D" font-size="48" font-weight="900">V</text>
-                </g>
-            </svg>
+            <!-- Sleek App Icon Header Space -->
+            <img src="watermarked_img_1097822207679164096.png" alt="V" class="w-10 h-10 object-contain rounded-xl shadow-md">
             <span class="text-2xl font-black tracking-tight text-white">Vita<span class="text-amber-400">Coin</span></span>
         </div>
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
             <a href="#vision" class="hover:text-amber-400 transition-colors">Vision</a>
             <a href="#vaults" class="hover:text-amber-400 transition-colors">Vaults</a>
-            <a href="#how" class="hover:text-amber-400 transition-colors">How It Works</a>
             <a href="#calculator" class="hover:text-amber-400 transition-colors">Calculator</a>
         </nav>
-        <button onclick="alert('Phantom / Solflare wallet connection coming soon!')" 
-                class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all">
+        <!-- Option 1: Live Solana Wallet Connection Button -->
+        <button id="walletBtn" onclick="toggleWallet()" 
+                class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all shadow-md shadow-amber-400/10 active:scale-95">
             Connect Wallet
         </button>
     </header>
 
     <!-- Hero -->
-    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-16 text-center">
-        <!-- Large Hero SVG Logo -->
-        <div class="mb-10 flex justify-center">
-            <svg width="260" height="260" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-2xl">
-                <circle cx="140" cy="140" r="130" fill="#0F172A" stroke="#10B981" stroke-width="12"/>
-                <circle cx="140" cy="140" r="118" fill="#1E2937" stroke="#F4C95D" stroke-width="18"/>
-                <g transform="translate(140 140) scale(1.1)">
-                    <path d="M-65 -45 L-8 65 L8 65 L65 -45" fill="none" stroke="#10B981" stroke-width="28" stroke-linejoin="round"/>
-                    <path d="M-65 -45 L-8 65 L8 65 L65 -45" fill="none" stroke="#F4C95D" stroke-width="18" stroke-linejoin="round"/>
-                    <path d="M-48 -68 Q-25 -88 0 -68 Q25 -88 48 -68" fill="none" stroke="#F4C95D" stroke-width="22" stroke-linejoin="round"/>
-                    <text x="0" y="12" text-anchor="middle" fill="#F4C95D" font-size="52" font-weight="900" font-family="sans-serif">V</text>
-                </g>
-                <circle cx="140" cy="140" r="95" fill="none" stroke="#34D399" stroke-width="8" opacity="0.35"/>
-            </svg>
+    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center">
+        <!-- Main Logo Coin Asset Integration -->
+        <div class="relative mb-8 group">
+            <div class="absolute inset-0 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500"></div>
+            <img src="watermarked_img_1097822207679164096.png" alt="VitaCoin Logo" class="w-56 h-56 md:w-64 md:h-64 object-contain relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.65)] transform group-hover:scale-105 transition-all duration-300">
         </div>
 
         <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6 leading-none">
@@ -71,29 +57,68 @@
         <p class="text-xl text-slate-400 max-w-xl mx-auto mb-10">
             Turn rent, groceries, utilities, and daily bills into real wealth, homeownership, and freedom on Solana.
         </p>
+
+        <!-- Dynamic Solana Wallet Profile Status Display -->
+        <div id="walletStatusCard" class="hidden w-full max-w-md bg-slate-900/90 border border-amber-500/40 rounded-2xl p-5 mb-12 text-left gold-glow">
+            <div class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-1">Connected Vault Account</div>
+            <div id="walletAddressDisplay" class="text-sm font-mono text-slate-300 truncate mb-3">0x...</div>
+            <div class="flex justify-between items-center border-t border-slate-800/80 pt-3">
+                <span class="text-xs text-slate-400">Solana Balance:</span>
+                <span id="solBalanceDisplay" class="text-sm font-bold text-white">0.00 SOL</span>
+            </div>
+        </div>
     </main>
 
     <!-- Vision -->
-    <section id="vision" class="w-full max-w-4xl mx-auto px-6 py-20 border-t border-slate-800">
+    <section id="vision" class="w-full max-w-4xl mx-auto px-6 py-16 border-t border-slate-800">
         <h2 class="text-3xl font-bold text-center mb-8">From Survival to Ownership</h2>
-        <p class="text-slate-400 text-center max-w-2xl mx-auto text-lg">
+        <p class="text-slate-400 text-center max-w-2xl mx-auto text-lg leading-relaxed">
             VitaCoin rewards the work you already do. Every receipt, every bill paid becomes a step toward real financial independence.
         </p>
     </section>
 
     <!-- Vaults -->
-    <section id="vaults" class="w-full max-w-4xl mx-auto px-6 py-20 bg-slate-950/50 border-t border-b border-slate-800">
+    <section id="vaults" class="w-full max-w-4xl mx-auto px-6 py-16 bg-slate-950/50 border-t border-b border-slate-800">
         <h2 class="text-3xl font-bold text-center mb-12">Dual Vault System</h2>
-        <div class="grid md:grid-cols-2 gap-8">
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
             <div class="bg-slate-900/80 border border-amber-500/30 rounded-3xl p-8 gold-glow">
                 <h3 class="text-2xl font-bold text-amber-400 mb-3">🏠 HomeBuilder Vault</h3>
                 <p class="text-slate-400 mb-6">50% of verified rent or mortgage returned as VitaCoin — locked toward downpayment or home improvements.</p>
-                <div class="text-sm text-amber-400">Turn rent into ownership • 12–24 months</div>
+                <div class="text-sm text-amber-400 font-medium">Turn rent into ownership • 12–24 months</div>
             </div>
             <div class="bg-slate-900/80 border border-emerald-500/30 rounded-3xl p-8">
                 <h3 class="text-2xl font-bold text-emerald-400 mb-3">🌱 Life Vault</h3>
                 <p class="text-slate-400 mb-6">Rewards from daily expenses. Minimum 3-month lock. Longer = higher earnings. Unlock anytime and spend freely.</p>
-                <div class="text-sm text-emerald-400">Flexible • Emergency ready • Grow with time</div>
+                <div class="text-sm text-emerald-400 font-medium">Flexible • Emergency ready • Grow with time</div>
+            </div>
+        </div>
+
+        <!-- Option 2: Live Calculator Interface Integration -->
+        <div id="calculator" class="w-full max-w-xl mx-auto bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 md:p-8 backdrop-blur-sm">
+            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <span class="text-amber-400">✦</span> Interactive Rewards Calculator
+            </h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Monthly Rent / Mortgage ($)</label>
+                    <input type="number" id="rentInput" value="1500" oninput="runCalculations()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/50 rounded-xl px-4 py-3 text-white font-medium outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Other Daily Expenses ($)</label>
+                    <input type="number" id="expenseInput" value="800" oninput="runCalculations()" class="w-full bg-slate-950 border border-slate-800 focus:border-emerald-400/50 rounded-xl px-4 py-3 text-white font-medium outline-none transition-all">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-slate-800/80 pt-6">
+                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/40">
+                    <div class="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1">HomeBuilder Allocation (Monthly)</div>
+                    <div id="homeRewardDisplay" class="text-2xl font-black text-white">750.00 VITA</div>
+                </div>
+                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/40">
+                    <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-1">Life Vault Rewards (Monthly)</div>
+                    <div id="lifeRewardDisplay" class="text-2xl font-black text-white">80.00 VITA</div>
+                </div>
             </div>
         </div>
     </section>
@@ -101,9 +126,85 @@
     <!-- Footer -->
     <footer class="mt-auto w-full max-w-6xl mx-auto px-6 py-12 border-t border-slate-900 text-center text-xs text-slate-500">
         <div>© 2026 VitaCoin • Open Source on GitHub</div>
-        <div class="mt-2">Everyday Living to YHWH's Glory</div>
-        <div class="mt-6 text-[10px]">Conceptual project — Not financial advice. Requires audits before launch.</div>
+        <div class="mt-2 font-medium text-slate-400">Everyday Living to YHWH's Glory</div>
+        <div class="mt-6 text-[10px] text-slate-600">Conceptual project — Not financial advice. Requires audits before launch.</div>
     </footer>
 
+    <!-- FUNCTIONAL WEB3 & APPLICATION CALCULATIONS -->
+    <script>
+        let walletConnected = false;
+        let userPublicKey = null;
+
+        // --- SOLANA CONNECTION LOGIC ---
+        async function toggleWallet() {
+            const btn = document.getElementById('walletBtn');
+            const statusCard = document.getElementById('walletStatusCard');
+            const addressDisplay = document.getElementById('walletAddressDisplay');
+            const balanceDisplay = document.getElementById('solBalanceDisplay');
+
+            if (!walletConnected) {
+                const isSolanaAvailable = window.solana && window.solana.isPhantom;
+
+                if (isSolanaAvailable) {
+                    try {
+                        const response = await window.solana.connect();
+                        userPublicKey = response.publicKey.toString();
+                        walletConnected = true;
+
+                        btn.innerText = "Disconnect";
+                        btn.className = "bg-slate-800 text-amber-400 border border-amber-400/40 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all";
+                        addressDisplay.innerText = userPublicKey;
+                        statusCard.classList.remove('hidden');
+
+                        // Establish Solana RPC network handshake
+                        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+                        const pubKeyObj = new solanaWeb3.PublicKey(userPublicKey);
+                        const balance = await connection.getBalance(pubKeyObj);
+                        
+                        balanceDisplay.innerText = (balance / solanaWeb3.LAMPORTS_PER_SOL).toFixed(3) + " SOL";
+
+                    } catch (err) {
+                        console.error("Connection aborted:", err);
+                    }
+                } else {
+                    // Mobile / Non-extension browser backup configuration
+                    alert("Solana Wallet client environment not detected. Launching secure local preview instance!");
+                    userPublicKey = "DemoVitaVault7777777777777777777777777777";
+                    walletConnected = true;
+                    btn.innerText = "Disconnect";
+                    btn.className = "bg-slate-800 text-amber-400 border border-amber-400/40 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all";
+                    addressDisplay.innerText = userPublicKey;
+                    balanceDisplay.innerText = "8.450 SOL";
+                    statusCard.classList.remove('hidden');
+                }
+            } else {
+                if(window.solana) window.solana.disconnect();
+                walletConnected = false;
+                userPublicKey = null;
+                btn.innerText = "Connect Wallet";
+                btn.className = "bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all shadow-md";
+                statusCard.classList.add('hidden');
+            }
+        }
+
+        // --- COIN VAULT MATHEMATICAL MATRIX ---
+        function runCalculations() {
+            const rentVal = parseFloat(document.getElementById('rentInput').value) || 0;
+            const expenseVal = parseFloat(document.getElementById('expenseInput').value) || 0;
+
+            // Rule 1: HomeBuilder tracks 50% accumulation profile translation
+            const homeScore = rentVal * 0.50;
+            // Rule 2: General life metrics yield standard 10% translation
+            const lifeScore = expenseVal * 0.10;
+
+            document.getElementById('homeRewardDisplay').innerText = homeScore.toFixed(2) + " VITA";
+            document.getElementById('lifeRewardDisplay').innerText = lifeScore.toFixed(2) + " VITA";
+        }
+
+        // Initial launch logic verification
+        window.onload = function() {
+            runCalculations();
+        };
+    </script>
 </body>
 </html>
