@@ -26,8 +26,8 @@
     <!-- Navigation -->
     <header class="w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
         <div class="flex items-center gap-3">
-            <!-- Sleek App Icon Header Space -->
-            <img src="watermarked_img_1097822207679164096.png" alt="V" class="w-10 h-10 object-contain rounded-xl shadow-md">
+            <!-- App Icon Header Space (Points directly to your root logo file) -->
+            <img src="vitacoin-logo.png" alt="V" class="w-10 h-10 object-contain rounded-xl shadow-md">
             <span class="text-2xl font-black tracking-tight text-white">Vita<span class="text-amber-400">Coin</span></span>
         </div>
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
@@ -35,7 +35,7 @@
             <a href="#vaults" class="hover:text-amber-400 transition-colors">Vaults</a>
             <a href="#calculator" class="hover:text-amber-400 transition-colors">Calculator</a>
         </nav>
-        <!-- Option 1: Live Solana Wallet Connection Button -->
+        <!-- Option 1: Live Connected Solana Wallet Button -->
         <button id="walletBtn" onclick="toggleWallet()" 
                 class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all shadow-md shadow-amber-400/10 active:scale-95">
             Connect Wallet
@@ -44,10 +44,10 @@
 
     <!-- Hero -->
     <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center">
-        <!-- Main Logo Coin Asset Integration -->
+        <!-- Main Logo Integration (Points directly to your root logo file) -->
         <div class="relative mb-8 group">
             <div class="absolute inset-0 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500"></div>
-            <img src="watermarked_img_1097822207679164096.png" alt="VitaCoin Logo" class="w-56 h-56 md:w-64 md:h-64 object-contain relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.65)] transform group-hover:scale-105 transition-all duration-300">
+            <img src="vitacoin-logo.png" alt="VitaCoin Logo" class="w-56 h-56 md:w-64 md:h-64 object-contain relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.65)] transform group-hover:scale-105 transition-all duration-300">
         </div>
 
         <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6 leading-none">
@@ -77,7 +77,7 @@
         </p>
     </section>
 
-    <!-- Vaults -->
+    <!-- Vaults & Calculator -->
     <section id="vaults" class="w-full max-w-4xl mx-auto px-6 py-16 bg-slate-950/50 border-t border-b border-slate-800">
         <h2 class="text-3xl font-bold text-center mb-12">Dual Vault System</h2>
         <div class="grid md:grid-cols-2 gap-8 mb-16">
@@ -156,7 +156,6 @@
                         addressDisplay.innerText = userPublicKey;
                         statusCard.classList.remove('hidden');
 
-                        // Establish Solana RPC network handshake
                         const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
                         const pubKeyObj = new solanaWeb3.PublicKey(userPublicKey);
                         const balance = await connection.getBalance(pubKeyObj);
@@ -167,7 +166,6 @@
                         console.error("Connection aborted:", err);
                     }
                 } else {
-                    // Mobile / Non-extension browser backup configuration
                     alert("Solana Wallet client environment not detected. Launching secure local preview instance!");
                     userPublicKey = "DemoVitaVault7777777777777777777777777777";
                     walletConnected = true;
@@ -187,21 +185,18 @@
             }
         }
 
-        // --- COIN VAULT MATHEMATICAL MATRIX ---
+        // --- COIN VAULT CALCULATIONS ---
         function runCalculations() {
             const rentVal = parseFloat(document.getElementById('rentInput').value) || 0;
             const expenseVal = parseFloat(document.getElementById('expenseInput').value) || 0;
 
-            // Rule 1: HomeBuilder tracks 50% accumulation profile translation
             const homeScore = rentVal * 0.50;
-            // Rule 2: General life metrics yield standard 10% translation
             const lifeScore = expenseVal * 0.10;
 
             document.getElementById('homeRewardDisplay').innerText = homeScore.toFixed(2) + " VITA";
             document.getElementById('lifeRewardDisplay').innerText = lifeScore.toFixed(2) + " VITA";
         }
 
-        // Initial launch logic verification
         window.onload = function() {
             runCalculations();
         };
