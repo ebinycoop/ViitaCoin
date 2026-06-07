@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaCoin — Everyday Living to YHWH's Glory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #06191d 0%, #020b0d 100%);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(180deg, #f3e7c4 0%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen flex flex-col justify-between selection:bg-amber-500/30">
+
+    <!-- Top Navigation -->
+    <header class="w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
+        <div class="flex items-center gap-3">
+            <!-- Space for your Watermark / Icon -->
+            <div class="w-10 h-10 bg-gradient-to-b from-amber-400 to-amber-600 rounded-xl flex items-center justify-center font-bold text-slate-950 text-xl shadow-lg shadow-amber-500/10">
+                V
+            </div>
+            <span class="text-2xl font-black tracking-tight text-white">Vita<span class="text-amber-400">Coin</span></span>
+        </div>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+            <a href="#vision" class="hover:text-amber-400 transition-colors">Vision</a>
+            <a href="#dashboard" class="hover:text-amber-400 transition-colors">Dashboard</a>
+            <a href="#ecosystem" class="hover:text-amber-400 transition-colors">Ecosystem</a>
+        </nav>
+        <button class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-5 py-2 rounded-xl text-sm font-bold tracking-wide transition-all shadow-md shadow-amber-400/20 active:scale-95">
+            Launch App
+        </button>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="w-full max-w-4xl mx-auto px-6 py-12 md:py-20 flex flex-col items-center text-center my-auto">
+        
+        <!-- Displaying Your Unique Coin Logo -->
+        <div class="relative mb-8 group">
+            <div class="absolute inset-0 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500"></div>
+            <!-- Point this image tag to your local saved coin image file -->
+            <img src="watermarked_img_1097822207679164096.png" alt="VitaCoin Logo" class="w-64 h-64 md:w-72 md:h-72 object-contain relative z-10 drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] transform group-hover:scale-105 transition-all duration-300">
+        </div>
+
+        <!-- Taglines & Core Identity -->
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight text-white mb-4">
+            Wealth & Purpose in <span class="gold-text-gradient">One View</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-slate-400 max-w-2xl font-light leading-relaxed mb-10">
+            Everyday Living to YHWH’s Glory. A clean, simplified ecosystem built for a generation balancing real wealth with deep divine purpose.
+        </p>
+
+        <!-- Dynamic Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a href="#dashboard" class="bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700 hover:border-amber-400/50 px-8 py-3.5 rounded-2xl text-base font-bold text-white transition-all text-center min-w-[180px] gold-glow">
+                Enter Dashboard
+            </a>
+            <a href="#vision" class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-8 py-3.5 rounded-2xl text-base font-bold transition-all text-center min-w-[180px] shadow-lg shadow-amber-400/10">
+                Explore Vision
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Quick Stats / Core Pillars -->
+    <section class="w-full max-w-5xl mx-auto px-6 pb-16 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl backdrop-blur-sm">
+            <div class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">01 / Foundation</div>
+            <h3 class="text-lg font-bold text-white mb-2">Divine Purpose</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">Aligning digital ecosystems with ultimate glory and laws seamlessly.</p>
+        </div>
+        <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl backdrop-blur-sm">
+            <div class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">02 / Design</div>
+            <h3 class="text-lg font-bold text-white mb-2">Sleek & Catchy</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">No clutter, no grandiose noise. Pure utility engineered for the modern youth.</p>
+        </div>
+        <div class="bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl backdrop-blur-sm">
+            <div class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">03 / Utility</div>
+            <h3 class="text-lg font-bold text-white mb-2">True Stewardship</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">Managing lifepaths and wealth in one unified, secure destination.</p>
+        </div>
+    </section>
+
+    <!-- Clean Minimal Footer -->
+    <footer class="w-full max-w-6xl mx-auto px-6 py-6 border-t border-slate-900/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <div>&copy; 2026 VitaCoin. All rights reserved.</div>
+        <div class="tracking-wide">Everyday Living to YHWH's Glory</div>
+    </footer>
+
+</body>
+</html>
