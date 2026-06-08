@@ -23,7 +23,7 @@
 
     <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
         <div class="flex items-center gap-3">
-            <img src="vitacoin-logo.jpg" alt="VitaCoin Logo" class="w-11 h-11 object-contain rounded-xl shadow-md">
+            <img src="vitacoin-logo.jpg" alt="VitaCoin Logo" class="w-11 h-11 object-cover rounded-full shadow-md">
             <span class="text-2xl font-black tracking-tight text-white">Vita<span class="text-amber-400">Coin</span></span>
         </div>
         
@@ -45,7 +45,7 @@
     <main class="w-full max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center">
         <div class="relative mb-8 group">
             <div class="absolute inset-0 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500"></div>
-            <img src="vitacoin-logo.jpg" alt="VitaCoin Core Emblem" class="w-48 h-48 md:w-56 md:h-56 object-contain relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.65)] transform group-hover:scale-105 transition-all duration-300">
+            <img src="vitacoin-logo.jpg" alt="VitaCoin Core Emblem" class="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.65)] transform group-hover:scale-105 transition-all duration-300">
         </div>
 
         <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6 leading-none">
@@ -74,6 +74,25 @@
     </section>
 
     <section id="vaults" class="w-full max-w-6xl mx-auto px-6 py-12 bg-slate-950/40 border-t border-b border-slate-800/80 rounded-3xl">
+        <div class="max-w-4xl mx-auto mb-10 px-4">
+            <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+                <div>
+                    <span class="text-xs font-bold text-amber-400 tracking-wider uppercase block">Systemic Supply Pool Scarcity Tracker</span>
+                    <p class="text-slate-400 text-xs mt-0.5">Dynamic multipliers automatically safe-lock rewards based on active circulating limits.</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-center">
+                        <span class="text-[10px] text-slate-500 block font-bold uppercase">Active Tier</span>
+                        <span id="scarcityTierBadge" class="text-xs font-black text-white">GENESIS 1.00x</span>
+                    </div>
+                    <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-center">
+                        <span class="text-[10px] text-slate-500 block font-bold uppercase">Circulating Pool</span>
+                        <span id="globalPoolDisplay" class="text-xs font-mono text-emerald-400 font-bold">0.00 / 1B VITA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h2 class="text-3xl font-bold text-center mb-12">System Vault Balances</h2>
         
         <div class="grid md:grid-cols-2 gap-8 mb-16">
@@ -83,7 +102,7 @@
                         <h3 class="text-2xl font-bold text-amber-400">🏠 HomeBuilder Vault</h3>
                         <span class="bg-amber-400/10 text-amber-400 text-[10px] font-bold uppercase px-2.5 py-1 rounded-md tracking-wider">Locked Asset</span>
                     </div>
-                    <p class="text-slate-400 text-sm mb-6">Receives 50% matching allocations derived from housing, rent, or mortgage transactions. Designated strictly toward land, downpayments, or home upgrades.</p>
+                    <p class="text-slate-400 text-sm mb-6">Receives top matching allocations derived from housing, rent, or mortgage transactions. Designated strictly toward land, downpayments, or home upgrades.</p>
                 </div>
                 <div class="border-t border-slate-800 pt-4 mt-4">
                     <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Total Vault Balance</div>
@@ -121,14 +140,14 @@
                 <div class="mb-4">
                     <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Expense Category Matrix</label>
                     <select id="matrixCategorySelect" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/40 rounded-xl px-4 py-3 text-white font-medium outline-none text-sm transition-all">
-                        <option value="0.50|home">Housing / Rent / Mortgage (50%)</option>
-                        <option value="0.10|life">Medical Bills (10%)</option>
-                        <option value="0.10|life">Utilities: Electric, Water, etc. (10%)</option>
-                        <option value="0.05|life">Groceries: Qualifying Bills (5%)</option>
-                        <option value="0.05|life">Gas (5%)</option>
-                        <option value="0.03|life">Credit Card Bills (3%)</option>
-                        <option value="0.03|life">Car Insurance (3%)</option>
-                        <option value="0.01|life">Cash Withdrawals (1%)</option>
+                        <option value="0.50|home">Housing / Rent / Mortgage (50% Base)</option>
+                        <option value="0.10|life">Medical Bills (10% Base)</option>
+                        <option value="0.10|life">Utilities: Electric, Water, etc. (10% Base)</option>
+                        <option value="0.05|life">Groceries: Qualifying Bills (5% Base)</option>
+                        <option value="0.05|life">Gas (5% Base)</option>
+                        <option value="0.03|life">Credit Card Bills (3% Base)</option>
+                        <option value="0.03|life">Car Insurance (3% Base)</option>
+                        <option value="0.01|life">Cash Withdrawals (1% Base)</option>
                     </select>
                 </div>
 
@@ -165,7 +184,7 @@
                             <span>⚖️</span> Interest-Free Collateral Vault Loans
                         </h3>
                         <p class="text-slate-400 text-sm mt-1">
-                            Borrow up to $100\%$ of your combined VITA vault value without selling. Zero interest, fixed small transaction fee. Default results in collateral forfeiture.
+                            Borrow up to 100% of your combined VITA vault value without selling. Zero interest, fixed small transaction fee. Default results in collateral forfeiture.
                         </p>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 px-4 py-2 rounded-xl">
@@ -210,7 +229,7 @@
         <div>© 2026 VitaCoin • Open Source on GitHub Architecture Suite</div>
         <div class="mt-2 font-medium text-slate-400">Everyday Living to YHWH's Glory</div>
         <div class="mt-6 text-[10px] text-slate-600 tracking-wide">Conceptual program structure validation module — Not financial investment advice. Complete system audit sweeps mandatory prior to mainnet distribution.</div>
-    </footer>
+    </footer >
 
     <script>
         let walletConnected = false;
@@ -220,9 +239,31 @@
         let totalHomeTokens = 0.00;
         let totalLifeTokens = 0.00;
         let ledgerCount = 0;
+        
+        // Simulated Total Distributed Circulating Volume Tracker
+        let globalTokensCirculating = 0.00;
 
         // Mock Valuation Parameter ($5 USD per token)
         const TOKEN_VALUE_USD = 5.00;
+
+        // --- SCARCITY MULTIPLIER ENGINE ---
+        // Dynamically scales emissions downward to protect total token stock
+        function getSystemScarcityMultiplier() {
+            if (globalTokensCirculating >= 10000.00) {
+                return { multiplier: 0.125, name: "STAGE 3: SCARCE (0.12x)" };
+            } else if (globalTokensCirculating >= 2500.00) {
+                return { multiplier: 0.25, name: "STAGE 2: STEADY (0.25x)" };
+            } else if (globalTokensCirculating >= 500.00) {
+                return { multiplier: 0.50, name: "STAGE 1: HALVED (0.50x)" };
+            }
+            return { multiplier: 1.00, name: "GENESIS TIER (1.00x)" };
+        }
+
+        function updateScarcityDisplays() {
+            const currentScarcity = getSystemScarcityMultiplier();
+            document.getElementById('scarcityTierBadge').innerText = currentScarcity.name;
+            document.getElementById('globalPoolDisplay').innerText = globalTokensCirculating.toFixed(2) + " / 1B VITA";
+        }
 
         // --- SOLANA WALLET MANAGEMENT ---
         async function toggleWallet() {
@@ -274,7 +315,7 @@
             }
         }
 
-        // --- TRANSACTION LEDGER ENGINE ---
+        // --- TRANSACTION LEDGER ENGINE WITH SCARCITY MODULATION ---
         function executeLedgerCommit() {
             const memoField = document.getElementById('memoInput');
             const selectField = document.getElementById('matrixCategorySelect');
@@ -289,17 +330,30 @@
                 return;
             }
 
+            // Framework hooks to connect automated API integrations (Plaid/OCR)
+            const isDocumentVerified = true; 
+            if (!isDocumentVerified) {
+                alert("Automated validation interface was unable to verify structural transaction telemetry.");
+                return;
+            }
+
             const splitConfig = selectField.value.split('|');
-            const dynamicRate = parseFloat(splitConfig[0]);
+            const baseRate = parseFloat(splitConfig[0]);
             const targetVault = splitConfig[1];
             const chosenCategoryText = selectField.options[selectField.selectedIndex].text.split(' (')[0];
 
-            const rewardsCalculated = billValue * dynamicRate;
+            // Run output calculation through the dynamic scarcity matrix
+            const activeScarcity = getSystemScarcityMultiplier();
+            const realAdjustedRate = baseRate * activeScarcity.multiplier;
+            const rewardsCalculated = billValue * realAdjustedRate;
 
             if(ledgerCount === 0) {
                 streamBox.innerHTML = "";
                 streamBox.className = "space-y-3 max-h-[320px] overflow-y-auto pr-2 text-left";
             }
+
+            // Update local memory metrics
+            globalTokensCirculating += rewardsCalculated;
 
             if (targetVault === 'home') {
                 totalHomeTokens += rewardsCalculated;
@@ -321,6 +375,7 @@
                 <div>
                     <div class="font-bold text-white text-sm">${memoText}</div>
                     <div class="text-xs text-slate-500 mt-0.5">${chosenCategoryText} • Base: $${billValue.toFixed(2)}</div>
+                    <div class="text-[10px] text-amber-500/80 font-mono mt-0.5">Applied Factor: ${activeScarcity.multiplier}x</div>
                 </div>
                 <div class="text-right">
                     <div class="font-black text-sm ${targetVault === 'home' ? 'text-white' : 'text-emerald-400'}">+${rewardsCalculated.toFixed(2)} VITA</div>
@@ -328,6 +383,9 @@
                 </div>
             `;
             streamBox.insertBefore(newRecordRow, streamBox.firstChild);
+
+            // Synchronize the real-time layout stats
+            updateScarcityDisplays();
 
             memoField.value = "";
             inputField.value = "";
@@ -362,7 +420,6 @@
                 return;
             }
 
-            // Deduct from local states to simulate smart contract vault lock execution
             if (vaultType === 'home') {
                 totalHomeTokens -= pledgeTokens;
                 document.getElementById('homeVaultAccumulation').innerText = totalHomeTokens.toFixed(2) + " VITA";
@@ -370,6 +427,10 @@
                 totalLifeTokens -= pledgeTokens;
                 document.getElementById('lifeVaultAccumulation').innerText = totalLifeTokens.toFixed(2) + " VITA";
             }
+
+            // Adjust circulation counter down to reflect locked assets
+            globalTokensCirculating -= pledgeTokens;
+            updateScarcityDisplays();
 
             const loanCashAmount = pledgeTokens * TOKEN_VALUE_USD;
             alert(`Success! Smart Contract executed successfully.\n\nLocked: ${pledgeTokens.toFixed(2)} VITA\nDisbursed: $${loanCashAmount.toFixed(2)} USD to account ${userPublicKey.slice(0,6)}...\nInterest Rate: 0%\nTransaction Cost: 0.01 SOL`);
