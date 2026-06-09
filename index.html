@@ -46,44 +46,44 @@
 <main class="max-w-6xl mx-auto px-6 py-8">
     <div class="text-center mb-12">
         <h1 class="text-5xl font-black tracking-tighter">Everyday Living to YHWH's Glory</h1>
-        <p class="text-slate-400">Real spending → Real wealth on Solana</p>
+        <p class="text-slate-400">Real spending → Real wealth & ownership</p>
     </div>
 
     <div id="walletStatus" class="hidden mb-8 p-6 bg-emerald-900/30 border border-emerald-500 rounded-3xl text-center gold-glow">
-        <p id="walletText" class="text-emerald-400 font-bold">Wallet Connected</p>
+        <p id="walletText" class="text-emerald-400 font-bold">Wallet Connected • Secure</p>
     </div>
 
     <!-- Velocity Meters -->
     <div class="grid md:grid-cols-2 gap-6 mb-8">
         <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
             <div class="flex justify-between text-xs mb-2"><span>Groceries (Max 1/week)</span><span id="groceryLabel">0/1</span></div>
-            <div class="h-2 bg-slate-800 rounded-full"><div id="groceryBar" class="h-2 bg-amber-400 rounded-full w-0"></div></div>
+            <div class="h-2 bg-slate-800 rounded-full overflow-hidden"><div id="groceryBar" class="h-full bg-amber-400 w-0 transition-all"></div></div>
         </div>
         <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
             <div class="flex justify-between text-xs mb-2"><span>Cash Withdrawals (Max 2/mo)</span><span id="cashLabel">0/2</span></div>
-            <div class="h-2 bg-slate-800 rounded-full"><div id="cashBar" class="h-2 bg-red-400 rounded-full w-0"></div></div>
+            <div class="h-2 bg-slate-800 rounded-full overflow-hidden"><div id="cashBar" class="h-full bg-red-400 w-0 transition-all"></div></div>
         </div>
     </div>
 
     <!-- Receipt Terminal -->
-    <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
-        <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">Receipt Verification Terminal</h3>
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8 mb-8">
+        <h3 class="text-2xl font-bold mb-6">Receipt Verification Terminal</h3>
         
-        <button onclick="simulatePlaid()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3 rounded-2xl mb-6 font-bold">Link Bank via Plaid (Simulated)</button>
+        <button onclick="simulatePlaid()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3 rounded-2xl mb-6 font-bold">🔗 Link Bank via Plaid (Auto-detect transactions)</button>
 
         <div class="grid md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-xs uppercase text-slate-400 mb-2">Category</label>
                 <select id="category" class="w-full bg-slate-950 border border-slate-700 rounded-2xl px-5 py-4">
-                    <option value="housing">Housing/Rent (10%)</option>
+                    <option value="housing">Housing/Rent/Mortgage (10%)</option>
                     <option value="groceries">Groceries (1%)</option>
                     <option value="gas">Gas/Fuel (1%)</option>
                     <option value="bills">Utilities/Bills (2%)</option>
-                    <option value="cash">Cash Withdrawal (1%)</option>
+                    <option value="cash">Cash Withdrawal (1% - Max 2)</option>
                 </select>
             </div>
             <div>
-                <label class="block text-xs uppercase text-slate-400 mb-2">Amount ($)</label>
+                <label class="block text-xs uppercase text-slate-400 mb-2">Amount ($ USD)</label>
                 <input type="number" id="amount" placeholder="1250" class="w-full bg-slate-950 border border-slate-700 rounded-2xl px-5 py-4 text-lg">
             </div>
         </div>
@@ -93,18 +93,18 @@
         </button>
     </div>
 
-    <!-- Scam Detector Log -->
-    <div class="mt-8 bg-slate-900 border border-slate-700 rounded-3xl p-6">
-        <h4 class="font-bold mb-4">Security Log</h4>
-        <div id="securityLog" class="font-mono text-xs text-emerald-400 h-40 overflow-y-auto space-y-1"></div>
+    <!-- Security Log -->
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6 mb-8">
+        <h4 class="font-bold mb-4 flex items-center gap-2"><span class="text-red-400">🛡️</span> Security & Anti-Cheat Log</h4>
+        <div id="securityLog" class="font-mono text-xs text-emerald-400 h-48 overflow-y-auto bg-black/50 p-4 rounded-2xl"></div>
     </div>
 
     <!-- Activity Log -->
-    <div id="activityLog" class="mt-8 space-y-4"></div>
+    <div id="activityLog" class="space-y-4"></div>
 </main>
 
-<footer class="text-center py-12 text-xs text-slate-500">
-    © 2026 VitaCoin • Open Source • Fair Launch
+<footer class="text-center py-12 text-xs text-slate-500 border-t border-slate-800">
+    © 2026 VitaCoin • Open Source • Fair Launch / Direct Listing on Solana
 </footer>
 
 <script>
@@ -118,17 +118,19 @@
         walletConnected = true;
         document.getElementById('walletStatus').classList.remove('hidden');
         document.getElementById('walletText').innerText = `${val.toUpperCase()} Connected`;
+        addSecurityLog(`Wallet connected: ${val}`);
     }
 
     function simulatePlaid() {
-        alert("Plaid Bank Link Simulated - Transactions auto-detected");
-        addSecurityLog("Bank ledger connected successfully");
+        addSecurityLog("Plaid handshake successful - Bank ledger auto-imported");
+        alert("Bank connected (simulated). Recent transactions ready for verification.");
     }
 
     function addSecurityLog(msg) {
         const log = document.getElementById('securityLog');
+        const time = new Date().toLocaleTimeString();
         const entry = document.createElement('div');
-        entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+        entry.textContent = `[${time}] ${msg}`;
         log.appendChild(entry);
         log.scrollTop = log.scrollHeight;
     }
@@ -138,21 +140,23 @@
 
         const category = document.getElementById('category').value;
         const amount = parseFloat(document.getElementById('amount').value) || 0;
-        if (amount <= 0) return alert("Enter amount");
+        if (amount <= 0) return alert("Enter a valid amount");
 
         let rate = 0;
+        let warning = "";
+
         if (category === "housing") rate = 0.10;
         else if (category === "groceries") {
             rate = 0.01;
             groceryCount++;
-            if (groceryCount > 1) addSecurityLog("Grocery weekly limit warning");
+            if (groceryCount > 1) warning = " (Weekly grocery limit approached)";
         }
         else if (category === "gas") rate = 0.01;
         else if (category === "bills") rate = 0.02;
         else if (category === "cash") {
             rate = 0.01;
             cashCount++;
-            if (cashCount > 2) return alert("Cash limit (2/month) reached");
+            if (cashCount > 2) return alert("Cash withdrawal limit (2 per month) reached");
         }
 
         const earned = (amount * rate).toFixed(2);
@@ -160,12 +164,15 @@
         const log = document.getElementById('activityLog');
         const entry = document.createElement('div');
         entry.className = "bg-slate-900 border border-emerald-500/30 p-5 rounded-2xl";
-        entry.innerHTML = `<div class="flex justify-between"><div><span class="capitalize font-bold">${category}</span><br>$${amount}</div><div class="text-right"><span class="text-emerald-400 font-bold">+${earned} VITA</span></div></div>`;
+        entry.innerHTML = `<div class="flex justify-between"><div><span class="capitalize font-bold">${category}</span><br>$${amount}</div><div class="text-right"><span class="text-emerald-400 font-bold">+${earned} VITA</span>${warning}</div></div>`;
         log.prepend(entry);
 
         addSecurityLog(`Mint successful: +${earned} VITA for ${category}`);
-        alert(`✅ Verified! +${earned} VITA minted`);
+        alert(`✅ Verified! You earned ${earned} VITA`);
     }
+
+    // Initial log
+    window.onload = () => addSecurityLog("VitaCoin ecosystem shield initialized");
 </script>
 </body>
 </html>
