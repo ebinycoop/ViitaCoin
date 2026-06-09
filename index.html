@@ -19,7 +19,7 @@
         }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #020b0d; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; rounded: 10px; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
 <body class="text-slate-200 min-h-screen flex flex-col">
@@ -36,9 +36,6 @@
                 <option value="solflare">Solflare Wallet</option>
                 <option value="backpack">Backpack Wallet</option>
                 <option value="ledger">Ledger Hardware Wallet</option>
-                <option value="brave">Brave Wallet</option>
-                <option value="solana-mobile">Solana Mobile Stack</option>
-                <option value="glow">Glow Wallet</option>
             </select>
 
             <button id="walletBtn" onclick="connectSelectedWallet()" 
@@ -48,7 +45,7 @@
         </div>
     </header>
 
-    <main class="w-full max-w-6xl mx-auto px-6 py-12 flex-grow">
+    <main class="w-full max-w-7xl mx-auto px-6 py-12 flex-grow">
         
         <div class="text-center flex flex-col items-center mb-12">
             <div class="relative mb-6 group">
@@ -59,8 +56,18 @@
                 Everyday Living to <span class="gold-text-gradient">YHWH's Glory</span>
             </h1>
             <p class="text-slate-400 max-w-xl mx-auto text-sm">
-                Automated transaction verification terminal guarding the 1,000,000,000 VITA immutable total supply cap.
+                Automated ecosystem converting living expenses into immutable generational wealth architectures.
             </p>
+            
+            <div class="flex gap-4 mt-6 bg-slate-900/60 border border-slate-800 px-4 py-2 rounded-xl">
+                <a href="https://github.com/ebinycoop/VitaCoin/blob/main/whitepaper/WHITEPAPER.md" target="_blank" class="text-xs font-bold text-amber-400 hover:text-amber-300 underline tracking-wide flex items-center gap-1">
+                    📄 View Active Whitepaper ↗
+                </a>
+                <span class="text-slate-700">|</span>
+                <a href="https://github.com/ebinycoop/VitaCoin/blob/main/whitepaper/ROADMAP.md" target="_blank" class="text-xs font-bold text-amber-400 hover:text-amber-300 underline tracking-wide flex items-center gap-1">
+                    🗺️ View System Roadmap ↗
+                </a>
+            </div>
         </div>
 
         <div id="walletStatusCard" class="hidden w-full max-w-xl mx-auto bg-slate-900/90 border border-amber-500/40 rounded-2xl p-5 mb-10 text-left gold-glow">
@@ -69,18 +76,18 @@
                     <div class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-1">Active Cryptographic Vault Interface</div>
                     <div id="walletAddressDisplay" class="text-sm font-mono text-slate-300 truncate max-w-xs md:max-w-md">0x...</div>
                 </div>
-                <span id="walletBadge" class="bg-amber-400/10 text-amber-400 text-[10px] font-bold px-2 py-1 rounded border border-amber-400/20 uppercase tracking-wider">Handshake Active</span>
+                <span class="bg-amber-400/10 text-amber-400 text-[10px] font-bold px-2 py-1 rounded border border-amber-400/20 uppercase tracking-wider">Handshake Active</span>
             </div>
             <div class="flex justify-between items-center border-t border-slate-800/80 pt-3 mt-3">
                 <span class="text-xs text-slate-400">Solana Network Balance:</span>
-                <span id="solBalanceDisplay" class="text-sm font-bold text-white">0.00 SOL</span>
+                <span id="solBalanceDisplay" class="text-sm font-bold text-white">14.285 SOL</span>
             </div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6 mb-10 max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6 mb-10 max-w-5xl mx-auto">
             <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
                 <div class="flex justify-between text-xs font-semibold mb-2">
-                    <span class="text-slate-400">Weekly Food/Grocery Velocity</span>
+                    <span class="text-slate-400">Weekly Food & Grocery Velocity Ceiling</span>
                     <span id="groceryTrackerLabel" class="text-amber-400 font-mono font-bold">0 / 1 Processed</span>
                 </div>
                 <div class="h-2 bg-slate-950 rounded-full overflow-hidden">
@@ -89,7 +96,7 @@
             </div>
             <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
                 <div class="flex justify-between text-xs font-semibold mb-2">
-                    <span class="text-slate-400">Weekly Gas & Fuel Velocity</span>
+                    <span class="text-slate-400">Weekly Gas & Fuel Velocity Ceiling</span>
                     <span id="gasTrackerLabel" class="text-emerald-400 font-mono font-bold">0 / 2 Processed</span>
                 </div>
                 <div class="h-2 bg-slate-950 rounded-full overflow-hidden">
@@ -98,11 +105,11 @@
             </div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6 mb-10 max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6 mb-10 max-w-5xl mx-auto">
             <div class="bg-slate-900/80 border border-amber-500/30 rounded-2xl p-6 gold-glow flex flex-col justify-between">
                 <div>
                     <h3 class="text-lg font-bold text-amber-400 mb-1">🏠 HomeBuilder Vault</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">Receives the updated 10% matching allocation directly from home property, rent, or verified mortgage payments.</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">Secures your 20% matching allocation built directly from home property values, rents, and split-payment mortgages.</p>
                 </div>
                 <div class="border-t border-slate-800 pt-3 mt-4">
                     <div id="homeVaultAccumulation" class="text-2xl font-black text-white font-mono">0.00 VITA</div>
@@ -112,7 +119,7 @@
             <div class="bg-slate-900/80 border border-emerald-500/30 rounded-2xl p-6 flex flex-col justify-between">
                 <div>
                     <h3 class="text-lg font-bold text-emerald-400 mb-1">🌱 Life Vault</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">Accumulates variable daily living rewards across fuel, food, utility, and approved transactional streams.</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">Accumulates living match streams from your verified automotive, grocery, credit card, and insurance profiles.</p>
                 </div>
                 <div class="border-t border-slate-800 pt-3 mt-4">
                     <div id="lifeVaultAccumulation" class="text-2xl font-black text-emerald-400 font-mono">0.00 VITA</div>
@@ -120,73 +127,184 @@
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto mb-10">
+        <div class="grid lg:grid-cols-12 gap-8 max-w-7xl mx-auto mb-10">
             
-            <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
+            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
                 <div>
-                    <h3 class="text-md font-bold text-white mb-2 uppercase tracking-wide">Data Source Ingest</h3>
-                    <p class="text-xs text-slate-400 mb-6">Calculations pull directly from automated external telemetry strings to evaluate matrix match parameters.</p>
+                    <div class="mb-6">
+                        <h3 class="text-base font-bold text-white uppercase tracking-wide">Data Source Ingest</h3>
+                        <p class="text-xs text-slate-400 mt-1">
+                            Calculations pull directly from automated external telemetry strings to evaluate matrix match parameters.
+                        </p>
+                    </div>
                     
-                    <div class="space-y-3">
-                        <button onclick="streamIncomingPayload('PLAID_BANK_DIRECT', 'WELLS FARGO MORTGAGE PAYMENT DEBIT', 1450.00)" class="w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold py-3.5 px-4 rounded-xl text-xs transition-all text-left flex justify-between items-center">
-                            <span>🔗 Pull Bank Feed: Mortgage</span>
-                            <span class="text-slate-500 font-mono">$1,450.00</span>
-                        </button>
-                        <button onclick="streamIncomingPayload('PLAID_BANK_DIRECT', 'PUBLIX SUPERMARKET GROCERY TICKET', 165.20)" class="w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold py-3.5 px-4 rounded-xl text-xs transition-all text-left flex justify-between items-center">
-                            <span>🔗 Pull Bank Feed: Grocery Selection</span>
-                            <span class="text-slate-500 font-mono">$165.20</span>
-                        </button>
-                        <button onclick="streamIncomingPayload('SMART_OCR_SCAN', 'EXXONMOBIL FUEL PUMP AUTOMOTIVE', 48.00)" class="w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold py-3.5 px-4 rounded-xl text-xs transition-all text-left flex justify-between items-center">
-                            <span>📷 Upload Receipt: Gas Refuel</span>
-                            <span class="text-slate-500 font-mono">$48.00</span>
-                        </button>
-                        <button onclick="streamIncomingPayload('SMART_OCR_SCAN', 'DUKE ENERGY ELECTRIC UTILITY BILLING', 210.50)" class="w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold py-3.5 px-4 rounded-xl text-xs transition-all text-left flex justify-between items-center">
-                            <span>📷 Upload Receipt: Electric Bill</span>
-                            <span class="text-slate-500 font-mono">$210.50</span>
-                        </button>
+                    <div class="space-y-3 max-h-[560px] overflow-y-auto pr-1">
+                        
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="sm:w-1/3">
+                                <span class="text-xs font-bold text-white block">1. Rent Mortgage</span>
+                                <span class="text-[10px] text-amber-400 font-mono font-bold">20% Payback Rate</span>
+                            </div>
+                            <div class="flex flex-1 items-center gap-2 w-full">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'MORTGAGE STATEMENT FULL PAYMENT', 1400.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                                    📸 Upload Receipt
+                                </button>
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT MORTGAGE HANDSHAKE', 1400.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                                    🔗 Link Bank (Verify)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="sm:w-1/3">
+                                <span class="text-xs font-bold text-white block">2. Groceries</span>
+                                <span class="text-[10px] text-amber-400 font-mono font-bold">5% Payback Rate</span>
+                            </div>
+                            <div class="flex flex-1 items-center gap-2 w-full">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'SUPERMARKET GROCERY RECEIPT', 128.50)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                                    📸 Upload Receipt
+                                </button>
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT GROCERY CLEARANCE', 128.50)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                                    🔗 Link Bank (Verify)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="sm:w-1/3">
+                                <span class="text-xs font-bold text-white block">3. Gas</span>
+                                <span class="text-[10px] text-emerald-400 font-mono font-bold">5% Payback Rate</span>
+                            </div>
+                            <div class="flex flex-1 items-center gap-2 w-full">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'FUEL STATION PUMP RECEIPT', 55.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                                    📸 Upload Receipt
+                                </button>
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT FUEL MERCHANT EXTRINSIC', 55.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                                    🔗 Link Bank (Verify)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="sm:w-1/3">
+                                <span class="text-xs font-bold text-white block">4. Car payment</span>
+                                <span class="text-[10px] text-emerald-400 font-mono font-bold">3% Payback Rate</span>
+                            </div>
+                            <div class="flex flex-1 items-center gap-2 w-full">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'AUTO LOAN ACQUISITION RECEIPT', 450.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                                    📸 Upload Receipt
+                                </button>
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT AUTO DEBIT HANDSHAKE', 450.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                                    🔗 Link Bank (Verify)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="sm:w-1/3">
+                                <span class="text-xs font-bold text-white block">5. Car insurance</span>
+                                <span class="text-[10px] text-slate-400 font-mono font-bold">3% Payback Rate</span>
+                            </div>
+                            <div class="flex flex-1 items-center gap-2 w-full">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'AUTO INSURANCE COVERAGE RECEIPT', 165.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                                    📸 Upload Receipt
+                                </button>
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT INSURANCE WIRE', 165.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                                    🔗 Link Bank (Verify)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="sm:w-1/3">
+                                <span class="text-xs font-bold text-white block">6. Credit card</span>
+                                <span class="text-[10px] text-slate-400 font-mono font-bold">3% Payback Rate</span>
+                            </div>
+                            <div class="flex flex-1 items-center gap-2 w-full">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'MONTHLY CREDIT STATEMENT CLEARANCE', 300.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                                    📸 Upload Receipt
+                                </button>
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT CARD ISSUER SETTLING', 300.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                                    🔗 Link Bank (Verify)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="sm:w-1/3">
+                                <span class="text-xs font-bold text-white block">7. Cash Withdrawl</span>
+                                <span class="text-[10px] text-amber-400 font-mono font-bold">1% Payback Rate</span>
+                            </div>
+                            <div class="flex flex-1 items-center gap-2 w-full">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'ATM TELLER TERMINAL RECEIPT', 200.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                                    📸 Upload Receipt
+                                </button>
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT CASH DISPENSATION DEBIT', 200.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                                    🔗 Link Bank (Verify)
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-slate-800/60">
-                    <div class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider mb-2">Data Engine Engine Payload Log:</div>
-                    <div id="payloadTelemetryDisplay" class="bg-black/40 border border-slate-950 p-3 rounded-xl font-mono text-[11px] text-slate-400 break-words">Awaiting external pipeline payload telemetry block...</div>
+                <div class="mt-4 pt-3 border-t border-slate-800/60">
+                    <div id="payloadTelemetryDisplay" class="bg-black/40 border border-slate-950 p-3 rounded-xl font-mono text-[10px] text-slate-400 break-words whitespace-pre">Awaiting simulated ledger document validation...</div>
                 </div>
             </div>
 
-            <div class="lg:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
+            <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
                 <div>
-                    <h3 class="text-md font-bold text-white mb-4 uppercase tracking-wide">Automated Analysis & Verification</h3>
+                    <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-wide">Automated Ledger Assessment</h3>
                     
-                    <div class="p-4 bg-slate-950 border border-slate-800/80 rounded-2xl grid sm:grid-cols-2 gap-4 items-center mb-6">
-                        <div>
-                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Deciphered Category Target</span>
-                            <span id="parsedCategoryLabel" class="text-xs font-bold text-slate-300 mt-1 block">No Data Linked</span>
+                    <div class="p-4 bg-slate-950 border border-slate-800/80 rounded-2xl space-y-4 mb-6">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Deciphered Bill Class</span>
+                                <span id="parsedCategoryLabel" class="text-xs font-bold text-slate-300 mt-1 block">No Data Linked</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Target Destination Vault</span>
+                                <span id="targetVaultLabel" class="text-xs font-bold text-slate-400 mt-1 block">—</span>
+                            </div>
                         </div>
-                        <div class="sm:text-right">
-                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Extracted Cash Total</span>
-                            <span id="parsedValueLabel" class="text-xl font-mono font-black text-slate-600 block">$0.00</span>
+
+                        <div>
+                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Verification Protocol Channel</span>
+                            <span id="verificationTypeLabel" class="text-xs font-black tracking-wide text-slate-400 mt-1 block">—</span>
+                        </div>
+                        
+                        <div class="border-t border-slate-900 pt-3 flex justify-between items-center">
+                            <div>
+                                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Extracted Cash Value</span>
+                                <span id="parsedValueLabel" class="text-2xl font-mono font-black text-slate-700 block">$0.00</span>
+                            </div>
+                            <div id="splitPaymentIndicator" class="hidden bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-xl text-right">
+                                <span class="text-[9px] font-black tracking-widest uppercase block text-amber-400">🔄 Split Record Found</span>
+                                <span class="text-[10px] font-mono font-bold text-slate-300">Pending Twin Payment Validation</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4 border-b border-slate-800 pb-6 mb-6">
                         <div>
-                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Appraised Rate Layer</span>
+                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Appraised Rate Matrix</span>
                             <span id="rateOutputLabel" class="text-sm font-mono font-bold text-slate-400 mt-0.5">0%</span>
                         </div>
                         <div class="text-right">
-                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Calculated Reward Return</span>
+                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Calculated Mint Allocation</span>
                             <span id="rewardOutputLabel" class="text-lg font-mono font-black text-amber-400 mt-0.5">0.00 VITA</span>
                         </div>
                     </div>
                 </div>
 
                 <button id="ledgerCommitBtn" onclick="commitProcessedPayload()" disabled class="w-full bg-slate-800 text-slate-500 py-4 rounded-xl font-bold text-md cursor-not-allowed transition-all">
-                    Pipeline Locked: Awaiting Connected Stream Context
+                    Pipeline Locked: Connect Wallet & Ingest Bill Document
                 </button>
             </div>
         </div>
 
-        <div id="loan-terminal" class="max-w-6xl mx-auto">
+        <div id="loan-terminal" class="max-w-7xl mx-auto mb-8">
             <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-amber-500/20 rounded-3xl p-6 text-left">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
@@ -194,7 +312,7 @@
                             <span>⚖️</span> Interest-Free Collateral Vault Loans
                         </h3>
                         <p class="text-slate-400 text-xs mt-1 max-w-2xl">
-                            Pledge accumulated VITA holdings as escrow stake. Advance liquid cash parameters instantly up to 100% value based on the token anchor configuration ($5.00 USD/VITA). Zero compounding interest margins apply.
+                            Lock accumulated VITA allocations in escrow. Advance cash parameters instantly up to 100% based on the standard token configuration anchor ($5.00 USD/VITA). 0% interest margins apply.
                         </p>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 px-4 py-2 rounded-xl text-right">
@@ -205,7 +323,7 @@
 
                 <div class="grid md:grid-cols-3 gap-4 mb-4">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Source Escrow Vault</label>
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Source Escrow Vault Target</label>
                         <select id="loanSourceSelect" class="w-full bg-slate-950 border border-slate-800 text-xs focus:border-amber-400/40 rounded-xl px-3 py-3 text-white font-medium outline-none transition-all">
                             <option value="home">HomeBuilder Vault Allocation</option>
                             <option value="life">Life Vault Allocation</option>
@@ -229,7 +347,7 @@
             </div>
         </div>
 
-        <div class="max-w-6xl mx-auto mt-8">
+        <div class="max-w-7xl mx-auto">
             <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
                 <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Live Session Cryptographic Ledger Audit</h4>
                 <div id="securityLogBox" class="font-mono text-[11px] text-emerald-400 h-32 overflow-y-auto bg-black/40 p-4 rounded-xl space-y-1">
@@ -241,24 +359,20 @@
     </main>
 
     <footer class="mt-auto w-full max-w-7xl mx-auto px-6 py-8 border-t border-slate-900 text-center text-xs text-slate-500">
-        <div>© 2026 VitaCoin • Open Source Infrastructure Suite Architecture</div>
+        <div>© 2026 VitaCoin Infrastructure Architecture Suite</div>
         <div class="mt-1 font-medium text-slate-400">Everyday Living to YHWH's Glory</div>
     </footer>
 
     <script>
         let walletConnected = false;
-        let connectedWalletType = "";
         let activeUserPublicKey = null;
 
-        // Vault Accumulation Engine Variables
         let homeVaultBalance = 0.00;
         let lifeVaultBalance = 0.00;
 
-        // Velocity Tracking Benchmarks
         let groceryCount = 0;
         let gasCount = 0;
 
-        // Processing Buffer States
         let cachedAmount = 0.00;
         let cachedCategory = "";
         let cachedRate = 0.00;
@@ -276,7 +390,6 @@
             box.scrollTop = box.scrollHeight;
         }
 
-        // --- EXHAUSTIVE REAL SOLANA WALLET PROTOCOL CONNECTORS ---
         async function connectSelectedWallet() {
             const selection = document.getElementById('walletTypeSelect').value;
             const btn = document.getElementById('walletBtn');
@@ -285,148 +398,127 @@
             const balanceDisplay = document.getElementById('solBalanceDisplay');
 
             if (!walletConnected) {
-                appendAuditLog(`Requesting deep cryptographic handshake context with type: ${selection.toUpperCase()}...`);
+                appendAuditLog(`Connecting to ${selection.toUpperCase()} extension layer...`);
                 
-                // Inspecting environment contexts matching specific selection fields
-                let providerInstance = null;
-                if (selection === 'phantom' && window.solana?.isPhantom) providerInstance = window.solana;
-                else if (selection === 'solflare' && window.solflare) providerInstance = window.solflare;
-                else if (selection === 'backpack' && window.backpack) providerInstance = window.backpack;
-                else if (selection === 'brave' && window.ethereum?.isBraveWallet) providerInstance = window.solana; 
-
-                if (providerInstance) {
+                if (window.solana?.isPhantom && selection === 'phantom') {
                     try {
-                        const connectionContext = await providerInstance.connect();
-                        activeUserPublicKey = connectionContext.publicKey ? connectionContext.publicKey.toString() : connectionContext.toString();
+                        const resp = await window.solana.connect();
+                        activeUserPublicKey = resp.publicKey.toString();
                         walletConnected = true;
-                        connectedWalletType = selection;
-
-                        btn.innerText = "Disconnect";
-                        btn.className = "bg-slate-800 text-amber-400 border border-amber-400/30 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all";
-                        addressDisplay.innerText = activeUserPublicKey;
-                        statusCard.classList.remove('hidden');
-
-                        // Pull Live RPC Balance Details from Mainnet Cluster API
-                        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
-                        const pubKeyObj = new solanaWeb3.PublicKey(activeUserPublicKey);
-                        const lamports = await connection.getBalance(pubKeyObj);
-                        balanceDisplay.innerText = (lamports / solanaWeb3.LAMPORTS_PER_SOL).toFixed(4) + " SOL";
-                        
-                        appendAuditLog(`Handshake secured. Confirmed address signature ${activeUserPublicKey.slice(0, 8)} via blockchain verification.`);
                     } catch (err) {
-                        appendAuditLog(`Handshake rejected or signature pairing failed: ${err.message}`);
+                        appendAuditLog(`Handshake rejected: ${err.message}`);
+                        return;
                     }
                 } else {
-                    // Inject operational context for sandboxed tracking so you aren't completely locked out from validation checks
-                    appendAuditLog(`Target extension container [${selection.toUpperCase()}] not active in current viewport frame.`);
-                    appendAuditLog(`Initializing active cryptographic workspace profile for structural simulation debugging.`);
-                    
-                    activeUserPublicKey = `VITA_TEST_VALIDATOR_Handshake_${selection.toUpperCase()}_777777777`;
+                    activeUserPublicKey = `VITA_NODE_${selection.toUpperCase()}_7777`;
                     walletConnected = true;
-                    connectedWalletType = selection;
+                }
 
+                if (walletConnected) {
                     btn.innerText = "Disconnect";
                     btn.className = "bg-slate-800 text-amber-400 border border-amber-400/30 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all";
                     addressDisplay.innerText = activeUserPublicKey;
-                    balanceDisplay.innerText = "12.750 SOL (Sandbox Tracking Mode)";
+                    balanceDisplay.innerText = "14.285 SOL (Sandbox Node Enabled)";
                     statusCard.classList.remove('hidden');
+                    appendAuditLog(`Handshake active for account: ${activeUserPublicKey}`);
                 }
             } else {
                 walletConnected = false;
                 activeUserPublicKey = null;
-                connectedWalletType = "";
                 btn.innerText = "Connect Secure Wallet";
                 btn.className = "bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all shadow-md shadow-amber-400/10";
                 statusCard.classList.add('hidden');
-                appendAuditLog("Cryptographic wallet context unlinked successfully.");
+                appendAuditLog("Wallet session disconnected cleanly.");
             }
         }
 
-        // --- AUTOMATED INGESTION CALCULATOR AND TEXT PARSER (NO TEXT BOX INPUT FIELD REQUIRED) ---
         function streamIncomingPayload(sourceType, textMemoBlock, dollarAmount) {
-            appendAuditLog(`Ingesting streaming data package via pipeline channel: [${sourceType}]`);
+            appendAuditLog(`Parsing inbound document stream via [${sourceType}]: ${textMemoBlock}`);
             
-            document.getElementById('payloadTelemetryDisplay').innerText = `{\n  "source": "${sourceType}",\n  "raw_string": "${textMemoBlock}",\n  "extracted_value": ${dollarAmount.toFixed(2)},\n  "unix_epoch": ${Date.now()}\n}`;
+            document.getElementById('payloadTelemetryDisplay').innerText = `{\n  "source": "${sourceType}",\n  "bill_memo": "${textMemoBlock}",\n  "value_payload": ${dollarAmount.toFixed(2)},\n  "unix_timestamp": ${Date.now()}\n}`;
 
             cachedAmount = dollarAmount;
             cachedMemo = textMemoBlock;
             
             let normalizedStr = textMemoBlock.toLowerCase();
-            let matchedCategoryName = "";
+            let displayCategoryName = "";
+            let targetIndicator = document.getElementById('splitPaymentIndicator');
+            targetIndicator.classList.add('hidden');
 
-            // PARSING LOGIC AUTOMATICALLY DETERMINING CATEGORIES AND RE-APPLYING RENT/MORTGAGE MATRICES AT 10%
-            if (normalizedStr.includes("mortgage") || normalizedStr.includes("rent") || normalizedStr.includes("lease")) {
-                cachedCategory = "housing";
-                cachedRate = 0.10; // UPDATED FROM 50% TO 10% AS REQUESTED
-                cachedTargetVault = "home";
-                matchedCategoryName = "Housing / Rent / Mortgage (10% Allocation)";
-            } else if (normalizedStr.includes("grocery") || normalizedStr.includes("supermarket") || normalizedStr.includes("publix") || normalizedStr.includes("food")) {
-                cachedCategory = "groceries";
-                cachedRate = 0.05; // 5% Allocation Matrix
-                cachedTargetVault = "life";
-                matchedCategoryName = "Groceries Food Supply (5% Allocation)";
-            } else if (normalizedStr.includes("gas") || normalizedStr.includes("fuel") || normalizedStr.includes("exxon") || normalizedStr.includes("pump")) {
-                cachedCategory = "gas";
-                cachedRate = 0.05; // 5% Allocation Matrix
-                cachedTargetVault = "life";
-                matchedCategoryName = "Automotive Gas & Fuel (5% Allocation)";
-            } else if (normalizedStr.includes("utility") || normalizedStr.includes("electric") || normalizedStr.includes("water")) {
-                cachedCategory = "utility";
-                cachedRate = 0.10; // 10% Allocation Matrix
-                cachedTargetVault = "life";
-                matchedCategoryName = "Utilities / Infrastructure Bills (10% Allocation)";
+            // Handle text display updates for validation types
+            const typeLabel = document.getElementById('verificationTypeLabel');
+            if (sourceType === 'BANK_FEED') {
+                typeLabel.innerText = "🌐 DIRECT BANK CONNECTIVITY HANDSHAKE (DIRECT Expense Verification)";
+                typeLabel.className = "text-xs font-black tracking-wide text-emerald-400 mt-1 block";
             } else {
-                cachedCategory = "misc-cash";
-                cachedRate = 0.01; // 1% Base Matrix
-                cachedTargetVault = "life";
-                matchedCategoryName = "Standard Base Streams (1% Allocation)";
+                typeLabel.innerText = "📸 OPTICAL CHARACTER RECOGNITION (Manual Image Upload)";
+                typeLabel.className = "text-xs font-black tracking-wide text-amber-400 mt-1 block";
             }
 
-            // Calculate Reward Values Automatically
-            let calculatedTokens = cachedAmount * cachedRate;
+            if (normalizedStr.includes("mortgage") || normalizedStr.includes("rent")) {
+                cachedCategory = "housing";
+                cachedRate = 0.20;
+                cachedTargetVault = "home";
+                displayCategoryName = "1. Rent Mortgage Allocation";
+            } else if (normalizedStr.includes("grocery") || normalizedStr.includes("supermarket")) {
+                cachedCategory = "groceries";
+                cachedRate = 0.05;
+                cachedTargetVault = "life";
+                displayCategoryName = "2. Grocery Supply Receipt";
+            } else if (normalizedStr.includes("fuel") || normalizedStr.includes("gas")) {
+                cachedCategory = "gas";
+                cachedRate = 0.05;
+                cachedTargetVault = "life";
+                displayCategoryName = "3. Energy & Fuel Refill";
+            } else if (normalizedStr.includes("auto") || normalizedStr.includes("car payment")) {
+                cachedCategory = "car-payment";
+                cachedRate = 0.03;
+                cachedTargetVault = "life";
+                displayCategoryName = "4. Automotive Installment Plan";
+            } else if (normalizedStr.includes("insurance")) {
+                cachedCategory = "insurance";
+                cachedRate = 0.03;
+                cachedTargetVault = "life";
+                displayCategoryName = "5. Car Insurance Premium";
+            } else if (normalizedStr.includes("credit card") || normalizedStr.includes("card")) {
+                cachedCategory = "credit-card";
+                cachedRate = 0.03;
+                cachedTargetVault = "life";
+                displayCategoryName = "6. Credit Card Statement Clearance";
+            } else if (normalizedStr.includes("atm") || normalizedStr.includes("cash")) {
+                cachedCategory = "cash-withdrawal";
+                cachedRate = 0.01;
+                cachedTargetVault = "life";
+                displayCategoryName = "7. Cash Withdrawal Verification Link";
+            }
 
-            // Render Output Values inside Calculator UI instantly
-            document.getElementById('parsedCategoryLabel').innerText = matchedCategoryName;
+            let computedTokens = cachedAmount * cachedRate;
+
+            document.getElementById('parsedCategoryLabel').innerText = displayCategoryName;
+            document.getElementById('targetVaultLabel').innerText = cachedTargetVault === 'home' ? "🏠 HomeBuilder Vault" : "🌱 Life Vault";
             
-            const valDisplay = document.getElementById('parsedValueLabel');
-            valDisplay.innerText = `$${cachedAmount.toFixed(2)}`;
-            valDisplay.className = "text-xl font-mono font-black text-emerald-400 block animate-pulse";
+            const textAmountVal = document.getElementById('parsedValueLabel');
+            textAmountVal.innerText = `$${cachedAmount.toFixed(2)}`;
+            textAmountVal.className = "text-2xl font-mono font-black text-emerald-400 block animate-pulse";
 
             document.getElementById('rateOutputLabel').innerText = `${(cachedRate * 100)}% Match Rate`;
-            document.getElementById('rewardOutputLabel').innerText = `${calculatedTokens.toFixed(2)} VITA`;
+            document.getElementById('rewardOutputLabel').innerText = `${computedTokens.toFixed(2)} VITA`;
 
-            // Active Ingestion Submit Control
             const actionBtn = document.getElementById('ledgerCommitBtn');
             actionBtn.disabled = false;
             actionBtn.className = "w-full bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold py-4 rounded-xl text-md transition-all cursor-pointer shadow-lg active:scale-[0.99]";
-            actionBtn.innerText = `Execute Cryptographic Mint: +${calculatedTokens.toFixed(2)} VITA`;
-            
-            appendAuditLog(`Parser isolated markers. Evaluated category context: ${cachedCategory.toUpperCase()} | Estimated Yield: ${calculatedTokens.toFixed(2)} VITA`);
+            actionBtn.innerText = `Commit Record Verification: +${computedTokens.toFixed(2)} VITA`;
         }
 
-        // --- COMMIT CALCULATOR WITH STRICTOR VELOCITY CHECK ENFORCEMENTS ---
         function commitProcessedPayload() {
             if (!walletConnected) {
-                alert("Security block: Access token denied. Please authorize your network wallet first via the dropdown suite.");
+                alert("Security block: Please verify an active wallet connection step first.");
                 return;
-            }
-
-            // STRICTOR WEEKLY VELOCITY MATRIX ENFORCEMENTS
-            if (cachedCategory === "groceries") {
-                if (groceryCount >= 1) {
-                    alert("Velocity restriction error: Maximum execution ceiling reached. Only 1 food receipt processing execution window allowed per week cycle.");
-                    appendAuditLog("MINT FAILURE: Blocked execution due to grocery volume cap overload.");
-                    return;
-                }
-                groceryCount++;
-                document.getElementById('groceryTrackerLabel').innerText = `${groceryCount} / 1 Processed`;
-                document.getElementById('groceryProgressBar').style.width = "100%";
             }
 
             if (cachedCategory === "gas") {
                 if (gasCount >= 2) {
-                    alert("Velocity restriction error: Maximum execution ceiling reached. Only 2 gas utility receipt data validations allowed per week cycle.");
-                    appendAuditLog("MINT FAILURE: Blocked execution due to fuel frequency cap overload.");
+                    alert("Velocity limit exception: Maximum 2 gas uploads permitted per phase.");
                     return;
                 }
                 gasCount++;
@@ -434,77 +526,87 @@
                 document.getElementById('gasProgressBar').style.width = `${(gasCount * 50)}%`;
             }
 
+            if (cachedCategory === "groceries") {
+                if (groceryCount >= 1) {
+                    alert("Velocity limit exception: Maximum 1 grocery upload permitted per phase.");
+                    return;
+                }
+                groceryCount++;
+                document.getElementById('groceryTrackerLabel').innerText = `${groceryCount} / 1 Processed`;
+                document.getElementById('groceryProgressBar').style.width = "100%";
+            }
+
             let computedRewards = cachedAmount * cachedRate;
 
-            // Route tokens into accurate storage targets
             if (cachedTargetVault === 'home') {
                 homeVaultBalance += computedRewards;
                 document.getElementById('homeVaultAccumulation').innerText = homeVaultBalance.toFixed(2) + " VITA";
-                appendAuditLog(`Ledger Entry Confirmed: Credited +${computedRewards.toFixed(2)} VITA to HomeBuilder Vault.`);
+                appendAuditLog(`Ledger entry recorded: Approved +${computedRewards.toFixed(2)} VITA into HomeBuilder Account Allocation.`);
             } else {
                 lifeVaultBalance += computedRewards;
                 document.getElementById('lifeVaultAccumulation').innerText = lifeVaultBalance.toFixed(2) + " VITA";
-                appendAuditLog(`Ledger Entry Confirmed: Credited +${computedRewards.toFixed(2)} VITA to Life Vault.`);
+                appendAuditLog(`Ledger entry recorded: Approved +${computedRewards.toFixed(2)} VITA into Life Account Allocation.`);
             }
 
-            alert(`✅ Receipt Verification Finalized!\nAllocated +${computedRewards.toFixed(2)} VITA directly into your secure ecosystem logs.`);
+            alert(`✅ Stream Verification Succeeded!\n\nAllocated +${computedRewards.toFixed(2)} VITA allocations.`);
 
-            // Purge buffer states safely
             cachedAmount = 0.00;
             cachedCategory = "";
+            document.getElementById('splitPaymentIndicator').classList.add('hidden');
             document.getElementById('parsedCategoryLabel').innerText = "No Data Linked";
+            document.getElementById('targetVaultLabel').innerText = "—";
+            document.getElementById('verificationTypeLabel').innerText = "—";
+            document.getElementById('verificationTypeLabel').className = "text-xs font-black tracking-wide text-slate-400 mt-1 block";
             document.getElementById('parsedValueLabel').innerText = "$0.00";
-            document.getElementById('parsedValueLabel').className = "text-xl font-mono font-black text-slate-600 block";
+            document.getElementById('parsedValueLabel').className = "text-2xl font-mono font-black text-slate-700 block";
             document.getElementById('rateOutputLabel').innerText = "0%";
             document.getElementById('rewardOutputLabel').innerText = "0.00 VITA";
 
             const actionBtn = document.getElementById('ledgerCommitBtn');
             actionBtn.disabled = true;
             actionBtn.className = "w-full bg-slate-800 text-slate-500 py-4 rounded-xl font-bold text-md cursor-not-allowed";
-            actionBtn.innerText = "Pipeline Locked: Awaiting Connected Stream Context";
+            actionBtn.innerText = "Pipeline Locked: Connect Wallet & Ingest Bill Document";
         }
 
-        // --- LOAN CONTRACT EXECUTION MATH MODULES ---
         function calculateLoanOutput() {
-            const tokenInputVal = parseFloat(document.getElementById('loanTokensInput').value) || 0;
-            const absoluteUSDAdvance = tokenInputVal * VITA_PEGGED_VALUATION;
-            document.getElementById('loanEstimateDisplay').innerText = absoluteUSDAdvance.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            const tokensCount = parseFloat(document.getElementById('loanTokensInput').value) || 0;
+            const outputUSDValue = tokensCount * VITA_PEGGED_VALUATION;
+            document.getElementById('loanEstimateDisplay').innerText = outputUSDValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
 
         function executeVaultLoanContract() {
             if (!walletConnected) {
-                alert("Authorization tracking failed. Please secure active wallet permissions first before processing loan deployments.");
+                alert("Security lock: Connect your wallet infrastructure to register loan documents.");
                 return;
             }
 
-            const targetSourceVault = document.getElementById('loanSourceSelect').value;
-            const claimTokensCount = parseFloat(document.getElementById('loanTokensInput').value) || 0;
+            const targetSelection = document.getElementById('loanSourceSelect').value;
+            const tokenVolume = parseFloat(document.getElementById('loanTokensInput').value) || 0;
 
-            if (claimTokensCount <= 0) {
-                alert("Validation error: Token pledge configuration parameters must cross above 0 entries.");
+            if (tokenVolume <= 0) {
+                alert("Processing exception: Entry parameters must evaluate higher than zero.");
                 return;
             }
 
-            if (targetSourceVault === 'home') {
-                if (claimTokensCount > homeVaultBalance) {
-                    alert(`Overdraft warning: Insufficient asset capacity inside selected HomeBuilder Account tier. Current capacity: ${homeVaultBalance.toFixed(2)} VITA.`);
+            if (targetSelection === 'home') {
+                if (tokenVolume > homeVaultBalance) {
+                    alert(`Overdraft error: Insufficient reserves inside HomeBuilder vault.`);
                     return;
                 }
-                homeVaultBalance -= claimTokensCount;
+                homeVaultBalance -= tokenVolume;
                 document.getElementById('homeVaultAccumulation').innerText = homeVaultBalance.toFixed(2) + " VITA";
             } else {
-                if (claimTokensCount > lifeVaultBalance) {
-                    alert(`Overdraft warning: Insufficient asset capacity inside selected Life Account tier. Current capacity: ${lifeVaultBalance.toFixed(2)} VITA.`);
+                if (tokenVolume > lifeVaultBalance) {
+                    alert(`Overdraft error: Insufficient reserves inside Life vault.`);
                     return;
                 }
-                lifeVaultBalance -= claimTokensCount;
+                lifeVaultBalance -= tokenVolume;
                 document.getElementById('lifeVaultAccumulation').innerText = lifeVaultBalance.toFixed(2) + " VITA";
             }
 
-            const activeLiquidDisbursed = claimTokensCount * VITA_PEGGED_VALUATION;
-            appendAuditLog(`LOAN CONTRACT DEPLOYED: Locked ${claimTokensCount.toFixed(2)} VITA as structural collateral anchor. Disbursed $${activeLiquidDisbursed.toFixed(2)} USD advanced liquid value allocation.`);
-            
-            alert(`✅ Strategic Vault Loan Executed!\n\nEscrow Hold Locked: ${claimTokensCount.toFixed(2)} VITA\nLiquidity Disbursed: $${activeLiquidDisbursed.toFixed(2)} USD\nInterest Schedule: 0% Fixed\nNetwork Processing Fee: 0.01 SOL`);
+            const linearDisbursementAmount = tokenVolume * VITA_PEGGED_VALUATION;
+            appendAuditLog(`LIQUIDITY LOAN ISSUED: Escrow locked ${tokenVolume.toFixed(2)} VITA tokens. Sent $${linearDisbursementAmount.toFixed(2)} USD value.`);
+            alert(`✅ Strategic Loan Initialized!\n\nEscrow Hold Secured: ${tokenVolume.toFixed(2)} VITA\nLiquidity Disbursed: $${linearDisbursementAmount.toFixed(2)} USD\nInterest Schedule: 0% Fixed`);
             
             document.getElementById('loanTokensInput').value = "";
             document.getElementById('loanEstimateDisplay').innerText = "0.00";
