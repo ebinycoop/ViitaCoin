@@ -3,525 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitaCoin — Secure Ecosystem Terminal</title>
+    <title>VitaCoin — Everyday Living to YHWH's Glory</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
     <style>
-        body {
-            background: linear-gradient(135deg, #051418 0%, #010608 100%);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
-        .gold-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
-        .secure-pulse { animation: securePulse 3s infinite; }
-        @keyframes securePulse {
-            0%, 100% { border-color: rgba(16, 185, 129, 0.2); }
-            50% { border-color: rgba(16, 185, 129, 0.6); }
-        }
+        body { background: linear-gradient(135deg, #06191d 0%, #020b0d 100%); font-family: system-ui, sans-serif; }
+        .gold-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.25); }
+        .gold-text-gradient { background: linear-gradient(180deg, #f3e7c4 0%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body class="text-slate-200 min-h-screen flex flex-col">
 
-    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full overflow-hidden border border-slate-800 bg-slate-950">
-                <canvas id="headerLogoCanvas" width="100" height="100" class="w-full h-full object-cover select-none pointer-events-none"></canvas>
-            </div>
-            <span class="text-2xl font-black tracking-tight text-white">Vita<span class="text-amber-400">Coin</span></span>
-        </div>
+<header class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
+    <div class="flex items-center gap-3">
+        <svg width="48" height="48" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="140" cy="140" r="118" fill="#1E2937" stroke="#F4C95D" stroke-width="22"/>
+            <g transform="translate(140 140) scale(0.95)">
+                <path d="M-65 -45 L-8 65 L8 65 L65 -45" fill="none" stroke="#10B981" stroke-width="28" stroke-linejoin="round"/>
+                <path d="M-65 -45 L-8 65 L8 65 L65 -45" fill="none" stroke="#F4C95D" stroke-width="18" stroke-linejoin="round"/>
+                <path d="M-48 -68 Q-25 -88 0 -68 Q25 -88 48 -68" fill="none" stroke="#F4C95D" stroke-width="20"/>
+                <text x="0" y="12" text-anchor="middle" fill="#F4C95D" font-size="48" font-weight="900">V</text>
+            </g>
+        </svg>
+        <span class="text-2xl font-black">Vita<span class="text-amber-400">Coin</span></span>
+    </div>
+
+    <div class="flex items-center gap-4">
+        <a href="whitepaper.md" target="_blank" class="px-5 py-2.5 border border-slate-400 hover:border-amber-400 rounded-2xl text-sm">Whitepaper</a>
+        <a href="roadmap.md" target="_blank" class="px-5 py-2.5 border border-slate-400 hover:border-amber-400 rounded-2xl text-sm">Roadmap</a>
         
-        <div class="flex items-center gap-4">
-            <div class="hidden sm:flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                Ecosystem Shield Active
-            </div>
-            
-            <div class="relative inline-block text-left">
-                <select id="walletDropdown" onchange="handleWalletSelection()" 
-                        class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-5 py-2.5 rounded-2xl text-sm font-bold transition-all shadow-md outline-none cursor-pointer border-none appearance-none pr-8">
-                    <option value="" selected>Connect Wallet ▼</option>
-                    <option value="phantom">Phantom Wallet</option>
-                    <option value="solflare">Solflare Wallet</option>
-                    <option value="disconnect" id="disconnectOption" class="hidden">Disconnect Account</option>
+        <select id="walletSelect" onchange="connectWallet()" class="bg-amber-400 text-slate-950 px-5 py-2.5 rounded-2xl font-bold">
+            <option value="">Connect Wallet</option>
+            <option value="phantom">Phantom</option>
+            <option value="solflare">Solflare</option>
+            <option value="backpack">Backpack</option>
+            <option value="ledger">Ledger</option>
+            <option value="brave">Brave Wallet</option>
+            <option value="solana-mobile">Solana Mobile</option>
+        </select>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-6 py-8">
+    <div class="text-center mb-12">
+        <h1 class="text-5xl font-black tracking-tighter">Everyday Living to YHWH's Glory</h1>
+        <p class="text-slate-400">Real spending → Real wealth on Solana</p>
+    </div>
+
+    <div id="walletStatus" class="hidden mb-8 p-6 bg-emerald-900/30 border border-emerald-500 rounded-3xl text-center gold-glow">
+        <p id="walletText" class="text-emerald-400 font-bold">Wallet Connected</p>
+    </div>
+
+    <!-- Velocity Meters -->
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
+            <div class="flex justify-between text-xs mb-2"><span>Groceries (Max 1/week)</span><span id="groceryLabel">0/1</span></div>
+            <div class="h-2 bg-slate-800 rounded-full"><div id="groceryBar" class="h-2 bg-amber-400 rounded-full w-0"></div></div>
+        </div>
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
+            <div class="flex justify-between text-xs mb-2"><span>Cash Withdrawals (Max 2/mo)</span><span id="cashLabel">0/2</span></div>
+            <div class="h-2 bg-slate-800 rounded-full"><div id="cashBar" class="h-2 bg-red-400 rounded-full w-0"></div></div>
+        </div>
+    </div>
+
+    <!-- Receipt Terminal -->
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
+        <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">Receipt Verification Terminal</h3>
+        
+        <button onclick="simulatePlaid()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3 rounded-2xl mb-6 font-bold">Link Bank via Plaid (Simulated)</button>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-xs uppercase text-slate-400 mb-2">Category</label>
+                <select id="category" class="w-full bg-slate-950 border border-slate-700 rounded-2xl px-5 py-4">
+                    <option value="housing">Housing/Rent (10%)</option>
+                    <option value="groceries">Groceries (1%)</option>
+                    <option value="gas">Gas/Fuel (1%)</option>
+                    <option value="bills">Utilities/Bills (2%)</option>
+                    <option value="cash">Cash Withdrawal (1%)</option>
                 </select>
             </div>
-        </div>
-    </header>
-
-    <main class="w-full max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-12 gap-8 items-start">
-        
-        <div class="lg:col-span-5 space-y-6">
-            
-            <div class="relative w-48 h-48 md:w-56 md:h-56 mx-auto group">
-                <div class="absolute inset-0 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500"></div>
-                <div class="relative z-10 w-full h-full rounded-full overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl">
-                    <canvas id="mainLogoCanvas" width="400" height="400" class="w-full h-full object-cover select-none pointer-events-none"></canvas>
-                </div>
-                <div class="absolute inset-0 z-20 rounded-full cursor-default" oncontextmenu="return false;"></div>
-            </div>
-            
-            <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 secure-pulse">
-                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <span class="text-emerald-400">🛡️</span> Dynamic Velocity Thresholds
-                </h3>
-                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                    Ecosystem bylaws are strictly monitored. Weekly velocity caps prevent fraud, and monthly bills require explicit split payment authorization overrides.
-                </p>
-                
-                <div class="space-y-4 bg-slate-950 p-4 rounded-xl border border-slate-800/80">
-                    <div>
-                        <div class="flex justify-between text-xs font-medium mb-1">
-                            <span class="text-slate-400">🛒 Weekly Grocery Allocation</span>
-                            <span id="groceryCapLabel" class="text-amber-400 font-bold font-mono">0 / 1 Used This Week</span>
-                        </div>
-                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
-                            <div id="groceryProgressBar" class="bg-gradient-to-r from-amber-500 to-amber-400 h-full w-0 transition-all duration-300"></div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between text-xs font-medium mb-1">
-                            <span class="text-slate-400">⛽ Weekly Gas/Fuel Allocation</span>
-                            <span id="gasCapLabel" class="text-emerald-400 font-bold font-mono">0 / 2 Used This Week</span>
-                        </div>
-                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
-                            <div id="gasProgressBar" class="bg-gradient-to-r from-emerald-500 to-emerald-400 h-full w-0 transition-all duration-300"></div>
-                        </div>
-                    </div>
-
-                    <div class="pt-2 border-t border-slate-900 flex justify-between items-center text-[11px]">
-                        <span class="text-slate-500">🏠 Fixed Housing & Monthly Bills:</span>
-                        <span class="text-slate-300 font-semibold">Strict Max 1/Month Per Pool</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-xl">
-                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                    <span class="text-amber-400">✦</span> Receipt Verification Terminal
-                </h3>
-                
-                <div class="mb-6 p-4 bg-emerald-500/5 border border-emerald-500/20 rounded-xl text-center">
-                    <p class="text-xs text-slate-400 mb-3 leading-relaxed">
-                        Securely link your real bank ledger via Plaid to auto-populate and verify transactions instantaneously.
-                    </p>
-                    <button id="plaidLinkBtn" onclick="initializePlaidHandshake()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 px-4 rounded-xl text-xs transition-all active:scale-[0.97]">
-                        Link Direct Bank Account
-                    </button>
-                    <div id="bankConnectionStatus" class="text-[10px] text-slate-500 mt-2 font-mono">Bank Connection Status: Disconnected</div>
-                </div>
-
-                <div class="mb-4">
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Upload Physical Receipt Asset Image (JPG / PNG)</label>
-                    <div class="border-2 border-dashed border-slate-800 hover:border-amber-500/40 rounded-xl p-6 transition-all bg-slate-950 text-center cursor-pointer relative group">
-                        <input type="file" id="receiptFileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" onchange="processIncomingReceiptFile()">
-                        <div class="space-y-2">
-                            <span class="text-2xl block group-hover:scale-110 transition-transform">📸</span>
-                            <span id="fileNameDisplay" class="text-xs font-medium text-slate-400 block truncate px-4">Upload raw invoice/receipt file</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Expense Category Allocation Type</label>
-                    <select id="matrixCategorySelect" onchange="toggleSplitCheckboxView()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/40 rounded-xl px-4 py-3 text-white font-medium outline-none text-sm transition-all">
-                        <option value="10|home|housing">Housing / Rent / Mortgage (10:1 Ratio - Max 1/Mo)</option>
-                        <option value="100|life|grocery">Everyday Groceries (100:1 Ratio - Max 1/Wk)</option>
-                        <option value="100|life|gas">Gas & Fuel Receipts (100:1 Ratio - Max 2/Wk)</option>
-                        <option value="50|life|car">Car Payment Invoice (50:1 Ratio - Max 1/Mo)</option>
-                        <option value="50|life|utility">Regular Monthly Utilities (50:1 Ratio - Max 1/Mo)</option>
-                    </select>
-                </div>
-
-                <div id="splitPaymentContainer" class="hidden mb-4 p-3 bg-amber-500/5 border border-amber-500/20 rounded-xl">
-                    <div class="flex items-start gap-3">
-                        <input type="checkbox" id="splitPaymentCheckbox" class="mt-1 accent-amber-400 rounded cursor-pointer">
-                        <div>
-                            <label for="splitPaymentCheckbox" class="text-xs font-bold text-amber-400 block cursor-pointer">This is a split payment</label>
-                            <p class="text-[10px] text-slate-400 mt-0.5">Check this box to authorize secondary processing loops. Cryptographic proof of split status must match receipt file image metadata.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-6">
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Total Verified Receipt Value ($ USD)</label>
-                    <input type="number" id="billValueInput" placeholder="0.00" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/40 rounded-xl px-4 py-3 text-white font-bold outline-none text-sm transition-all">
-                </div>
-
-                <button onclick="executeSecureLedgerCommit()" class="w-full bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold py-3.5 px-6 rounded-xl text-sm transition-all active:scale-[0.98]">
-                    Verify Asset & Process Mint Block
-                </button>
+            <div>
+                <label class="block text-xs uppercase text-slate-400 mb-2">Amount ($)</label>
+                <input type="number" id="amount" placeholder="1250" class="w-full bg-slate-950 border border-slate-700 rounded-2xl px-5 py-4 text-lg">
             </div>
         </div>
 
-        <div class="lg:col-span-7 space-y-6">
-            
-            <div id="walletStatusCard" class="hidden bg-slate-900/90 border border-amber-500/40 rounded-3xl p-6 text-left gold-glow">
-                <div class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-1">Active Cryptographic Vault Identity</div>
-                <div id="walletAddressDisplay" class="text-sm font-mono text-slate-300 truncate mb-3">Not connected</div>
-                <div class="flex justify-between items-center border-t border-slate-800/80 pt-3">
-                    <span class="text-xs text-slate-400">Solana Network Balance:</span>
-                    <span id="solBalanceDisplay" class="text-sm font-bold text-emerald-400">0.00 SOL</span>
-                </div>
-            </div>
+        <button onclick="submitSpend()" class="mt-8 w-full bg-gradient-to-r from-amber-500 to-amber-400 py-5 rounded-2xl font-bold text-xl">
+            Verify Receipt & Mint VITA
+        </button>
+    </div>
 
-            <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-sm font-bold uppercase text-slate-400 tracking-wider flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> AI Scam Detector Log Feed
-                    </h3>
-                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/20">Shield State: Optimal</span>
-                </div>
-                
-                <div id="scamDetectorLogs" class="bg-slate-950 border border-slate-800/60 rounded-xl p-4 min-h-[110px] max-h-[130px] overflow-y-auto font-mono text-[11px] text-slate-400 space-y-2">
-                    <div class="text-emerald-500/80">[SYSTEM INTRUSION DETECTOR]: Initializing cryptographic heuristic tracking layers...</div>
-                    <div class="text-slate-500">[SYSTEM MEMORY]: Verification channels cleared. Fraud mitigators standing guard.</div>
-                </div>
-            </div>
+    <!-- Scam Detector Log -->
+    <div class="mt-8 bg-slate-900 border border-slate-700 rounded-3xl p-6">
+        <h4 class="font-bold mb-4">Security Log</h4>
+        <div id="securityLog" class="font-mono text-xs text-emerald-400 h-40 overflow-y-auto space-y-1"></div>
+    </div>
 
-            <div class="bg-slate-900/40 border border-slate-800/60 rounded-3xl p-6 flex flex-col justify-between min-h-[460px]">
-                <div>
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span>📋 Verified Ecosystem Ledger Streams</span>
-                        </h3>
-                        <span id="ledgerCounter" class="text-xs font-mono bg-slate-950 text-slate-500 px-2 py-1 rounded-md border border-slate-800">0 verified entries</span>
-                    </div>
-                    
-                    <div id="ledgerStreamBox" class="space-y-3 max-h-[360px] overflow-y-auto pr-2 text-center text-sm text-slate-500 py-16 border border-dashed border-slate-800 rounded-2xl bg-slate-950/20">
-                        No active receipt transaction blocks verified yet.
-                    </div>
-                </div>
-            </div>
+    <!-- Activity Log -->
+    <div id="activityLog" class="mt-8 space-y-4"></div>
+</main>
 
-        </div>
-    </main>
+<footer class="text-center py-12 text-xs text-slate-500">
+    © 2026 VitaCoin • Open Source • Fair Launch
+</footer>
 
-    <footer class="mt-auto w-full max-w-7xl mx-auto px-6 py-12 border-t border-slate-900 text-center text-xs text-slate-500">
-        <div>© 2026 VitaCoin • Open Source Ledger Architecture Suite</div>
-        <div class="mt-2 font-medium text-slate-400">Protected Ecosystem Framework. Integrity to Yahweh's Glory.</div>
-    </footer>
+<script>
+    let walletConnected = false;
+    let cashCount = 0;
+    let groceryCount = 0;
 
-    <script>
-        // Official Token Guardrail Parameters
-        const OFFICIAL_VITA_TOKEN_ADDRESS = "Your_Actual_Locked_Solana_Token_Address_Here";
+    function connectWallet() {
+        const val = document.getElementById('walletSelect').value;
+        if (!val) return;
+        walletConnected = true;
+        document.getElementById('walletStatus').classList.remove('hidden');
+        document.getElementById('walletText').innerText = `${val.toUpperCase()} Connected`;
+    }
 
-        // Strictly Enforced Velocity Limits Configurations
-        const GROCERY_WEEKLY_LIMIT = 1;
-        const GAS_WEEKLY_LIMIT = 2;
+    function simulatePlaid() {
+        alert("Plaid Bank Link Simulated - Transactions auto-detected");
+        addSecurityLog("Bank ledger connected successfully");
+    }
 
-        let currentGroceryCount = 0;
-        let currentGasCount = 0;
+    function addSecurityLog(msg) {
+        const log = document.getElementById('securityLog');
+        const entry = document.createElement('div');
+        entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+    }
 
-        // In-memory verification repositories to stop duplication scams instantly
-        const processedReceiptHashes = new Set();
-        const monthlyCategoryRegistry = new Set();
-        
-        let walletConnected = false;
-        let userPublicKey = null;
-        let ledgerCount = 0;
+    function submitSpend() {
+        if (!walletConnected) return alert("Connect a wallet first");
 
-        // --- AUTHENTIC HTML5 WATERMARK LOGO PROTECTION SUITE ---
-        function initializeSecureWatermarkLogo() {
-            const mainCanvas = document.getElementById('mainLogoCanvas');
-            const headerCanvas = document.getElementById('headerLogoCanvas');
-            
-            const logoImg = new Image();
-            logoImg.src = 'vitacoin-logo.jpg'; // Path to your official emblem asset
-            
-            logoImg.onload = function() {
-                // Apply protection loops to both main dashboard and header logo spots
-                renderWatermarkGrid(mainCanvas, logoImg, 400, 2, 12, 35);
-                renderWatermarkGrid(headerCanvas, logoImg, 100, 1, 4, 10);
-            };
+        const category = document.getElementById('category').value;
+        const amount = parseFloat(document.getElementById('amount').value) || 0;
+        if (amount <= 0) return alert("Enter amount");
+
+        let rate = 0;
+        if (category === "housing") rate = 0.10;
+        else if (category === "groceries") {
+            rate = 0.01;
+            groceryCount++;
+            if (groceryCount > 1) addSecurityLog("Grocery weekly limit warning");
+        }
+        else if (category === "gas") rate = 0.01;
+        else if (category === "bills") rate = 0.02;
+        else if (category === "cash") {
+            rate = 0.01;
+            cashCount++;
+            if (cashCount > 2) return alert("Cash limit (2/month) reached");
         }
 
-        function renderWatermarkGrid(canvas, image, size, lineGap, fontSize, textSpacing) {
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, size, size);
-            ctx.drawImage(image, 0, 0, size, size);
-            
-            // Generate High-Frequency Fine Moiré Distortion Lines
-            ctx.strokeStyle = 'rgba(212, 175, 55, 0.04)';
-            ctx.lineWidth = 0.5;
-            
-            for (let x = 0; x < size; x += lineGap) {
-                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, size); ctx.stroke();
-            }
-            for (let y = 0; y < size; y += lineGap) {
-                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(size, y); ctx.stroke();
-            }
+        const earned = (amount * rate).toFixed(2);
 
-            // Slanted Cryptographic Text Tattoo Stamp
-            ctx.save();
-            ctx.translate(size / 2, size / 2);
-            ctx.rotate(-45 * Math.PI / 180);
-            ctx.font = `bold ${fontSize}px Courier New`;
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-            ctx.textAlign = 'center';
-            
-            for (let i = -5; i <= 5; i++) {
-                ctx.fillText("OFFICIAL VITACOIN ECOSYSTEM • IMMUTABLE GENESIS POOL", 0, i * textSpacing);
-            }
-            ctx.restore();
-        }
+        const log = document.getElementById('activityLog');
+        const entry = document.createElement('div');
+        entry.className = "bg-slate-900 border border-emerald-500/30 p-5 rounded-2xl";
+        entry.innerHTML = `<div class="flex justify-between"><div><span class="capitalize font-bold">${category}</span><br>$${amount}</div><div class="text-right"><span class="text-emerald-400 font-bold">+${earned} VITA</span></div></div>`;
+        log.prepend(entry);
 
-        // --- REAL WEB3 SOLANA WALLET MATRIX CONNECTOR ---
-        async function handleWalletSelection() {
-            const dropdown = document.getElementById('walletDropdown');
-            const selectedValue = dropdown.value;
-            const statusCard = document.getElementById('walletStatusCard');
-            const addressDisplay = document.getElementById('walletAddressDisplay');
-            const balanceDisplay = document.getElementById('solBalanceDisplay');
-            const disconnectOpt = document.getElementById('disconnectOption');
-
-            if (selectedValue === "disconnect") {
-                if (window.solana) window.solana.disconnect();
-                walletConnected = false; userPublicKey = null;
-                dropdown.value = ""; dropdown.options[0].text = "Connect Wallet ▼";
-                disconnectOpt.classList.add('hidden'); statusCard.classList.add('hidden');
-                return;
-            }
-
-            if (selectedValue === "phantom") {
-                if (window.solana && window.solana.isPhantom) {
-                    try {
-                        const response = await window.solana.connect();
-                        userPublicKey = response.publicKey.toString();
-                        finalizeWalletUI(dropdown, disconnectOpt, statusCard, addressDisplay, "Phantom");
-                        
-                        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
-                        const balance = await connection.getBalance(new solanaWeb3.PublicKey(userPublicKey));
-                        balanceDisplay.innerText = (balance / solanaWeb3.LAMPORTS_PER_SOL).toFixed(3) + " SOL";
-                    } catch (err) {
-                        console.error("Connection cancelled by user:", err);
-                        dropdown.value = "";
-                    }
-                } else {
-                    alert("Phantom Extension not injected. Emulating Secure Testing Node Sandbox!");
-                    userPublicKey = "VitaVault77777777777777777777777777777777";
-                    finalizeWalletUI(dropdown, disconnectOpt, statusCard, addressDisplay, "Phantom (Secured)");
-                    balanceDisplay.innerText = "14.250 SOL";
-                }
-            } else if (selectedValue === "solflare") {
-                alert("Solflare Extension hook active. Initializing endpoint pairing sequence!");
-                userPublicKey = "SolflareVita77777777777777777777777777777";
-                finalizeWalletUI(dropdown, disconnectOpt, statusCard, addressDisplay, "Solflare");
-                balanceDisplay.innerText = "5.820 SOL";
-            }
-        }
-
-        function finalizeWalletUI(dropdown, disconnectOpt, statusCard, addressDisplay, name) {
-            walletConnected = true;
-            dropdown.options[0].text = `${name} Active`;
-            dropdown.value = "";
-            disconnectOpt.classList.remove('hidden');
-            addressDisplay.innerText = userPublicKey;
-            statusCard.classList.remove('hidden');
-        }
-
-        // --- CODESHIELD INTERFACE LEVEL INTERCEPTOR ---
-        function verifyContractIntegrity(userTargetContract) {
-            const alertLog = document.getElementById('scamDetectorLogs');
-            const timestamp = new Date().toLocaleTimeString();
-
-            if (userTargetContract !== OFFICIAL_VITA_TOKEN_ADDRESS) {
-                alertLog.innerHTML += `<div class="text-red-500 font-bold animate-pulse">[🚨 CRITICAL SECURITY]: COUNTERFEIT ADDRESS BLOCKED! Target contract failed validation lookup matrix!</div>`;
-                alertLog.scrollTop = alertLog.scrollHeight;
-                alert("SECURITY EXCEPTION: Contract address lookup mismatch! Connection terminated to safeguard ecosystem pools.");
-                return false;
-            }
-            return true;
-        }
-
-        // --- AUTHENTIC AUTOMATED PLAID CONNECTOR HOOK ---
-        function initializePlaidHandshake() {
-            const statusLabel = document.getElementById('bankConnectionStatus');
-            statusLabel.innerText = "Initializing secure connection paths...";
-            
-            setTimeout(() => {
-                statusLabel.innerText = "Status: Connected via Plaid API Endpoint";
-                statusLabel.className = "text-[10px] text-emerald-400 mt-2 font-mono font-bold";
-                alert("Success! Bank identity verification completed. Auto-populating latest valid ledger statement entry.");
-                
-                // Pull statement parameters automatically upon successful handshake
-                document.getElementById('receiptFileInput').value = ""; 
-                document.getElementById('matrixCategorySelect').value = "10|home|housing";
-                document.getElementById('billValueInput').value = "1000.00"; // Sample rent payment block
-                toggleSplitCheckboxView();
-                executeSecureLedgerCommit();
-            }, 1100);
-        }
-
-        // Display Split Checkbox conditional layouts
-        function toggleSplitCheckboxView() {
-            const selectField = document.getElementById('matrixCategorySelect');
-            const splitConfig = selectField.value.split('|');
-            const strictCategoryKey = splitConfig[2];
-            const splitContainer = document.getElementById('splitPaymentContainer');
-
-            if (strictCategoryKey === 'housing' || strictCategoryKey === 'car' || strictCategoryKey === 'utility') {
-                splitContainer.classList.remove('hidden');
-            } else {
-                splitContainer.classList.add('hidden');
-                document.getElementById('splitPaymentCheckbox').checked = false;
-            }
-        }
-
-        function processIncomingReceiptFile() {
-            const fileInput = document.getElementById('receiptFileInput');
-            const nameDisplay = document.getElementById('fileNameDisplay');
-            const alertLog = document.getElementById('scamDetectorLogs');
-            const timestamp = new Date().toLocaleTimeString();
-            
-            if (fileInput.files.length > 0) {
-                const targetFile = fileInput.files[0];
-                nameDisplay.innerText = `📄 Loaded: ${targetFile.name}`;
-                nameDisplay.className = "text-xs font-bold text-amber-400 block truncate px-4";
-                
-                alertLog.innerHTML += `<div class="text-amber-400">[OCR PROCESSOR ${timestamp}]: Reading pixel array boundaries for ecosystem safety...</div>`;
-                alertLog.scrollTop = alertLog.scrollHeight;
-            }
-        }
-
-        // --- SECURED LEDGER EXECUTION COMMIT CONTROL ---
-        function executeSecureLedgerCommit() {
-            const fileInput = document.getElementById('receiptFileInput');
-            const selectField = document.getElementById('matrixCategorySelect');
-            const inputField = document.getElementById('billValueInput');
-            const splitCheckbox = document.getElementById('splitPaymentCheckbox');
-            const streamBox = document.getElementById('ledgerStreamBox');
-            const alertLog = document.getElementById('scamDetectorLogs');
-            const timestamp = new Date().toLocaleTimeString();
-
-            const billValue = parseFloat(inputField.value) || 0;
-            if (billValue <= 0) {
-                alert("Please supply a valid receipt file or enter statement numbers.");
-                return;
-            }
-
-            const splitConfig = selectField.value.split('|');
-            const scaleDivisor = parseFloat(splitConfig[0]); 
-            const targetVault = splitConfig[1];
-            const strictCategoryKey = splitConfig[2];
-            const selectedTextName = selectField.options[selectField.selectedIndex].text.split(' (')[0];
-
-            let currentFileName = "Direct_Bank_Verified_Ledger.dat";
-            if (fileInput.files.length > 0) {
-                currentFileName = fileInput.files[0].name;
-            }
-
-            // ⚠️ SECURITY SHIELD 1: Stop Duplicate Upload Scams Instantly via Hash Registry
-            const generationHashKey = `${currentFileName}-${billValue}-${strictCategoryKey}`;
-            if (processedReceiptHashes.has(generationHashKey)) {
-                alertLog.innerHTML += `<div class="text-red-500 font-bold">[🚨 DUPLICATE RECORD BLOCKED ${timestamp}]: Drop request! Content match signature found in database!</div>`;
-                alertLog.scrollTop = alertLog.scrollHeight;
-                alert("Ecosystem Lockout: Duplicate entry detected! This receipt or statement block has already been authorized and cannot be processed twice.");
-                return;
-            }
-
-            // ⚠️ SECURITY SHIELD 2: Grocery Weekly Boundary Check (Max 1)
-            if (strictCategoryKey === 'grocery') {
-                if (currentGroceryCount >= GROCERY_WEEKLY_LIMIT) {
-                    alertLog.innerHTML += `<div class="text-rose-400 font-bold">[🛑 BYLAW EXCEEDED ${timestamp}]: Request dropped. Weekly Grocery Allocation limit reached.</div>`;
-                    alertLog.scrollTop = alertLog.scrollHeight;
-                    alert("Ecosystem Safe Limit: You have already reached the maximum allowance of 1 verified grocery receipt for this weekly calendar block.");
-                    return;
-                }
-                currentGroceryCount++;
-                updateVelocityMeterGraphics();
-            }
-
-            // ⚠️ SECURITY SHIELD 3: Gas & Fuel Weekly Boundary Check (Max 2)
-            if (strictCategoryKey === 'gas') {
-                if (currentGasCount >= GAS_WEEKLY_LIMIT) {
-                    alertLog.innerHTML += `<div class="text-rose-400 font-bold">[🛑 BYLAW EXCEEDED ${timestamp}]: Request dropped. Weekly Fuel Allocation limit reached.</div>`;
-                    alertLog.scrollTop = alertLog.scrollHeight;
-                    alert("Ecosystem Safe Limit: Fuel receipt entries are strictly locked at a maximum of 2 per week.");
-                    return;
-                }
-                currentGasCount++;
-                updateVelocityMeterGraphics();
-            }
-
-            // ⚠️ SECURITY SHIELD 4: Monthly Fixed Liabilities & Split-Payment Validations
-            if (strictCategoryKey === 'housing' || strictCategoryKey === 'car' || strictCategoryKey === 'utility') {
-                if (monthlyCategoryRegistry.has(strictCategoryKey)) {
-                    if (!splitCheckbox.checked) {
-                        alertLog.innerHTML += `<div class="text-amber-500 font-bold">[⚠️ PROTOCOL REJECTION ${timestamp}]: Multi-entry detected for ${strictCategoryKey}. Requires explicit split validation check.</div>`;
-                        alertLog.scrollTop = alertLog.scrollHeight;
-                        alert(`Ecosystem Validation Error: You have already processed an item for ${selectedTextName} within this monthly window. To log an additional partial split, you must check the 'This is a split payment' authorization box.`);
-                        return;
-                    } else {
-                        alertLog.innerHTML += `<div class="text-blue-400 font-bold">[ℹ️ SPLIT AUTHORIZED ${timestamp}]: Verified split contribution recognized for ${strictCategoryKey}. Processing mint.</div>`;
-                    }
-                } else {
-                    monthlyCategoryRegistry.add(strictCategoryKey);
-                }
-            }
-
-            // Calculate precise mint allocation parameters ($1,000 rent = 100 VITA; $700 rent = 70 VITA)
-            const rewardMintAmount = billValue / scaleDivisor;
-
-            processedReceiptHashes.add(generationHashKey);
-            alertLog.innerHTML += `<div class="text-emerald-400 font-bold">[✅ MINT SUCCESS ${timestamp}]: Verified data block committed to tree. Minting: +${rewardMintAmount.toFixed(2)} VITA</div>`;
-            alertLog.scrollTop = alertLog.scrollHeight;
-
-            if (ledgerCount === 0) {
-                streamBox.innerHTML = "";
-                streamBox.className = "space-y-3 max-h-[340px] overflow-y-auto pr-2 text-left";
-            }
-
-            ledgerCount++;
-            document.getElementById('ledgerCounter').innerText = ledgerCount + (ledgerCount === 1 ? " entry" : " entries");
-
-            const newRecordRow = document.createElement('div');
-            newRecordRow.className = "bg-slate-950/80 border border-slate-800/80 p-4 rounded-xl flex items-center justify-between shadow-sm animate-fade-in";
-            newRecordRow.innerHTML = `
-                <div>
-                    <div class="font-bold text-white text-sm truncate max-w-[280px]">${currentFileName}</div>
-                    <div class="text-xs text-slate-500 mt-0.5">${selectedTextName} • Statement Value: $${billValue.toFixed(2)} ${splitCheckbox.checked ? '(Split Block)' : ''}</div>
-                </div>
-                <div class="text-right">
-                    <div class="font-black text-sm text-amber-400">+${rewardMintAmount.toFixed(2)} VITA</div>
-                    <span class="inline-block text-[9px] font-bold px-2 py-0.5 rounded border mt-1 text-slate-400 bg-slate-900 border-slate-800">🔒 CRYPTO-VERIFIED</span>
-                </div>
-            `;
-            streamBox.insertBefore(newRecordRow, streamBox.firstChild);
-
-            // Clean form inputs
-            fileInput.value = "";
-            document.getElementById('fileNameDisplay').innerText = "Upload raw invoice/receipt file";
-            inputField.value = "";
-            splitCheckbox.checked = false;
-        }
-
-        function updateVelocityMeterGraphics() {
-            const groceryLabel = document.getElementById('groceryCapLabel');
-            const groceryBar = document.getElementById('groceryProgressBar');
-            const gasLabel = document.getElementById('gasCapLabel');
-            const gasBar = document.getElementById('gasProgressBar');
-            
-            groceryLabel.innerText = `${currentGroceryCount} / ${GROCERY_WEEKLY_LIMIT} Used This Week`;
-            const groceryPercent = (currentGroceryCount / GROCERY_WEEKLY_LIMIT) * 100;
-            groceryBar.style.width = `${groceryPercent}%`;
-            if (currentGroceryCount >= GROCERY_WEEKLY_LIMIT) {
-                groceryBar.className = "bg-gradient-to-r from-red-500 to-rose-400 h-full transition-all duration-300";
-                groceryLabel.className = "text-red-400 font-bold font-mono";
-            }
-
-            gasLabel.innerText = `${currentGasCount} / ${GAS_WEEKLY_LIMIT} Used This Week`;
-            const gasPercent = (currentGasCount / GAS_WEEKLY_LIMIT) * 100;
-            gasBar.style.width = `${gasPercent}%`;
-            if (currentGasCount >= GAS_WEEKLY_LIMIT) {
-                gasBar.className = "bg-gradient-to-r from-red-500 to-rose-400 h-full transition-all duration-300";
-                gasLabel.className = "text-red-400 font-bold font-mono";
-            }
-        }
-
-        // Initialize secure canvas grid templates immediately when DOM content layers lock
-        window.addEventListener('DOMContentLoaded', initializeSecureWatermarkLogo);
-    </script>
+        addSecurityLog(`Mint successful: +${earned} VITA for ${category}`);
+        alert(`✅ Verified! +${earned} VITA minted`);
+    }
+</script>
 </body>
 </html>
