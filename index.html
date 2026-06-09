@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitaCoin — Everyday Living to YHWH's Glory</title>
+    <title>VitaCoin — Everyday Living to Yahweh's Glory</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <style>
@@ -53,7 +53,7 @@
                 <img src="vitacoin-logo.jpg" alt="VitaCoin Core Emblem" class="w-36 h-36 object-cover rounded-full relative z-10 border border-amber-400/30 drop-shadow-[0_10px_25px_rgba(0,0,0,0.65)]">
             </div>
             <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4 leading-none">
-                Everyday Living to <span class="gold-text-gradient">YHWH's Glory</span>
+                Everyday Living to <span class="gold-text-gradient">Yahweh's Glory</span>
             </h1>
             <p class="text-slate-400 max-w-xl mx-auto text-sm">
                 Automated ecosystem converting living expenses into immutable generational wealth architectures.
@@ -109,7 +109,7 @@
             <div class="bg-slate-900/80 border border-amber-500/30 rounded-2xl p-6 gold-glow flex flex-col justify-between">
                 <div>
                     <h3 class="text-lg font-bold text-amber-400 mb-1">🏠 HomeBuilder Vault</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">Secures your 20% matching allocation built directly from home property values, rents, and split-payment mortgages.</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">Secures your 10% matching allocation built directly from home property values, rents, and split-payment mortgages.</p>
                 </div>
                 <div class="border-t border-slate-800 pt-3 mt-4">
                     <div id="homeVaultAccumulation" class="text-2xl font-black text-white font-mono">0.00 VITA</div>
@@ -129,117 +129,137 @@
 
         <div class="grid lg:grid-cols-12 gap-8 max-w-7xl mx-auto mb-10">
             
-            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
+            <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
                 <div>
                     <div class="mb-6">
-                        <h3 class="text-base font-bold text-white uppercase tracking-wide">Data Source Ingest</h3>
+                        <h3 class="text-base font-bold text-white uppercase tracking-wide">Data Source Ingest Matrix</h3>
                         <p class="text-xs text-slate-400 mt-1">
-                            Calculations pull directly from automated external telemetry strings to evaluate matrix match parameters.
+                            Calculations pull directly from automated external telemetry strings or manual receipt tracking nodes.
                         </p>
                     </div>
                     
-                    <div class="space-y-3 max-h-[560px] overflow-y-auto pr-1">
+                    <div class="space-y-2 max-h-[580px] overflow-y-auto pr-1">
                         
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                            <div class="sm:w-1/3">
+                        <div class="hidden sm:grid grid-cols-12 gap-2 px-4 py-2 text-[10px] font-black text-slate-500 uppercase tracking-wider border-b border-slate-800/60">
+                            <div class="col-span-4">Expense Channel Target</div>
+                            <div class="col-span-4 text-center">Document Path</div>
+                            <div class="col-span-4 text-right">Telemetry Handshake</div>
+                        </div>
+
+                        <div class="bg-slate-950/80 border border-slate-800/70 hover:border-slate-700 rounded-xl p-3 grid sm:grid-cols-12 items-center gap-3 transition-all">
+                            <div class="col-span-4">
                                 <span class="text-xs font-bold text-white block">1. Rent Mortgage</span>
-                                <span class="text-[10px] text-amber-400 font-mono font-bold">20% Payback Rate</span>
+                                <span class="text-[10px] text-amber-400 font-mono font-black">10% Match Target</span>
                             </div>
-                            <div class="flex flex-1 items-center gap-2 w-full">
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'MORTGAGE STATEMENT FULL PAYMENT', 1400.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                            <div class="col-span-4 flex justify-center">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'MORTGAGE STATEMENT FULL PAYMENT', 1400.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-3 rounded-lg text-slate-300 text-center transition-all">
                                     📸 Upload Receipt
                                 </button>
-                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT MORTGAGE HANDSHAKE', 1400.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                            </div>
+                            <div class="col-span-4 flex justify-end">
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT MORTGAGE HANDSHAKE', 1400.00)" class="w-full bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-900/50 hover:border-emerald-400 text-[11px] font-bold py-2 px-3 rounded-lg text-emerald-400 text-center sm:text-right transition-all">
                                     🔗 Link Bank (Verify)
                                 </button>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                            <div class="sm:w-1/3">
+                        <div class="bg-slate-950/80 border border-slate-800/70 hover:border-slate-700 rounded-xl p-3 grid sm:grid-cols-12 items-center gap-3 transition-all">
+                            <div class="col-span-4">
                                 <span class="text-xs font-bold text-white block">2. Groceries</span>
-                                <span class="text-[10px] text-amber-400 font-mono font-bold">5% Payback Rate</span>
+                                <span class="text-[10px] text-emerald-400 font-mono font-black">5% Match Target</span>
                             </div>
-                            <div class="flex flex-1 items-center gap-2 w-full">
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'SUPERMARKET GROCERY RECEIPT', 128.50)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                            <div class="col-span-4 flex justify-center">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'SUPERMARKET GROCERY RECEIPT', 128.50)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-3 rounded-lg text-slate-300 text-center transition-all">
                                     📸 Upload Receipt
                                 </button>
-                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT GROCERY CLEARANCE', 128.50)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                            </div>
+                            <div class="col-span-4 flex justify-end">
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT GROCERY CLEARANCE', 128.50)" class="w-full bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-900/50 hover:border-emerald-400 text-[11px] font-bold py-2 px-3 rounded-lg text-emerald-400 text-center sm:text-right transition-all">
                                     🔗 Link Bank (Verify)
                                 </button>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                            <div class="sm:w-1/3">
+                        <div class="bg-slate-950/80 border border-slate-800/70 hover:border-slate-700 rounded-xl p-3 grid sm:grid-cols-12 items-center gap-3 transition-all">
+                            <div class="col-span-4">
                                 <span class="text-xs font-bold text-white block">3. Gas</span>
-                                <span class="text-[10px] text-emerald-400 font-mono font-bold">5% Payback Rate</span>
+                                <span class="text-[10px] text-emerald-400 font-mono font-black">5% Match Target</span>
                             </div>
-                            <div class="flex flex-1 items-center gap-2 w-full">
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'FUEL STATION PUMP RECEIPT', 55.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                            <div class="col-span-4 flex justify-center">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'FUEL STATION PUMP RECEIPT', 55.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-3 rounded-lg text-slate-300 text-center transition-all">
                                     📸 Upload Receipt
                                 </button>
-                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT FUEL MERCHANT EXTRINSIC', 55.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                            </div>
+                            <div class="col-span-4 flex justify-end">
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT FUEL MERCHANT EXTRINSIC', 55.00)" class="w-full bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-900/50 hover:border-emerald-400 text-[11px] font-bold py-2 px-3 rounded-lg text-emerald-400 text-center sm:text-right transition-all">
                                     🔗 Link Bank (Verify)
                                 </button>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                            <div class="sm:w-1/3">
+                        <div class="bg-slate-950/80 border border-slate-800/70 hover:border-slate-700 rounded-xl p-3 grid sm:grid-cols-12 items-center gap-3 transition-all">
+                            <div class="col-span-4">
                                 <span class="text-xs font-bold text-white block">4. Car payment</span>
-                                <span class="text-[10px] text-emerald-400 font-mono font-bold">3% Payback Rate</span>
+                                <span class="text-[10px] text-emerald-400 font-mono font-black">3% Match Target</span>
                             </div>
-                            <div class="flex flex-1 items-center gap-2 w-full">
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'AUTO LOAN ACQUISITION RECEIPT', 450.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                            <div class="col-span-4 flex justify-center">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'AUTO LOAN ACQUISITION RECEIPT', 450.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-3 rounded-lg text-slate-300 text-center transition-all">
                                     📸 Upload Receipt
                                 </button>
-                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT AUTO DEBIT HANDSHAKE', 450.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                            </div>
+                            <div class="col-span-4 flex justify-end">
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT AUTO DEBIT HANDSHAKE', 450.00)" class="w-full bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-900/50 hover:border-emerald-400 text-[11px] font-bold py-2 px-3 rounded-lg text-emerald-400 text-center sm:text-right transition-all">
                                     🔗 Link Bank (Verify)
                                 </button>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                            <div class="sm:w-1/3">
+                        <div class="bg-slate-950/80 border border-slate-800/70 hover:border-slate-700 rounded-xl p-3 grid sm:grid-cols-12 items-center gap-3 transition-all">
+                            <div class="col-span-4">
                                 <span class="text-xs font-bold text-white block">5. Car insurance</span>
-                                <span class="text-[10px] text-slate-400 font-mono font-bold">3% Payback Rate</span>
+                                <span class="text-[10px] text-slate-400 font-mono font-black">3% Match Target</span>
                             </div>
-                            <div class="flex flex-1 items-center gap-2 w-full">
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'AUTO INSURANCE COVERAGE RECEIPT', 165.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                            <div class="col-span-4 flex justify-center">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'AUTO INSURANCE COVERAGE RECEIPT', 165.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-3 rounded-lg text-slate-300 text-center transition-all">
                                     📸 Upload Receipt
                                 </button>
-                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT INSURANCE WIRE', 165.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                            </div>
+                            <div class="col-span-4 flex justify-end">
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT INSURANCE WIRE', 165.00)" class="w-full bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-900/50 hover:border-emerald-400 text-[11px] font-bold py-2 px-3 rounded-lg text-emerald-400 text-center sm:text-right transition-all">
                                     🔗 Link Bank (Verify)
                                 </button>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                            <div class="sm:w-1/3">
+                        <div class="bg-slate-950/80 border border-slate-800/70 hover:border-slate-700 rounded-xl p-3 grid sm:grid-cols-12 items-center gap-3 transition-all">
+                            <div class="col-span-4">
                                 <span class="text-xs font-bold text-white block">6. Credit card</span>
-                                <span class="text-[10px] text-slate-400 font-mono font-bold">3% Payback Rate</span>
+                                <span class="text-[10px] text-slate-400 font-mono font-black">3% Match Target</span>
                             </div>
-                            <div class="flex flex-1 items-center gap-2 w-full">
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'MONTHLY CREDIT STATEMENT CLEARANCE', 300.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                            <div class="col-span-4 flex justify-center">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'MONTHLY CREDIT STATEMENT CLEARANCE', 300.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-3 rounded-lg text-slate-300 text-center transition-all">
                                     📸 Upload Receipt
                                 </button>
-                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT CARD ISSUER SETTLING', 300.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                            </div>
+                            <div class="col-span-4 flex justify-end">
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT CARD ISSUER SETTLING', 300.00)" class="w-full bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-900/50 hover:border-emerald-400 text-[11px] font-bold py-2 px-3 rounded-lg text-emerald-400 text-center sm:text-right transition-all">
                                     🔗 Link Bank (Verify)
                                 </button>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                            <div class="sm:w-1/3">
+                        <div class="bg-slate-950/80 border border-slate-800/70 hover:border-slate-700 rounded-xl p-3 grid sm:grid-cols-12 items-center gap-3 transition-all">
+                            <div class="col-span-4">
                                 <span class="text-xs font-bold text-white block">7. Cash Withdrawl</span>
-                                <span class="text-[10px] text-amber-400 font-mono font-bold">1% Payback Rate</span>
+                                <span class="text-[10px] text-amber-400 font-mono font-black">1% Match Target</span>
                             </div>
-                            <div class="flex flex-1 items-center gap-2 w-full">
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'ATM TELLER TERMINAL RECEIPT', 200.00)" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-2.5 rounded-lg text-slate-300 text-center transition-all">
+                            <div class="col-span-4 flex justify-center">
+                                <button onclick="streamIncomingPayload('OCR_SCAN', 'ATM TELLER TERMINAL RECEIPT', 200.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/40 text-[11px] font-bold py-2 px-3 rounded-lg text-slate-300 text-center transition-all">
                                     📸 Upload Receipt
                                 </button>
-                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT CASH DISPENSATION DEBIT', 200.00)" class="flex-1 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 hover:border-emerald-400 text-[11px] font-bold py-2 px-2.5 rounded-lg text-emerald-400 text-center transition-all">
+                            </div>
+                            <div class="col-span-4 flex justify-end">
+                                <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT CASH DISPENSATION DEBIT', 200.00)" class="w-full bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-900/50 hover:border-emerald-400 text-[11px] font-bold py-2 px-3 rounded-lg text-emerald-400 text-center sm:text-right transition-all">
                                     🔗 Link Bank (Verify)
                                 </button>
                             </div>
@@ -253,7 +273,7 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
+            <div class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
                 <div>
                     <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-wide">Automated Ledger Assessment</h3>
                     
@@ -281,7 +301,6 @@
                             </div>
                             <div id="splitPaymentIndicator" class="hidden bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-xl text-right">
                                 <span class="text-[9px] font-black tracking-widest uppercase block text-amber-400">🔄 Split Record Found</span>
-                                <span class="text-[10px] font-mono font-bold text-slate-300">Pending Twin Payment Validation</span>
                             </div>
                         </div>
                     </div>
@@ -360,7 +379,7 @@
 
     <footer class="mt-auto w-full max-w-7xl mx-auto px-6 py-8 border-t border-slate-900 text-center text-xs text-slate-500">
         <div>© 2026 VitaCoin Infrastructure Architecture Suite</div>
-        <div class="mt-1 font-medium text-slate-400">Everyday Living to YHWH's Glory</div>
+        <div class="mt-1 font-medium text-slate-400">Everyday Living to Yahweh's Glory</div>
     </footer>
 
     <script>
@@ -445,7 +464,6 @@
             let targetIndicator = document.getElementById('splitPaymentIndicator');
             targetIndicator.classList.add('hidden');
 
-            // Handle text display updates for validation types
             const typeLabel = document.getElementById('verificationTypeLabel');
             if (sourceType === 'BANK_FEED') {
                 typeLabel.innerText = "🌐 DIRECT BANK CONNECTIVITY HANDSHAKE (DIRECT Expense Verification)";
@@ -457,7 +475,7 @@
 
             if (normalizedStr.includes("mortgage") || normalizedStr.includes("rent")) {
                 cachedCategory = "housing";
-                cachedRate = 0.20;
+                cachedRate = 0.10;
                 cachedTargetVault = "home";
                 displayCategoryName = "1. Rent Mortgage Allocation";
             } else if (normalizedStr.includes("grocery") || normalizedStr.includes("supermarket")) {
