@@ -14,30 +14,23 @@
 
 <header class="max-w-6xl mx-auto w-full px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
     <div class="flex items-center gap-3">
-        <svg width="48" height="48" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="140" cy="140" r="118" fill="#1E2937" stroke="#F4C95D" stroke-width="22"/>
-            <g transform="translate(140 140) scale(0.95)">
-                <path d="M-65 -45 L-8 65 L8 65 L65 -45" fill="none" stroke="#10B981" stroke-width="28" stroke-linejoin="round"/>
-                <path d="M-65 -45 L-8 65 L8 65 L65 -45" fill="none" stroke="#F4C95D" stroke-width="18" stroke-linejoin="round"/>
-                <path d="M-48 -68 Q-25 -88 0 -68 Q25 -88 48 -68" fill="none" stroke="#F4C95D" stroke-width="20"/>
-                <text x="0" y="12" text-anchor="middle" fill="#F4C95D" font-size="48" font-weight="900">V</text>
-            </g>
-        </svg>
+        <img src="vitacoin-logo.jpg" alt="VitaCoin Official Logo" class="w-12 h-12 rounded-xl object-cover border border-amber-400">
         <span class="text-2xl font-black">Vita<span class="text-amber-400">Coin</span></span>
     </div>
 
     <div class="flex items-center gap-4">
-        <a href="./whitepaper/" class="px-5 py-2.5 border border-slate-700 hover:border-amber-400 rounded-2xl text-sm transition-all bg-slate-900/50">Whitepaper</a>
-        <a href="./README.md" class="px-5 py-2.5 border border-slate-700 hover:border-amber-400 rounded-2xl text-sm transition-all bg-slate-900/50">Roadmap</a>
+        <a href="./whitepaper/" target="_blank" class="px-5 py-2.5 border border-slate-700 hover:border-amber-400 rounded-2xl text-sm transition-all bg-slate-900/50 font-medium">Whitepaper</a>
+        <a href="./README.md" target="_blank" class="px-5 py-2.5 border border-slate-700 hover:border-amber-400 rounded-2xl text-sm transition-all bg-slate-900/50 font-medium">Roadmap</a>
         
-        <select id="walletSelect" onchange="connectWallet()" class="bg-amber-400 text-slate-950 px-5 py-2.5 rounded-2xl font-bold outline-none cursor-pointer">
-            <option value="">Connect Wallet</option>
-            <option value="phantom">Phantom</option>
+        <select id="walletSelect" onchange="connectWallet()" class="bg-amber-400 text-slate-950 px-5 py-2.5 rounded-2xl font-bold outline-none cursor-pointer text-sm">
+            <option value="">Connect Secure Wallet</option>
+            <option value="phantom">Phantom Wallet</option>
             <option value="solflare">Solflare</option>
             <option value="backpack">Backpack</option>
-            <option value="ledger">Ledger</option>
+            <option value="ledger">Ledger Hardware</option>
             <option value="brave">Brave Wallet</option>
-            <option value="solana-mobile">Solana Mobile</option>
+            <option value="solana-mobile">Solana Mobile Stack</option>
+            <option value="glow">Glow Wallet</option>
         </select>
     </div>
 </header>
@@ -45,65 +38,98 @@
 <main class="max-w-6xl mx-auto px-6 py-8 flex-grow w-full">
     <div class="text-center mb-12">
         <h1 class="text-5xl font-black tracking-tighter">Everyday Living to Yahweh's Glory</h1>
-        <p class="text-slate-400 mt-4">Automated Data Mapping Guarding the 1,000,000,000 VITA Immutable Cap</p>
+        <p class="text-slate-400 mt-4">Automated Verification Guarding the 1,000,000,000 VITA Immutable Supply Cap</p>
     </div>
 
     <div id="walletStatus" class="hidden mb-8 p-6 bg-emerald-900/30 border border-emerald-500 rounded-3xl text-center gold-glow">
-        <p id="walletText" class="text-emerald-400 font-bold">Wallet Connected • Secure Session Active</p>
+        <p id="walletText" class="text-emerald-400 font-bold">Wallet Connected • Secure Cryptographic Session Active</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-6 mb-8">
         <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
-            <div class="flex justify-between text-xs mb-2"><span class="text-slate-400">Groceries (Max 1/week slot)</span><span id="groceryLabel" class="font-bold text-amber-400">0/1</span></div>
+            <div class="flex justify-between text-xs mb-2"><span class="text-slate-400">Groceries Allocation (Max 1/week slot)</span><span id="groceryLabel" class="font-bold text-amber-400">0/1</span></div>
             <div class="h-2 bg-slate-950 rounded-full overflow-hidden"><div id="groceryBar" class="h-full bg-amber-400 w-0 transition-all duration-300"></div></div>
         </div>
         <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6">
-            <div class="flex justify-between text-xs mb-2"><span class="text-slate-400">Gas & Fuel (Max 2/week slots)</span><span id="gasLabel" class="font-bold text-emerald-400">0/2</span></div>
+            <div class="flex justify-between text-xs mb-2"><span class="text-slate-400">Gas & Fuel Allocation (Max 2/week slots)</span><span id="gasLabel" class="font-bold text-emerald-400">0/2</span></div>
             <div class="h-2 bg-slate-950 rounded-full overflow-hidden"><div id="gasBar" class="h-full bg-emerald-400 w-0 transition-all duration-300"></div></div>
         </div>
     </div>
 
-    <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8 mb-8">
-        <h3 class="text-2xl font-bold mb-2">Receipt Verification Terminal</h3>
-        <p class="text-xs text-slate-400 mb-6">No manual typing. Smart ledger processing scans incoming asset metadata dynamically.</p>
-        
-        <div class="grid md:grid-cols-2 gap-4 mb-6">
-            <button onclick="simulatePlaidInbound()" class="bg-slate-950 hover:bg-slate-800 border border-slate-700 font-bold py-4 rounded-xl text-xs transition-all">🔗 Link Bank via Plaid (Auto-Detect)</button>
-            <button onclick="triggerSmartOCRScan()" class="bg-slate-950 hover:bg-slate-800 border border-slate-700 font-bold py-4 rounded-xl text-xs transition-all">📷 Simulate Smart OCR Asset Drop</button>
-        </div>
-
-        <div class="p-5 bg-slate-950 border border-slate-800 rounded-2xl mb-6 grid md:grid-cols-2 gap-4 items-center">
+    <div class="grid lg:grid-cols-3 gap-8 mb-8">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6 flex flex-col justify-between">
             <div>
-                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Detected Data Category</span>
-                <span id="detectedCategoryDisplay" class="text-sm font-bold text-slate-400 mt-1 block">Awaiting Stream...</span>
+                <h3 class="text-xl font-bold mb-2 text-amber-400">VITA Mint Estimator</h3>
+                <p class="text-xs text-slate-400 mb-4">Calculate potential mint rewards based on standard percentage plans.</p>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-xs text-slate-400 font-bold uppercase tracking-wider block mb-1">Expense Amount ($)</label>
+                        <input type="number" id="calcAmount" oninput="calculateEstimate()" placeholder="0.00" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 font-mono text-white text-sm outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="text-xs text-slate-400 font-bold uppercase tracking-wider block mb-1">Select Expense Plan</label>
+                        <select id="calcCategory" onchange="calculateEstimate()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-sm outline-none focus:border-amber-400">
+                            <option value="0.05">Groceries (5% Return Plan)</option>
+                            <option value="0.05">Gas & Fuel (5% Return Plan)</option>
+                            <option value="0.10">Housing, Rent & Mortgage (10% Plan)</option>
+                            <option value="0.10">Medical & Utilities (10% Plan)</option>
+                            <option value="0.03">Credit Cards & Insurance (3% Plan)</option>
+                            <option value="0.01">Cash / ATM Withdrawals (1% Plan)</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="text-right">
-                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Extracted Total</span>
-                <span id="streamValueDisplay" class="text-xl font-mono font-black text-slate-500 block">$0.00</span>
+            <div class="mt-6 pt-4 border-t border-slate-800 text-center">
+                <span class="text-xs text-slate-500 block uppercase font-bold tracking-wider">Estimated Mint Return</span>
+                <span id="calcDisplay" class="text-2xl font-mono font-black text-amber-400 mt-1 block">0.00 VITA</span>
             </div>
         </div>
 
-        <div id="housingSplits" class="hidden mt-6 p-4 bg-slate-950 border border-slate-800 rounded-xl space-y-3">
-            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-900 pb-1.5">Authorized Split Multi-Account Credentials</div>
-            <div class="flex items-center justify-between"><label class="text-xs text-slate-400">Split Payment 1 Portion</label><input type="checkbox" id="split1" class="w-4 h-4 accent-amber-400"></div>
-            <div class="flex items-center justify-between"><label class="text-xs text-slate-400">Split Payment 2 Portion</label><input type="checkbox" id="split2" class="w-4 h-4 accent-amber-400"></div>
-        </div>
+        <div class="lg:col-span-2 bg-slate-900 border border-slate-700 rounded-3xl p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-xl font-bold mb-2">Receipt Verification System</h3>
+                <p class="text-xs text-slate-400 mb-6">Automated data streaming detects incoming transaction metadata dynamically to eliminate manipulation.</p>
+                
+                <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                    <button onclick="simulatePlaidInbound()" class="bg-slate-950 hover:bg-slate-800 border border-slate-700 font-bold py-4 rounded-xl text-xs transition-all">🔗 Link Bank via Plaid (Auto-Detect)</button>
+                    <button onclick="triggerSmartOCRScan()" class="bg-slate-950 hover:bg-slate-800 border border-slate-700 font-bold py-4 rounded-xl text-xs transition-all">📷 Simulate Smart OCR Asset Drop</button>
+                </div>
 
-        <button id="mintSubmitBtn" onclick="submitSpend()" disabled class="mt-8 w-full bg-slate-800 text-slate-500 py-5 rounded-2xl font-bold text-xl cursor-not-allowed transition-all">
-            Awaiting Automated Stream Connection
-        </button>
+                <div class="p-5 bg-slate-950 border border-slate-800 rounded-2xl grid sm:grid-cols-2 gap-4 items-center">
+                    <div>
+                        <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Identified Category Asset</span>
+                        <span id="detectedCategoryDisplay" class="text-sm font-bold text-slate-400 mt-1 block">Awaiting Inbound Stream...</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Extracted Total</span>
+                        <span id="streamValueDisplay" class="text-xl font-mono font-black text-slate-500 block">$0.00</span>
+                    </div>
+                </div>
+
+                <div id="housingSplits" class="hidden mt-6 p-4 bg-slate-950 border border-slate-800 rounded-xl space-y-3">
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-900 pb-1.5">Authorized Split Multi-Account Credentials</div>
+                    <div class="flex items-center justify-between"><label class="text-xs text-slate-400">Split Payment 1 Portion</label><input type="checkbox" id="split1" class="w-4 h-4 accent-amber-400"></div>
+                    <div class="flex items-center justify-between"><label class="text-xs text-slate-400">Split Payment 2 Portion</label><input type="checkbox" id="split2" class="w-4 h-4 accent-amber-400"></div>
+                </div>
+            </div>
+
+            <button id="mintSubmitBtn" onclick="submitSpend()" disabled class="mt-8 w-full bg-slate-800 text-slate-500 py-5 rounded-2xl font-bold text-xl cursor-not-allowed transition-all">
+                Awaiting Automated Stream Connection
+            </button>
+        </div>
     </div>
 
     <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6 mb-8">
-        <h4 class="font-bold mb-4">Security & Anti-Cheat Log</h4>
-        <div id="securityLog" class="font-mono text-xs text-emerald-400 h-48 overflow-y-auto bg-black/50 p-4 rounded-2xl"></div>
+        <h4 class="font-bold mb-4">Security & Anti-Cheat Ledger Log</h4>
+        <div id="securityLog" class="font-mono text-xs text-emerald-400 h-36 overflow-y-auto bg-black/50 p-4 rounded-2xl"></div>
     </div>
 
     <div id="activityLog" class="space-y-4"></div>
 </main>
 
 <footer class="text-center py-12 text-xs text-slate-500 border-t border-slate-800">
-    © 2026 VitaCoin • Open Source • Fair Launch on Solana
+    © 2026 VitaCoin • Open Source Deployment • Fair Launch on Solana
 </footer>
 
 <script>
@@ -115,6 +141,14 @@
     let groceryCount = 0;
     let gasCount = 0;
     let housingCommittedThisMonth = false;
+
+    // ESTIMATOR CALCULATOR MATH ENGINE
+    function calculateEstimate() {
+        const amt = parseFloat(document.getElementById('calcAmount').value) || 0;
+        const rate = parseFloat(document.getElementById('calcCategory').value);
+        const total = (amt * rate).toFixed(2);
+        document.getElementById('calcDisplay').innerText = `${total} VITA`;
+    }
 
     function connectWallet() {
         const val = document.getElementById('walletSelect').value;
@@ -134,7 +168,7 @@
         log.scrollTop = log.scrollHeight;
     }
 
-    // INTELLIGENT PARSER: Scans inbound raw text lines to distinguish grocery vs gas vs housing instantly
+    // SMART PARSER SCANS INPUT AND DETECTS GAS/FOOD WORDS INSTANTLY
     function processSmartTextData(rawText, simulatedPrice) {
         pipedAmount = simulatedPrice;
         let normalized = rawText.toLowerCase();
@@ -143,31 +177,30 @@
 
         splitBox.classList.add('hidden');
 
-        // Automatic Text-to-Category Identification
         if (normalized.includes("grocery") || normalized.includes("supermarket") || normalized.includes("walmart") || normalized.includes("food")) {
             activeCategoryKey = "groceries";
-            activeMultiplier = 0.05; // True 5%
+            activeMultiplier = 0.05; // 5%
             displayBox.innerText = "Everyday Groceries (5% Return Plan)";
         } else if (normalized.includes("gas") || normalized.includes("fuel") || normalized.includes("exxon") || normalized.includes("shell") || normalized.includes("pump")) {
             activeCategoryKey = "gas";
-            activeMultiplier = 0.05; // True 5%
+            activeMultiplier = 0.05; // 5%
             displayBox.innerText = "Gas & Fuel (5% Return Plan)";
         } else if (normalized.includes("mortgage") || normalized.includes("rent") || normalized.includes("housing") || normalized.includes("lease")) {
             activeCategoryKey = "housing";
-            activeMultiplier = 0.10; // True 10% strictly enforced for supply management
+            activeMultiplier = 0.10; // Strictly enforced 10%
             displayBox.innerText = "Housing / Rent / Mortgage (10% Return Plan)";
             splitBox.classList.remove('hidden');
         } else if (normalized.includes("utility") || normalized.includes("medical") || normalized.includes("electric") || normalized.includes("water")) {
             activeCategoryKey = "medical-utility";
-            activeMultiplier = 0.10; // True 10%
+            activeMultiplier = 0.10; // 10%
             displayBox.innerText = "Medical & Utilities (10% Return Plan)";
         } else if (normalized.includes("visa") || normalized.includes("credit") || normalized.includes("insurance") || normalized.includes("geico")) {
             activeCategoryKey = "credit-insurance";
-            activeMultiplier = 0.03; // True 3%
+            activeMultiplier = 0.03; // 3%
             displayBox.innerText = "Credit Cards & Insurance (3% Return Plan)";
         } else {
             activeCategoryKey = "cash";
-            activeMultiplier = 0.01; // True 1%
+            activeMultiplier = 0.01; // 1%
             displayBox.innerText = "Cash Withdrawal / ATM Stream (1% Return Plan)";
         }
 
@@ -180,11 +213,11 @@
         btn.className = "mt-8 w-full bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 py-5 rounded-2xl font-bold text-xl cursor-pointer shadow-md active:scale-[0.99]";
         btn.innerText = "Verify Receipt & Mint VITA";
         
-        addSecurityLog(`Smart Scanner: Detected '${activeCategoryKey.toUpperCase()}' text markers. Extraction verified.`);
+        addSecurityLog(`Smart Parser matched string anchors for '${activeCategoryKey.toUpperCase()}'. Math locked.`);
     }
 
     function simulatePlaidInbound() {
-        processSmartTextData("WELLS FARGO HOME MORTGAGE PAYMENT LEASE-BLOCK", 1200.00);
+        processSmartTextData("WELLS FARGO HOME MORTGAGE PAYMENT MNT-4410", 1200.00);
     }
 
     function triggerSmartOCRScan() {
@@ -204,20 +237,20 @@
         const split2 = document.getElementById('split2').checked;
 
         if (activeCategoryKey === "groceries") {
-            if (groceryCount >= 1) return alert("Velocity limit reached: 1 grocery allocation slot per week maximum.");
+            if (groceryCount >= 1) return alert("Velocity cap: 1 grocery allocation slot per week maximum.");
             groceryCount++;
             document.getElementById('groceryLabel').innerText = `${groceryCount}/1`;
             document.getElementById('groceryBar').style.width = "100%";
         }
         if (activeCategoryKey === "gas") {
-            if (gasCount >= 2) return alert("Velocity limit reached: 2 gas allocation slots per week maximum.");
+            if (gasCount >= 2) return alert("Velocity cap: 2 gas allocation slots per week maximum.");
             gasCount++;
             document.getElementById('gasLabel').innerText = `${gasCount}/2`;
             document.getElementById('gasBar').style.width = `${gasCount * 50}%`;
         }
         if (activeCategoryKey === "housing") {
             if (housingCommittedThisMonth && !split1 && !split2) {
-                return alert("Housing cap warning: Standard monthly tracking is active. Use verified split overrides to process portions.");
+                return alert("Housing tracking locked for month cycle. Use authorized split overrides.");
             }
             housingCommittedThisMonth = true;
         }
@@ -228,17 +261,17 @@
         entry.className = "bg-slate-900 border border-emerald-500/30 p-5 rounded-2xl flex justify-between items-center shadow-inner";
         
         let labelName = activeCategoryKey.replace('-', ' & ');
-        entry.innerHTML = `<div><span class="capitalize font-bold text-white">${labelName}</span><br><span class="text-xs text-slate-500">Base Extract: $${pipedAmount.toFixed(2)}</span></div><div class="text-right"><span class="text-amber-400 font-mono font-black text-xl">+${earned} VITA</span><br><span class="text-[10px] uppercase text-emerald-400 font-bold">${(activeMultiplier * 100)}% Return Confirmed</span></div>`;
+        entry.innerHTML = `<div><span class="capitalize font-bold text-white">${labelName}</span><br><span class="text-xs text-slate-500">Base Extract: $${pipedAmount.toFixed(2)}</span></div><div class="text-right"><span class="text-amber-400 font-mono font-black text-xl">+${earned} VITA</span><br><span class="text-[10px] uppercase text-emerald-400 font-bold">${(activeMultiplier * 100)}% Mint Confirmed</span></div>`;
         log.prepend(entry);
 
-        addSecurityLog(`Mint Confirmed: +${earned} VITA processed into block chain ledger storage.`);
+        addSecurityLog(`Mint Logged: Issued +${earned} VITA tokens.`);
         alert(`✅ Verified! +${earned} VITA earned`);
 
-        // Reset Interface
+        // Reset inputs
         pipedAmount = 0.00;
         document.getElementById('streamValueDisplay').innerText = "$0.00";
         document.getElementById('streamValueDisplay').className = "text-sm font-mono font-black text-slate-500";
-        document.getElementById('detectedCategoryDisplay').innerText = "Awaiting Stream...";
+        document.getElementById('detectedCategoryDisplay').innerText = "Awaiting Inbound Stream...";
         
         const btn = document.getElementById('mintSubmitBtn');
         btn.disabled = true;
