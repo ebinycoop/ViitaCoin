@@ -27,8 +27,8 @@
     </div>
 
     <div class="flex items-center gap-4">
-        <a href="#whitepaper" onclick="alert('Displaying Whitepaper Modal View/Download Protocol')" class="px-5 py-2.5 border border-slate-700 hover:border-amber-400 rounded-2xl text-sm transition-all bg-slate-900/50">Whitepaper</a>
-        <a href="#roadmap" onclick="alert('Displaying System Roadmap Block Generation Protocol')" class="px-5 py-2.5 border border-slate-700 hover:border-amber-400 rounded-2xl text-sm transition-all bg-slate-900/50">Roadmap</a>
+        <a href="./whitepaper/" class="px-5 py-2.5 border border-slate-700 hover:border-amber-400 rounded-2xl text-sm transition-all bg-slate-900/50">Whitepaper</a>
+        <a href="./README.md" class="px-5 py-2.5 border border-slate-700 hover:border-amber-400 rounded-2xl text-sm transition-all bg-slate-900/50">Roadmap</a>
         
         <select id="walletSelect" onchange="connectWallet()" class="bg-amber-400 text-slate-950 px-5 py-2.5 rounded-2xl font-bold outline-none cursor-pointer">
             <option value="">Connect Wallet</option>
@@ -134,7 +134,7 @@
         log.scrollTop = log.scrollHeight;
     }
 
-    // SMART SCANNER: Sees text and auto-assigns category, amount, and exact return metrics
+    // INTELLIGENT PARSER: Scans inbound raw text lines to distinguish grocery vs gas vs housing instantly
     function processSmartTextData(rawText, simulatedPrice) {
         pipedAmount = simulatedPrice;
         let normalized = rawText.toLowerCase();
@@ -143,30 +143,31 @@
 
         splitBox.classList.add('hidden');
 
-        if (normalized.includes("grocery") || normalized.includes("supermarket") || normalized.includes("walmart")) {
+        // Automatic Text-to-Category Identification
+        if (normalized.includes("grocery") || normalized.includes("supermarket") || normalized.includes("walmart") || normalized.includes("food")) {
             activeCategoryKey = "groceries";
-            activeMultiplier = 0.05;
+            activeMultiplier = 0.05; // True 5%
             displayBox.innerText = "Everyday Groceries (5% Return Plan)";
-        } else if (normalized.includes("gas") || normalized.includes("fuel") || normalized.includes("exxon") || normalized.includes("shell")) {
+        } else if (normalized.includes("gas") || normalized.includes("fuel") || normalized.includes("exxon") || normalized.includes("shell") || normalized.includes("pump")) {
             activeCategoryKey = "gas";
-            activeMultiplier = 0.05;
+            activeMultiplier = 0.05; // True 5%
             displayBox.innerText = "Gas & Fuel (5% Return Plan)";
-        } else if (normalized.includes("mortgage") || normalized.includes("rent") || normalized.includes("housing")) {
+        } else if (normalized.includes("mortgage") || normalized.includes("rent") || normalized.includes("housing") || normalized.includes("lease")) {
             activeCategoryKey = "housing";
-            activeMultiplier = 0.10; // Locked strictly to 10% based on supply metrics
+            activeMultiplier = 0.10; // True 10% strictly enforced for supply management
             displayBox.innerText = "Housing / Rent / Mortgage (10% Return Plan)";
             splitBox.classList.remove('hidden');
-        } else if (normalized.includes("utility") || normalized.includes("medical") || normalized.includes("electric")) {
+        } else if (normalized.includes("utility") || normalized.includes("medical") || normalized.includes("electric") || normalized.includes("water")) {
             activeCategoryKey = "medical-utility";
-            activeMultiplier = 0.10;
+            activeMultiplier = 0.10; // True 10%
             displayBox.innerText = "Medical & Utilities (10% Return Plan)";
-        } else if (normalized.includes("visa") || normalized.includes("insurance")) {
+        } else if (normalized.includes("visa") || normalized.includes("credit") || normalized.includes("insurance") || normalized.includes("geico")) {
             activeCategoryKey = "credit-insurance";
-            activeMultiplier = 0.03;
+            activeMultiplier = 0.03; // True 3%
             displayBox.innerText = "Credit Cards & Insurance (3% Return Plan)";
         } else {
             activeCategoryKey = "cash";
-            activeMultiplier = 0.01;
+            activeMultiplier = 0.01; // True 1%
             displayBox.innerText = "Cash Withdrawal / ATM Stream (1% Return Plan)";
         }
 
@@ -183,15 +184,13 @@
     }
 
     function simulatePlaidInbound() {
-        // Simulates an automated banking pull detecting a mortgage/rent transaction
-        processSmartTextData("CHASE MORTGAGE PAYMENT ACCT-9821", 1450.00);
+        processSmartTextData("WELLS FARGO HOME MORTGAGE PAYMENT LEASE-BLOCK", 1200.00);
     }
 
     function triggerSmartOCRScan() {
-        // Randomly picker to simulate smart parsing between grocery and gas slips
         const mockReceipts = [
-            { text: "WHOLE FOODS MARKET STORE #102 GROCERY SELECTION", price: 164.20 },
-            { text: "SHELL OIL FUEL STATION PUMP 04 GASOLINE UNLEADED", price: 45.10 }
+            { text: "PUBLIX SUPERMARKET #432 GROCERY ITEMS FOODSTUFFS", price: 84.50 },
+            { text: "EXXON FUEL STATION UNLEADED PUMP EXTRACTION", price: 52.00 }
         ];
         const selected = mockReceipts[Math.floor(Math.random() * mockReceipts.length)];
         processSmartTextData(selected.text, selected.price);
