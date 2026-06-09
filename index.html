@@ -6,6 +6,7 @@
     <title>VitaCoin — Everyday Living to Yahweh's Glory</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             background: linear-gradient(135deg, #06191d 0%, #020b0d 100%);
@@ -22,26 +23,55 @@
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
-<body class="text-slate-200 min-h-screen flex flex-col">
+<body class="text-slate-200 min-h-screen flex flex-col relative">
 
-    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-emerald-950/40">
+    <div id="uploadModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/30 rounded-3xl p-6 max-w-md w-full gold-glow">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <span>📸</span> Secure Document Ingest Portal
+                </h3>
+                <button onclick="closeUploadModal()" class="text-slate-400 hover:text-white text-sm font-bold bg-slate-950 px-2 py-1 rounded-lg border border-slate-800">✕</button>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                Select an image file or PDF invoice record to extract transaction telemetry and validate receipt details against your spending matrix parameters.
+            </p>
+            <div class="bg-slate-950 border-2 border-dashed border-slate-800 rounded-2xl p-8 text-center cursor-pointer hover:border-amber-400/40 transition-all mb-4" onclick="document.getElementById('hiddenFileInput').click()">
+                <i data-lucide="upload-cloud" class="w-10 h-10 text-amber-400 mx-auto mb-2 animate-pulse"></i>
+                <span class="text-xs font-bold text-slate-300 block">Click to browse device storage</span>
+                <span class="text-[10px] text-slate-500 mt-1 block">Supports JPEG, PNG, or PDF formats</span>
+                <input type="file" id="hiddenFileInput" class="hidden" accept="image/*,application/pdf" onchange="handleFileSelection(event)">
+            </div>
+            <div class="text-[10px] text-amber-400/80 bg-amber-400/5 p-3 rounded-xl border border-amber-400/10 italic">
+                Note: This simulation instantly parses OCR structures upon attachment to ensure swift cryptographic verification.
+            </div>
+        </div>
+    </div>
+
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-emerald-950/40">
         <div class="flex items-center gap-3">
             <img src="vitacoin-logo.jpg" alt="VitaCoin Logo" class="w-11 h-11 object-cover rounded-full border border-amber-400/40 shadow-md">
             <span class="text-2xl font-black tracking-tight text-white">Vita<span class="text-amber-400">Coin</span></span>
         </div>
         
         <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3 bg-slate-950/60 border border-slate-850 px-3 py-2 rounded-xl">
+                <a href="https://t.me/your_vitacoin_telegram" target="_blank" class="text-slate-400 hover:text-amber-400 transition-colors" title="Telegram Channel">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                </a>
+                <a href="https://discord.gg/your_vitacoin_discord" target="_blank" class="text-slate-400 hover:text-amber-400 transition-colors" title="Discord Server">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                </a>
+                <a href="https://x.com/your_vitacoin_x" target="_blank" class="text-slate-400 hover:text-amber-400 transition-colors" title="X (Twitter) Profile">
+                    <i data-lucide="twitter" class="w-4 h-4"></i>
+                </a>
+            </div>
+
             <select id="walletTypeSelect" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-xl px-3 py-2.5 font-semibold outline-none cursor-pointer focus:border-amber-400">
                 <option value="phantom">Phantom Wallet</option>
                 <option value="solflare">Solflare Wallet</option>
                 <option value="backpack">Backpack Wallet</option>
                 <option value="ledger">Ledger Hardware Wallet</option>
-                <option value="trust">Trust Wallet</option>
-                <option value="coinbase">Coin Base Wallet</option>
-                <option value="trezor">Trezor Wallet</option>
-                <option value="exodus">Exodus Wallet</option>
-                <option value="jupiter">Jupiter Wallet</option>
-                <option value="metamask">MetaMask Wallet</option>
             </select>
 
             <button id="walletBtn" onclick="connectSelectedWallet()" 
@@ -66,11 +96,11 @@
             </p>
             
             <div class="flex gap-4 mt-6 bg-slate-900/60 border border-slate-800 px-4 py-2 rounded-xl">
-                <a href="https://github.com/ebinycoop/VitaCoin/blob/main/whitepaper/whitepaper.md" target="_blank" class="text-xs font-bold text-amber-400 hover:text-amber-300 underline tracking-wide flex items-center gap-1">
+                <a href="https://github.com/ebinycoop/VitaCoin/blob/main/whitepaper/WHITEPAPER.md" target="_blank" class="text-xs font-bold text-amber-400 hover:text-amber-300 underline tracking-wide flex items-center gap-1">
                     📄 View Active Whitepaper ↗
                 </a>
                 <span class="text-slate-700">|</span>
-                <a href="https://github.com/ebinycoop/VitaCoin/blob/main/whitepaper/roadmap.md" target="_blank" class="text-xs font-bold text-amber-400 hover:text-amber-300 underline tracking-wide flex items-center gap-1">
+                <a href="https://github.com/ebinycoop/VitaCoin/blob/main/whitepaper/ROADMAP.md" target="_blank" class="text-xs font-bold text-amber-400 hover:text-amber-300 underline tracking-wide flex items-center gap-1">
                     🗺️ View System Roadmap ↗
                 </a>
             </div>
@@ -86,7 +116,7 @@
             </div>
             <div class="flex justify-between items-center border-t border-slate-800/80 pt-3 mt-3">
                 <span class="text-xs text-slate-400">Solana Network Balance:</span>
-                <span id="solBalanceDisplay" class="text-sm font-bold text-white">0.00 SOL</span>
+                <span id="solBalanceDisplay" class="text-sm font-bold text-white">14.285 SOL</span>
             </div>
         </div>
 
@@ -169,7 +199,7 @@
                                 <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT MORTGAGE HANDSHAKE', 1400.00)" class="w-full bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 text-[10px] font-bold py-1.5 px-2 rounded-md text-emerald-400 transition-all text-center">
                                     LINK BANK
                                 </button>
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'MORTGAGE STATEMENT FULL PAYMENT', 1400.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
+                                <button onclick="openUploadModal('BANK_FEED', 'MORTGAGE STATEMENT FULL PAYMENT', 1400.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
                                     Upload Receipt
                                 </button>
                             </div>
@@ -186,7 +216,7 @@
                                 <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT GROCERY CLEARANCE', 128.50)" class="w-full bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 text-[10px] font-bold py-1.5 px-2 rounded-md text-emerald-400 transition-all text-center">
                                     LINK BANK
                                 </button>
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'SUPERMARKET GROCERY RECEIPT', 128.50)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
+                                <button onclick="openUploadModal('OCR_SCAN', 'SUPERMARKET GROCERY RECEIPT', 128.50)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
                                     Upload Receipt
                                 </button>
                             </div>
@@ -203,7 +233,7 @@
                                 <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT FUEL MERCHANT EXTRINSIC', 55.00)" class="w-full bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 text-[10px] font-bold py-1.5 px-2 rounded-md text-emerald-400 transition-all text-center">
                                     LINK BANK
                                 </button>
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'FUEL STATION PUMP RECEIPT', 55.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
+                                <button onclick="openUploadModal('OCR_SCAN', 'FUEL STATION PUMP RECEIPT', 55.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
                                     Upload Receipt
                                 </button>
                             </div>
@@ -220,7 +250,7 @@
                                 <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT AUTO DEBIT HANDSHAKE', 450.00)" class="w-full bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 text-[10px] font-bold py-1.5 px-2 rounded-md text-emerald-400 transition-all text-center">
                                     LINK BANK
                                 </button>
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'AUTO LOAN ACQUISITION RECEIPT', 450.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
+                                <button onclick="openUploadModal('OCR_SCAN', 'AUTO LOAN ACQUISITION RECEIPT', 450.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
                                     Upload Receipt
                                 </button>
                             </div>
@@ -237,7 +267,7 @@
                                 <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT INSURANCE WIRE', 165.00)" class="w-full bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 text-[10px] font-bold py-1.5 px-2 rounded-md text-emerald-400 transition-all text-center">
                                     LINK BANK
                                 </button>
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'AUTO INSURANCE COVERAGE RECEIPT', 165.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
+                                <button onclick="openUploadModal('OCR_SCAN', 'AUTO INSURANCE COVERAGE RECEIPT', 165.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
                                     Upload Receipt
                                 </button>
                             </div>
@@ -254,7 +284,7 @@
                                 <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT CARD ISSUER SETTLING', 300.00)" class="w-full bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 text-[10px] font-bold py-1.5 px-2 rounded-md text-emerald-400 transition-all text-center">
                                     LINK BANK
                                 </button>
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'MONTHLY CREDIT STATEMENT CLEARANCE', 300.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
+                                <button onclick="openUploadModal('OCR_SCAN', 'MONTHLY CREDIT STATEMENT CLEARANCE', 300.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
                                     Upload Receipt
                                 </button>
                             </div>
@@ -271,7 +301,7 @@
                                 <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED MEDICAL CO-PAY DIRECT', 85.00)" class="w-full bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 text-[10px] font-bold py-1.5 px-2 rounded-md text-emerald-400 transition-all text-center">
                                     LINK BANK
                                 </button>
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'CLINIC OUT-OF-POCKET RECEIPT', 85.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
+                                <button onclick="openUploadModal('OCR_SCAN', 'CLINIC OUT-OF-POCKET RECEIPT', 85.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
                                     Upload Receipt
                                 </button>
                             </div>
@@ -288,7 +318,7 @@
                                 <button onclick="streamIncomingPayload('BANK_FEED', 'VERIFIED DIRECT CASH DISPENSATION DEBIT', 200.00)" class="w-full bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-900/60 text-[10px] font-bold py-1.5 px-2 rounded-md text-emerald-400 transition-all text-center">
                                     LINK BANK
                                 </button>
-                                <button onclick="streamIncomingPayload('OCR_SCAN', 'ATM TELLER TERMINAL RECEIPT', 200.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
+                                <button onclick="openUploadModal('OCR_SCAN', 'ATM TELLER TERMINAL RECEIPT', 200.00)" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold py-1.5 px-2 rounded-md text-slate-300 transition-all text-center">
                                     Upload Receipt
                                 </button>
                             </div>
@@ -397,292 +427,325 @@
 
         <div class="max-w-7xl mx-auto">
             <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
-                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Live Session Cryptographic Ledger Audit</h4>
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Live Session Cryptographic Ledger AuditHub</h4>
                 <div id="securityLogBox" class="font-mono text-[11px] text-emerald-400 h-32 overflow-y-auto bg-black/40 p-4 rounded-xl space-y-1">
-                    [SYSTEM INITIALIZATION] Monitoring Solana active cluster endpoints...
+                    <span class="text-slate-500">[SYSTEM INITIALIZATION]</span> Monitoring Solana active cluster endpoints...
                 </div>
             </div>
         </div>
 
     </main>
 
-    <footer class="mt-auto w-full max-w-7xl mx-auto px-6 py-8 border-t border-slate-900 text-center text-xs text-slate-500">
+    <footer class="mt-auto w-full max-w-7xl mx-auto px-6 py-8 border-t border-slate-900 text-center text-xs text-slate-500 flex flex-col items-center gap-3">
+        <div class="flex items-center gap-4 text-slate-400">
+            <a href="https://t.me/your_vitacoin_telegram" target="_blank" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i> Telegram
+            </a>
+            <span>•</span>
+            <a href="https://discord.gg/your_vitacoin_discord" target="_blank" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+                <i data-lucide="message-square" class="w-3.5 h-3.5"></i> Discord
+            </a>
+            <span>•</span>
+            <a href="https://x.com/your_vitacoin_x" target="_blank" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+                <i data-lucide="twitter" class="w-3.5 h-3.5"></i> X
+            </a>
+        </div>
         <div>© 2026 VitaCoin Infrastructure Architecture Suite</div>
         <div class="mt-1 font-medium text-slate-400">Everyday Living to Yahweh's Glory</div>
     </footer>
 
     <script>
-        // Global variables tracking state
-        let isWalletConnected = false;
-        let currentWalletAddress = "";
-        let accumulatedHomeVITA = 0.00;
-        let accumulatedLifeVITA = 0.00;
-        
-        let currentProcessedPayload = null;
+        let walletConnected = false;
+        let activeUserPublicKey = null;
 
-        // Velocity Ceiling Tracker Threshold Limits
+        let homeVaultBalance = 0.00;
+        let lifeVaultBalance = 0.00;
+
+        // Strict Anti-Spam Velocity Limits
         let groceryCount = 0;
-        const groceryLimit = 1;
         let gasCount = 0;
-        const gasLimit = 2;
+        let mortgageCount = 0;
+        let carPaymentCount = 0;
+        let insuranceCount = 0;
+        let creditCardCount = 0;
+        let medicalCount = 0;
+        let cashCount = 0;
 
-        function appendSecurityLog(message) {
-            const logBox = document.getElementById('securityLogBox');
-            if (logBox) {
-                const timestamp = new Date().toISOString().slice(11, 19);
-                logBox.innerHTML += `<div class="leading-relaxed"><span class="text-slate-500">[${timestamp}]</span> ${message}</div>`;
-                logBox.scrollTop = logBox.scrollHeight;
+        let cachedAmount = 0.00;
+        let cachedCategory = "";
+        let cachedRate = 0.00;
+        let cachedMemo = "";
+        let cachedTargetVault = "";
+        let cachedSourceType = "";
+
+        const VITA_PEGGED_VALUATION = 5.00;
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        function appendAuditLog(text) {
+            const box = document.getElementById('securityLogBox');
+            const timestamp = new Date().toLocaleTimeString();
+            const row = document.createElement('div');
+            row.innerHTML = `<span class="text-slate-500">[${timestamp}]</span> ${text}`;
+            box.appendChild(row);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        // Modal Simulation Controllers
+        function openUploadModal(sourceType, textMemoBlock, dollarAmount) {
+            cachedSourceType = sourceType;
+            cachedMemo = textMemoBlock;
+            cachedAmount = dollarAmount;
+            document.getElementById('uploadModal').classList.remove('hidden');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').classList.add('hidden');
+        }
+
+        function handleFileSelection(event) {
+            const file = event.target.files[0];
+            if (file) {
+                closeUploadModal();
+                // Execute standard payload parsing pipeline
+                streamIncomingPayload('OCR_SCAN', cachedMemo, cachedAmount, file.name);
             }
         }
 
-        function connectSelectedWallet() {
-            const selectEl = document.getElementById('walletTypeSelect');
-            const walletBtn = document.getElementById('walletBtn');
+        async function connectSelectedWallet() {
+            const selection = document.getElementById('walletTypeSelect').value;
+            const btn = document.getElementById('walletBtn');
             const statusCard = document.getElementById('walletStatusCard');
             const addressDisplay = document.getElementById('walletAddressDisplay');
-            const solBalanceDisplay = document.getElementById('solBalanceDisplay');
-            
-            const selectedWalletName = selectEl.options[selectEl.selectedIndex].text;
+            const balanceDisplay = document.getElementById('solBalanceDisplay');
 
-            if (!isWalletConnected) {
-                // Simulate Secure Encryption Web3 Handshake
-                isWalletConnected = true;
+            if (!walletConnected) {
+                appendAuditLog(`Connecting to ${selection.toUpperCase()} extension layer...`);
                 
-                // Generate simulated mock cluster public string
-                currentWalletAddress = "V1taG1vX" + Math.random().toString(36).substring(2, 10).toUpperCase() + "yAhWeH777mInT3gR1tyVauLt";
-                
-                appendSecurityLog(`Initializing structural handshake protocol channel with ${selectedWalletName}...`);
-                appendSecurityLog(`Cryptographic signature verified. Vault target bound to public mapping address.`);
-
-                // Update UI Header Button state
-                walletBtn.innerHTML = "Disconnect Wallet";
-                walletBtn.classList.remove('bg-amber-400', 'hover:bg-amber-300', 'text-slate-950');
-                walletBtn.classList.add('bg-rose-950/40', 'border', 'border-rose-900', 'text-rose-400', 'hover:bg-rose-900/40');
-
-                // Reveal status board details
-                statusCard.classList.remove('hidden');
-                addressDisplay.innerText = currentWalletAddress;
-                solBalanceDisplay.innerText = (Math.random() * (25 - 5) + 5).toFixed(3) + " SOL";
-
-                evaluateCommitButtonState();
-            } else {
-                // Disconnect state logic
-                isWalletConnected = false;
-                currentWalletAddress = "";
-                
-                appendSecurityLog(`Session channel termination sequence complete. Connection dropped gracefully.`);
-
-                walletBtn.innerHTML = "Connect Secure Wallet";
-                walletBtn.classList.remove('bg-rose-950/40', 'border', 'border-rose-900', 'text-rose-400', 'hover:bg-rose-900/40');
-                walletBtn.classList.add('bg-amber-400', 'hover:bg-amber-300', 'text-slate-950');
-
-                statusCard.classList.add('hidden');
-                evaluateCommitButtonState();
-            }
-        }
-
-        function streamIncomingPayload(channelType, label, cashValue) {
-            appendSecurityLog(`Inbound payload intercepted via stream channel [${channelType}]: ${label}`);
-            
-            let ratePercent = 0;
-            let targetVault = "Life Vault";
-
-            // Determine appropriate rates and destination architectures matching your configuration
-            if (label.includes("MORTGAGE")) {
-                ratePercent = 10;
-                targetVault = "HomeBuilder Vault";
-            } else if (label.includes("GROCERY")) {
-                ratePercent = 5;
-                targetVault = "Life Vault";
-            } else if (label.includes("FUEL")) {
-                ratePercent = 5;
-                targetVault = "Life Vault";
-            } else if (label.includes("AUTO LOAN")) {
-                ratePercent = 3;
-                targetVault = "Life Vault";
-            } else if (label.includes("INSURANCE")) {
-                ratePercent = 3;
-                targetVault = "Life Vault";
-            } else if (label.includes("CREDIT")) {
-                ratePercent = 2;
-                targetVault = "Life Vault";
-            } else if (label.includes("CLINIC")) {
-                ratePercent = 2;
-                targetVault = "Life Vault";
-            } else if (label.includes("CASH DISPENSATION")) {
-                ratePercent = 1;
-                targetVault = "Life Vault";
-            }
-
-            const rawCalculatedReward = (cashValue * (ratePercent / 100));
-
-            // Populate preview panel
-            document.getElementById('parsedCategoryLabel').innerText = label;
-            document.getElementById('targetVaultLabel').innerText = targetVault;
-            document.getElementById('verificationTypeLabel').innerText = `${channelType} METRIC STRING STRIP`;
-            
-            const parsedValLabel = document.getElementById('parsedValueLabel');
-            parsedValLabel.innerText = `$${cashValue.toFixed(2)}`;
-            parsedValLabel.classList.remove('text-slate-700');
-            parsedValLabel.classList.add('text-white');
-
-            document.getElementById('rateOutputLabel').innerText = `${ratePercent}%`;
-            document.getElementById('rewardOutputLabel').innerText = `${rawCalculatedReward.toFixed(2)} VITA`;
-
-            // Display raw incoming data telemetry dump string format 
-            const telemetryLog = `{\n  "payload_origin": "${channelType}",\n  "assessment_label": "${label}",\n  "fiat_value_extracted": ${cashValue.toFixed(2)},\n  "applied_matrix_rate": 0.0${ratePercent},\n  "calculated_mint_allocation": ${rawCalculatedReward.toFixed(2)}\n}`;
-            document.getElementById('payloadTelemetryDisplay').innerText = telemetryLog;
-
-            // Save processing step context
-            currentProcessedPayload = {
-                label: label,
-                value: cashValue,
-                reward: rawCalculatedReward,
-                vault: targetVault
-            };
-
-            evaluateCommitButtonState();
-        }
-
-        function evaluateCommitButtonState() {
-            const commitBtn = document.getElementById('ledgerCommitBtn');
-            if (isWalletConnected && currentProcessedPayload !== null) {
-                commitBtn.disabled = false;
-                commitBtn.className = "w-full bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 py-4 rounded-xl font-black text-md shadow-lg shadow-amber-500/10 transition-all transform active:scale-[0.99] cursor-pointer";
-                commitBtn.innerHTML = `Commit Verified ${currentProcessedPayload.reward.toFixed(2)} VITA to Ledger Framework`;
-            } else {
-                commitBtn.disabled = true;
-                commitBtn.className = "w-full bg-slate-800 text-slate-500 py-4 rounded-xl font-bold text-md cursor-not-allowed transition-all";
-                if (!isWalletConnected) {
-                    commitBtn.innerHTML = "Pipeline Locked: Connect Wallet & Ingest Bill Document";
+                if (window.solana?.isPhantom && selection === 'phantom') {
+                    try {
+                        const resp = await window.solana.connect();
+                        activeUserPublicKey = resp.publicKey.toString();
+                        walletConnected = true;
+                    } catch (err) {
+                        appendAuditLog(`Handshake rejected: ${err.message}`);
+                        return;
+                    }
                 } else {
-                    commitBtn.innerHTML = "Pipeline Locked: Select and Ingest Data Document Source";
+                    activeUserPublicKey = `VITA_NODE_${selection.toUpperCase()}_7777`;
+                    walletConnected = true;
                 }
+
+                if (walletConnected) {
+                    btn.innerText = "Disconnect";
+                    btn.className = "bg-slate-800 text-amber-400 border border-amber-400/30 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all";
+                    addressDisplay.innerText = activeUserPublicKey;
+                    balanceDisplay.innerText = "14.285 SOL (Sandbox Node Enabled)";
+                    statusCard.classList.remove('hidden');
+                    appendAuditLog(`Handshake active for account: ${activeUserPublicKey}`);
+                }
+            } else {
+                walletConnected = false;
+                activeUserPublicKey = null;
+                btn.innerText = "Connect Secure Wallet";
+                btn.className = "bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-2.5 rounded-2xl text-sm font-bold transition-all shadow-md shadow-amber-400/10";
+                statusCard.classList.add('hidden');
+                appendAuditLog("Wallet session disconnected cleanly.");
             }
+        }
+
+        function streamIncomingPayload(sourceType, textMemoBlock, dollarAmount, fileName = null) {
+            let logPrefix = fileName ? `File Attached [${fileName}] — ` : "";
+            appendAuditLog(`${logPrefix}Parsing inbound document stream via [${sourceType}]: ${textMemoBlock}`);
+            
+            // Highlight validation confirmation in log
+            appendAuditLog(`<span class="text-amber-400">VALIDATING RECEIPT: Checking accurate asset matching balances for charge parameter of $${dollarAmount.toFixed(2)}...</span>`);
+
+            document.getElementById('payloadTelemetryDisplay').innerText = `{\n  "source": "${sourceType}",\n  "bill_memo": "${textMemoBlock}",\n  "value_payload": ${dollarAmount.toFixed(2)},\n  "file_metadata": "${fileName || 'DIRECT_LINK_FEED'}",\n  "unix_timestamp": ${Date.now()}\n}`;
+
+            cachedAmount = dollarAmount;
+            cachedMemo = textMemoBlock;
+            
+            let normalizedStr = textMemoBlock.toLowerCase();
+            let displayCategoryName = "";
+
+            const typeLabel = document.getElementById('verificationTypeLabel');
+            if (sourceType === 'BANK_FEED') {
+                typeLabel.innerText = "🌐 LINK BANK CONNECTIVITY (Direct Verification)";
+                typeLabel.className = "text-xs font-black tracking-wide text-emerald-400 mt-1 block";
+            } else {
+                typeLabel.innerText = "📸 OPTICAL CHARACTER RECOGNITION (Upload Receipt)";
+                typeLabel.className = "text-xs font-black tracking-wide text-amber-400 mt-1 block";
+            }
+
+            if (normalizedStr.includes("mortgage") || normalizedStr.includes("rent")) {
+                cachedCategory = "housing";
+                cachedRate = 0.10;
+                cachedTargetVault = "home";
+                displayCategoryName = "1. Rent or Mortgage Allocation";
+            } else if (normalizedStr.includes("grocery") || normalizedStr.includes("supermarket")) {
+                cachedCategory = "groceries";
+                cachedRate = 0.05;
+                cachedTargetVault = "life";
+                displayCategoryName = "2. Grocery Supply Receipt";
+            } else if (normalizedStr.includes("fuel") || normalizedStr.includes("gas")) {
+                cachedCategory = "gas";
+                cachedRate = 0.05;
+                cachedTargetVault = "life";
+                displayCategoryName = "3. Energy & Fuel Refill";
+            } else if (normalizedStr.includes("auto") || normalizedStr.includes("car payment")) {
+                cachedCategory = "car-payment";
+                cachedRate = 0.03;
+                cachedTargetVault = "life";
+                displayCategoryName = "4. Automotive Installment Plan";
+            } else if (normalizedStr.includes("insurance")) {
+                cachedCategory = "insurance";
+                cachedRate = 0.03;
+                cachedTargetVault = "life";
+                displayCategoryName = "5. Car Insurance Premium";
+            } else if (normalizedStr.includes("credit card") || normalizedStr.includes("card")) {
+                cachedCategory = "credit-card";
+                cachedRate = 0.02;
+                cachedTargetVault = "life";
+                displayCategoryName = "6. Credit Card Statement Clearance";
+            } else if (normalizedStr.includes("medical") || normalizedStr.includes("clinic")) {
+                cachedCategory = "medical";
+                cachedRate = 0.02;
+                cachedTargetVault = "life";
+                displayCategoryName = "7. Medical Expense Settlement";
+            } else if (normalizedStr.includes("atm") || normalizedStr.includes("cash")) {
+                cachedCategory = "cash-withdrawal";
+                cachedRate = 0.01;
+                cachedTargetVault = "life";
+                displayCategoryName = "8. Cash Withdrawal Verification";
+            }
+
+            let computedTokens = cachedAmount * cachedRate;
+
+            document.getElementById('parsedCategoryLabel').innerText = displayCategoryName;
+            document.getElementById('targetVaultLabel').innerText = cachedTargetVault === 'home' ? "🏠 HomeBuilder Vault" : "🌱 Life Vault";
+            
+            const textAmountVal = document.getElementById('parsedValueLabel');
+            textAmountVal.innerText = `$${cachedAmount.toFixed(2)}`;
+            textAmountVal.className = "text-2xl font-mono font-black text-emerald-400 block animate-pulse";
+
+            document.getElementById('rateOutputLabel').innerText = `${(cachedRate * 100)}% Payback Rate`;
+            document.getElementById('rewardOutputLabel').innerText = `${computedTokens.toFixed(2)} VITA`;
+
+            const actionBtn = document.getElementById('ledgerCommitBtn');
+            actionBtn.disabled = false;
+            actionBtn.className = "w-full bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold py-4 rounded-xl text-md transition-all cursor-pointer shadow-lg active:scale-[0.99]";
+            actionBtn.innerText = `Commit Record Verification: +${computedTokens.toFixed(2)} VITA`;
         }
 
         function commitProcessedPayload() {
-            if (!isWalletConnected || !currentProcessedPayload) return;
+            if (!walletConnected) {
+                alert("Security block: Please verify an active wallet connection step first.");
+                return;
+            }
 
-            // Velocity ceiling evaluation guards
-            if (currentProcessedPayload.label.includes("GROCERY")) {
-                if (groceryCount >= groceryLimit) {
-                    appendSecurityLog(`[VELOCITY LIMIT BREACHED] Grocery allocation blocked. Weekly limit sequence saturated.`);
-                    alert("Velocity Ceiling Hit: Weekly Food & Grocery processing limits have been exhausted.");
-                    return;
-                }
-                groceryCount++;
-                updateVelocityCeilingTrackers();
-            } else if (currentProcessedPayload.label.includes("FUEL")) {
-                if (gasCount >= gasLimit) {
-                    appendSecurityLog(`[VELOCITY LIMIT BREACHED] Gas/Fuel allocation blocked. Weekly limit sequence saturated.`);
-                    alert("Velocity Ceiling Hit: Weekly Gas & Fuel processing limits have been exhausted.");
-                    return;
-                }
+            // Anti-Spam Velocity Threshold Verifications
+            if (cachedCategory === "housing" && mortgageCount >= 1) { alert("Velocity Limit: Maximum 1 mortgage allocation permitted per statement cycle."); return; }
+            if (cachedCategory === "groceries" && groceryCount >= 1) { alert("Velocity Limit: Maximum 1 grocery allocation permitted per cycle."); return; }
+            if (cachedCategory === "gas" && gasCount >= 2) { alert("Velocity Limit: Maximum 2 fuel receipts permitted per cycle."); return; }
+            if (cachedCategory === "car-payment" && carPaymentCount >= 1) { alert("Velocity Limit: Maximum 1 auto installment allowed per cycle."); return; }
+            if (cachedCategory === "insurance" && insuranceCount >= 1) { alert("Velocity Limit: Maximum 1 insurance receipt allowed per cycle."); return; }
+            if (cachedCategory === "credit-card" && creditCardCount >= 1) { alert("Velocity Limit: Maximum 1 statement clearance allowed per cycle."); return; }
+            if (cachedCategory === "medical" && medicalCount >= 3) { alert("Velocity Limit: Maximum 3 medical item uploads allowed per cycle."); return; }
+            if (cachedCategory === "cash-withdrawal" && cashCount >= 2) { alert("Velocity Limit: Maximum 2 cash logs allowed per cycle."); return; }
+
+            // Increment count upon success
+            if (cachedCategory === "housing") mortgageCount++;
+            if (cachedCategory === "car-payment") carPaymentCount++;
+            if (cachedCategory === "insurance") insuranceCount++;
+            if (cachedCategory === "credit-card") creditCardCount++;
+            if (cachedCategory === "medical") medicalCount++;
+            if (cachedCategory === "cash-withdrawal") cashCount++;
+
+            if (cachedCategory === "gas") {
                 gasCount++;
-                updateVelocityCeilingTrackers();
+                document.getElementById('gasTrackerLabel').innerText = `${gasCount} / 2 Processed`;
+                document.getElementById('gasProgressBar').style.width = `${(gasCount * 50)}%`;
             }
 
-            appendSecurityLog(`Broadcasting transaction stream parameters to block cluster ledger network...`);
-            
-            // Increment the real-time calculated targets safely
-            if (currentProcessedPayload.vault === "HomeBuilder Vault") {
-                accumulatedHomeVITA += currentProcessedPayload.reward;
-                document.getElementById('homeVaultAccumulation').innerText = `${accumulatedHomeVITA.toFixed(2)} VITA`;
+            if (cachedCategory === "groceries") {
+                groceryCount++;
+                document.getElementById('groceryTrackerLabel').innerText = `${groceryCount} / 1 Processed`;
+                document.getElementById('groceryProgressBar').style.width = "100%";
+            }
+
+            let computedRewards = cachedAmount * cachedRate;
+
+            if (cachedTargetVault === 'home') {
+                homeVaultBalance += computedRewards;
+                document.getElementById('homeVaultAccumulation').innerText = homeVaultBalance.toFixed(2) + " VITA";
+                appendAuditLog(`Ledger entry recorded: Approved +${computedRewards.toFixed(2)} VITA into HomeBuilder Account Allocation.`);
             } else {
-                accumulatedLifeVITA += currentProcessedPayload.reward;
-                document.getElementById('lifeVaultAccumulation').innerText = `${accumulatedLifeVITA.toFixed(2)} VITA`;
+                lifeVaultBalance += computedRewards;
+                document.getElementById('lifeVaultAccumulation').innerText = lifeVaultBalance.toFixed(2) + " VITA";
+                appendAuditLog(`Ledger entry recorded: Approved +${computedRewards.toFixed(2)} VITA into Life Account Allocation.`);
             }
 
-            appendSecurityLog(`Ledger block state committed successfully! Immutable distribution confirmed.`);
+            alert(`✅ Stream Verification Succeeded!\n\nAllocated +${computedRewards.toFixed(2)} VITA tokens.`);
 
-            // Reset preview context back to clean slate state architectures
-            currentProcessedPayload = null;
-            document.getElementById('parsedCategoryLabel').innerText = "Allocation Deposited";
+            cachedAmount = 0.00;
+            cachedCategory = "";
+            document.getElementById('parsedCategoryLabel').innerText = "No Data Linked";
             document.getElementById('targetVaultLabel').innerText = "—";
             document.getElementById('verificationTypeLabel').innerText = "—";
-            
-            const parsedValLabel = document.getElementById('parsedValueLabel');
-            parsedValLabel.innerText = "$0.00";
-            parsedValLabel.classList.remove('text-white');
-            parsedValLabel.classList.add('text-slate-700');
-
+            document.getElementById('verificationTypeLabel').className = "text-xs font-black tracking-wide text-slate-400 mt-1 block";
+            document.getElementById('parsedValueLabel').innerText = "$0.00";
+            document.getElementById('parsedValueLabel').className = "text-2xl font-mono font-black text-slate-700 block";
             document.getElementById('rateOutputLabel').innerText = "0%";
             document.getElementById('rewardOutputLabel').innerText = "0.00 VITA";
-            document.getElementById('payloadTelemetryDisplay').innerText = "Awaiting simulated ledger document validation...";
 
-            evaluateCommitButtonState();
-        }
-
-        function updateVelocityCeilingTrackers() {
-            // Grocery Tracker Component
-            const groceryPercent = (groceryCount / groceryLimit) * 100;
-            document.getElementById('groceryTrackerLabel').innerText = `${groceryCount} / ${groceryLimit} Processed`;
-            document.getElementById('groceryProgressBar').style.width = `${groceryPercent}%`;
-
-            // Gas Tracker Component
-            const gasPercent = (gasCount / gasLimit) * 100;
-            document.getElementById('gasTrackerLabel').innerText = `${gasCount} / ${gasLimit} Processed`;
-            document.getElementById('gasProgressBar').style.width = `${gasPercent}%`;
+            const actionBtn = document.getElementById('ledgerCommitBtn');
+            actionBtn.disabled = true;
+            actionBtn.className = "w-full bg-slate-800 text-slate-500 py-4 rounded-xl font-bold text-md cursor-not-allowed";
+            actionBtn.innerText = "Pipeline Locked: Connect Wallet & Ingest Bill Document";
         }
 
         function calculateLoanOutput() {
-            const tokenInput = document.getElementById('loanTokensInput').value;
-            const outputDisplay = document.getElementById('loanEstimateDisplay');
-            
-            const parsedTokens = parseFloat(tokenInput);
-            if (!isNaN(parsedTokens) && parsedTokens > 0) {
-                // Fixed valuation conversion anchor framework matrix rule ($5.00 per VITA)
-                const derivedCashValue = parsedTokens * 5.00;
-                outputDisplay.innerText = derivedCashValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            } else {
-                outputDisplay.innerText = "0.00";
-            }
+            const tokensCount = parseFloat(document.getElementById('loanTokensInput').value) || 0;
+            const outputUSDValue = tokensCount * VITA_PEGGED_VALUATION;
+            document.getElementById('loanEstimateDisplay').innerText = outputUSDValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
 
         function executeVaultLoanContract() {
-            const vaultType = document.getElementById('loanSourceSelect').value;
-            const tokenInput = document.getElementById('loanTokensInput').value;
-            const parsedTokens = parseFloat(tokenInput);
-
-            if (!isWalletConnected) {
-                appendSecurityLog(`[LOAN EXECUTION FAILURE] Missing secure wallet validation footprint.`);
-                alert("Please attach your cryptographic wallet interface signature before initiating escrow advances.");
+            if (!walletConnected) {
+                alert("Security lock: Connect your wallet infrastructure to register loan documents.");
                 return;
             }
 
-            if (isNaN(parsedTokens) || parsedTokens <= 0) {
-                alert("Please declare a positive, valid token count parameter to construct structural escrow balance.");
+            const targetSelection = document.getElementById('loanSourceSelect').value;
+            const tokenVolume = parseFloat(document.getElementById('loanTokensInput').value) || 0;
+
+            if (tokenVolume <= 0) {
+                alert("Processing exception: Entry parameters must evaluate higher than zero.");
                 return;
             }
 
-            // Validate that requested amount does not exceed active current accumulated ledger reserves
-            if (vaultType === "home" && parsedTokens > accumulatedHomeVITA) {
-                appendSecurityLog(`[ESCROW OVERDRAW REJECTION] Attempted to pledge ${parsedTokens} VITA from HomeBuilder reserves. Available balance: ${accumulatedHomeVITA.toFixed(2)} VITA`);
-                alert("Insufficient tokens inside target vault to process structural escrow pledge loan contract.");
-                return;
-            } else if (vaultType === "life" && parsedTokens > accumulatedLifeVITA) {
-                appendSecurityLog(`[ESCROW OVERDRAW REJECTION] Attempted to pledge ${parsedTokens} VITA from Life reserves. Available balance: ${accumulatedLifeVITA.toFixed(2)} VITA`);
-                alert("Insufficient tokens inside target vault to process structural escrow pledge loan contract.");
-                return;
-            }
-
-            // Deduct assets from storage balances to put securely in structural escrow
-            if (vaultType === "home") {
-                accumulatedHomeVITA -= parsedTokens;
-                document.getElementById('homeVaultAccumulation').innerText = `${accumulatedHomeVITA.toFixed(2)} VITA`;
+            if (targetSelection === 'home') {
+                if (tokenVolume > homeVaultBalance) {
+                    alert(`Overdraft error: Insufficient reserves inside HomeBuilder vault.`);
+                    return;
+                }
+                homeVaultBalance -= tokenVolume;
+                document.getElementById('homeVaultAccumulation').innerText = homeVaultBalance.toFixed(2) + " VITA";
             } else {
-                accumulatedLifeVITA -= parsedTokens;
-                document.getElementById('lifeVaultAccumulation').innerText = `${accumulatedLifeVITA.toFixed(2)} VITA`;
+                if (tokenVolume > lifeVaultBalance) {
+                    alert(`Overdraft error: Insufficient reserves inside Life vault.`);
+                    return;
+                }
+                lifeVaultBalance -= tokenVolume;
+                document.getElementById('lifeVaultAccumulation').innerText = lifeVaultBalance.toFixed(2) + " VITA";
             }
 
-            const totalAdvancedCashValue = parsedTokens * 5.00;
-            appendSecurityLog(`Locking ${parsedTokens.toFixed(2)} VITA into secure Escrow Loan Contract Vault...`);
-            appendSecurityLog(`Strategic Liquidity Contract Deployed! Advanced Yield of $${totalAdvancedCashValue.toFixed(2)} USD routed to balance destination array at 0% interest margins.`);
+            const linearDisbursementAmount = tokenVolume * VITA_PEGGED_VALUATION;
+            appendAuditLog(`LIQUIDITY LOAN ISSUED: Escrow locked ${tokenVolume.toFixed(2)} VITA tokens. Sent $${linearDisbursementAmount.toFixed(2)} USD value.`);
+            alert(`✅ Strategic Loan Initialized!\n\nEscrow Hold Secured: ${tokenVolume.toFixed(2)} VITA\nLiquidity Disbursed: $${linearDisbursementAmount.toFixed(2)} USD\nInterest Schedule: 0% Fixed`);
             
-            alert(`Strategic Contract Successfully Deployed!\n$${totalAdvancedCashValue.toFixed(2)} USD advanced to your wallet context architecture.`);
-            
-            // Clean interface input states
             document.getElementById('loanTokensInput').value = "";
             document.getElementById('loanEstimateDisplay').innerText = "0.00";
         }
