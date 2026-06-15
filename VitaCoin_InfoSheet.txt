@@ -1,0 +1,44 @@
+VitaCoin Info Sheet
+
+Turn Everyday Expenses into Wealth and Freedom via Receipt Rewards and Smart Vaults on Solana
+
+Closing The Wealth Gap
+Imagine a world where everything you spend to survive comes right back to build your future. That is the power of VitaCoin.
+For generations, the old financial system has kept families living paycheck to paycheck, feeling like they are just working to pay bills. Some think the answer is looking outward to macro-political systems or waiting for government intervention, but the real future is independent economic sovereignty, investing in yourself and building your own estate.
+VitaCoin is a revolutionary utility token on the lightning-fast, high-performance Solana blockchain that transforms your mandatory daily survival expenses into a rock-solid foundation for generational wealth, security, and true financial freedom. With VitaCoin, you aren’t just spending money, you are planting seeds for your future inheritance.
+Key Features
+1. Smart Expense Rewards
+Earn VitaCoin automatically on the things you already pay for. By converting your raw consumer transaction data into an asset class, you receive high-utility matches on unavoidable life costs:
+	•	Housing (Rent or Mortgage): A powerful 15% payback matching rate.
+	•	Groceries & Fuel Supplies: A premium 8.4% payback matching rate.
+	•	Automotive & Insurance Premium Payments: A baseline 5.4% payback matching rate.
+	•	Healthcare & Medical Incidents: Programmatically tracked via a tiered protective scale to shield your family.
+	•	Cash Withdrawls: A token .04%
+2. The HomeBuilder Vault (15% Match)
+A dedicated, secure vault where your housing rewards are safely directed. This features a beautiful paradigm shift:
+	•	For Renters: It turns high, predatory rent payments into accumulated down-payment equity, helping you buy a primary property of your own.
+	•	For Homeowners: It turns a relentless mortgage liability into immediate funding for property enhancements, equity acceleration, or secondary acquisitions.
+3. The Life Security Vault
+Your everyday rewards (groceries, fuel, insurance) go into flexible, yield-bearing vaults. Subjected to an initial 90-day time-lock, these assets grow over time, creating a reliable, automated safety net for unexpected emergencies and long-term dreams.
+4. Hyper-Scarce Tokenomics
+Unlike traditional inflationary tokens, VitaCoin features an absolute finite supply cap of exactly 1,444,444,444 $VITA. Every single digit is intentional. This tight structure ensures that as global adoption grows, scarcity naturally drives long-term asset value.
+5. Ironclad Security & Sybil Defenses
+To protect early stakeholders and investors from fraud or multi-wallet exploitation (commonly known as a Sybil Attack), the protocol utilizes a strict 10 $VITA Token-Gated Entry Gate alongside Plaid biometric and legal identification checking. One living soul, one verified face, exactly one VitaCoin reward pipeline.
+How It Works (As Simple as 1-2-3)
+	1.	Live Your Life: Pay your normal, unavoidable bills, including rent, food, utilities, and fuel.
+	2.	Verify Your Spend: Securely connect your banking data via Plaid or upload a quick receipt to verify your consumption.
+	3.	Build Your Wealth: Watch your VitaCoin rewards accumulate in your non-custodial smart vaults, growing into tangible assets, homeownership, and ultimate freedom.
+Our Vision
+We believe that no one should spend their whole life just making ends meet. The emerging generation is exhausted by division and economic anxiety; they are looking for a system that actually works for them, and VitaCoin is the sovereign answer.
+By redirecting the trillion-dollar wealth of daily survival back into the hands of the individual, we are creating a self-sustaining economy of ownership, dignity, and long-term peace of mind for families across generations.
+Don't just pay to live your life. Own it!
+Get Started
+	•	Read the Whitepaper: [Link]
+	•	Explore the Roadmap: [Link]
+	•	The Future is Arriving: The token launch is coming soon to the Solana (SPL) ecosystem, delivering sub-second finality and near-zero transaction fees. Get ready to join the movement!
+Contributing
+This is a people-first, open-source movement. We welcome developers, visionaries, and builders to fork the repository, make structural improvements, and submit pull requests. Let’s build this legacy together.
+Disclaimer
+This is a conceptual project. A successful token launch requires full smart contract audits, regulatory compliance, and ongoing development. This document does not constitute financial advice.
+
+Built with a vision for true freedom, for every person ready to earn rewards on life's expenses and claim their future.

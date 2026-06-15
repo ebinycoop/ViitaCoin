@@ -1,0 +1,55 @@
+Roadmap
+VitaCoin Ecosystem Project Profile — A phased approach to building sovereign economic infrastructure that turns everyday survival into generational wealth on Solana.
+Phase 1: Q3-Q4 2025 — Foundation & Protocol Design
+•  Complete whitepaper and tokenomics finalization (1,444,444,444 max supply)
+•  Design HomeBuilder Vault (15% housing match) and Life Security Vault
+•  Implement Plaid integration, OCR engine, and velocity caps
+•  Solana Anchor smart contract architecture with Token-2022 extensions
+•  Sybil defense: 10 $VITA token gate + biometric/identity pairing
+Phase 2: Q1 2026 — Testnet & Security Audits
+•  Smart contract audits and formal verification
+•  Real receipt OCR + bank feed testing
+•  90-day time-lock and clawback mechanisms
+•  Tiered reward simulation (Groceries/Fuel 8.4%, Housing 15%, etc.)
+•  Latecomer Protection Vault initialization
+Phase 3: Q2 2026 — Mainnet Launch & Public Utility Presale
+•  Token generation event on Solana
+•  Public presale (10% allocation) for audit funding
+•  Liquidity pools and initial DEX listings
+•  Full non-custodial vault deployment
+•  Community governance contracts activated
+Phase 4: Q3 2026+ — Growth & Ecosystem Expansion
+•  Milestone-based boosts (governance voting)
+•  Cross-generational adoption campaigns
+•  Additional verified data sources and partnerships
+•  Staking rewards and yield optimization
+•  Latecomer Protection Vault accessibility features
+Key Features
+1.  Smart Expense Rewards
+	•  Housing (Rent or Mortgage): 15% payback matching rate
+	•  Groceries & Fuel: 8.4% payback matching rate
+	•  Automotive & Insurance: 5.4% payback matching rate
+	•  Healthcare & Medical: Tiered protective scale
+	•  Cash Withdrawals: Lower-tier rate with velocity limits
+2.  HomeBuilder Vault (15% Match)
+	•  Turns rent/mortgage into down-payment equity or property enhancements
+3.  Life Security Vault
+	•  Flexible, yield-bearing with 90-day time-lock
+4.  Hyper-Scarce Tokenomics
+	•  Finite supply: exactly 1,444,444,444 $VITA
+5.  Ironclad Security & Sybil Defenses
+	•  10 $VITA token-gated entry + Plaid biometric verification
+How It Works
+1.  Live your life and pay normal bills.
+2.  Verify via Plaid or receipt upload.
+3.  Watch rewards accumulate in non-custodial vaults.
+Get Started
+•  Read the Whitepaper
+•  Explore the Roadmap
+•  Join the movement on Solana
+Contributing
+This is a people-first, open-source movement. Fork the repo, improve the code, and submit PRs.
+Disclaimer
+Conceptual project. Requires full audits and compliance. Not financial advice.
+
+Built with a vision for true freedom.
