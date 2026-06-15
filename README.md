@@ -1,7 +1,5 @@
 # VitaCoin Core Ecosystem
 
-![VitaCoin](vitacoin-logo.jpg)
-
 **Turning Everyday Living Expenses into Generational Wealth on Solana**
 
 VitaCoin is a revolutionary utility ecosystem built on the high-performance Solana blockchain. It transforms mandatory daily living expenses into long-term financial security, homeownership opportunities, and generational wealth. By bridging legacy banking data via Plaid with secure, non-custodial Anchor smart vaults on Solana, VitaCoin offers an empirical, self-sustaining alternative to predatory economic frameworks.
